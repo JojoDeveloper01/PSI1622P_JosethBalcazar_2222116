@@ -10,6 +10,9 @@ namespace Tanna
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            System.Windows.Forms.Application.EnableVisualStyles();
+            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            ProgramInitializer.Start();
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
