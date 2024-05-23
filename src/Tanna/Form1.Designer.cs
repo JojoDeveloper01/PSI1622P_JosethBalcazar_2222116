@@ -35,6 +35,8 @@
             passwordRegister = new TextBox();
             usernameRegister = new TextBox();
             try_passwordRegister = new TextBox();
+            name = new TextBox();
+            User = new Button();
             SuspendLayout();
             // 
             // username
@@ -53,7 +55,7 @@
             // 
             // Sing_In
             // 
-            Sing_In.Location = new Point(503, 355);
+            Sing_In.Location = new Point(503, 351);
             Sing_In.Name = "Sing_In";
             Sing_In.Size = new Size(108, 29);
             Sing_In.TabIndex = 2;
@@ -92,12 +94,32 @@
             try_passwordRegister.Size = new Size(133, 23);
             try_passwordRegister.TabIndex = 6;
             // 
+            // name
+            // 
+            name.Location = new Point(710, 192);
+            name.Name = "name";
+            name.Size = new Size(100, 23);
+            name.TabIndex = 7;
+            name.TextChanged += name_TextChanged;
+            // 
+            // User
+            // 
+            User.Location = new Point(467, 460);
+            User.Name = "User";
+            User.Size = new Size(185, 77);
+            User.TabIndex = 8;
+            User.Text = "User";
+            User.UseVisualStyleBackColor = true;
+            User.Click += User_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
             ClientSize = new Size(1171, 663);
+            Controls.Add(User);
+            Controls.Add(name);
             Controls.Add(try_passwordRegister);
             Controls.Add(Sing_Up);
             Controls.Add(passwordRegister);
@@ -121,5 +143,7 @@
         private TextBox passwordRegister;
         private TextBox usernameRegister;
         private TextBox try_passwordRegister;
+        private TextBox name;
+        private Button User;
     }
 }

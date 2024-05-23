@@ -1,45 +1,66 @@
 ﻿using System;
 using System.Data.SQLite;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Tanna
 {
-    public static class ProgramInitializer
+    public static class DBConnection
     {
-        private static string connectionString = "Data Source=tanna.db;Version=3;";
-        private static SQLiteConnection connection;
+        public static string dbFilePath;
+        public static string connString;
+        public static SQLiteConnection conn;
 
-        public static SQLiteConnection GetConnection()
+        static DBConnection()
         {
-            if (connection == null)
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            // Build the path
+            dbFilePath = Path.Combine(baseDir, @"..\..\..\Tanna.db");
+
+            // Make sure the path is correct
+            dbFilePath = Path.GetFullPath(dbFilePath);
+
+            if (!File.Exists(dbFilePath)) // Check if the file exists
             {
-                connection = new SQLiteConnection(connectionString);
+                MessageBox.Show("Error: The database file was not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Path bd: {dbFilePath}");
+                return;
             }
 
-            return connection;
-        }
+            // Definir a string de conexão usando o caminho completo
+            connString = $"Data Source={dbFilePath}; Version=3";
+            conn = new SQLiteConnection(connString);
 
-        public static void OpenConnection()
-        {
-            if (connection != null && connection.State != System.Data.ConnectionState.Open)
+            try
             {
-                connection.Open();
+                conn.Open();
+                MessageBox.Show("Connection to the database successfully established!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show($"SQLite Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        public static void CloseConnection()
+        public static SQLiteDataReader ExecuteQuery(string sql)
         {
-            if (connection != null && connection.State != System.Data.ConnectionState.Closed)
+            try
             {
-                connection.Close();
+                SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+                return cmd.ExecuteReader();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show($"SQLite Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
-        public static void Start()
-        {
-            OpenConnection();
-            Application.Run(new Form1());
-            CloseConnection();
-        }
     }
 }

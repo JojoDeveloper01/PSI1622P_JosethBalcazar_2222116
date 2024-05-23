@@ -30,3 +30,5 @@ C:\Users\2222116\OneDrive - Escola Digital\EscolaDigital\WorksuWu\PSI\11_Ano\Pro
 C:\Users\2222116\OneDrive - Escola Digital\EscolaDigital\WorksuWu\PSI\11_Ano\ProjetoFinal\PSI1622P_JosethBalcazar_2222116\src\Tanna\bin\Debug\net6.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
 C:\Users\2222116\OneDrive - Escola Digital\EscolaDigital\WorksuWu\PSI\11_Ano\ProjetoFinal\PSI1622P_JosethBalcazar_2222116\src\Tanna\bin\Debug\net6.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
 C:\Users\2222116\OneDrive - Escola Digital\EscolaDigital\WorksuWu\PSI\11_Ano\ProjetoFinal\PSI1622P_JosethBalcazar_2222116\src\Tanna\bin\Debug\net6.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\2222116\OneDrive - Escola Digital\EscolaDigital\WorksuWu\PSI\11_Ano\ProjetoFinal\PSI1622P_JosethBalcazar_2222116\src\Tanna\bin\Debug\net6.0-windows\Tanna.sln
+C:\Users\2222116\OneDrive - Escola Digital\EscolaDigital\WorksuWu\PSI\11_Ano\ProjetoFinal\PSI1622P_JosethBalcazar_2222116\src\Tanna\bin\Debug\net6.0-windows\Tanna.dll.config
