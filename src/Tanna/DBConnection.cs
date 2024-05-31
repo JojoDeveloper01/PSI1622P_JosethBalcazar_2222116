@@ -13,7 +13,7 @@ namespace Tanna
 
         static DBConnection()
         {
-            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+         /*   string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
             // Build the path
             dbFilePath = Path.Combine(baseDir, @"..\..\..\Tanna.db");
@@ -60,7 +60,7 @@ namespace Tanna
                 MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-        }
+        }*/
 
     }
 }

@@ -20,15 +20,15 @@ namespace Tanna
             // see https://aka.ms/applicationconfiguration.
 
             // Initialize the database connection
-            //InitializeDatabaseConnection();
+//            InitializeDatabaseConnection();
 
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
-        /*
-        static void InitializeDatabaseConnection()
+        
+       /* static void InitializeDatabaseConnection()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -64,6 +64,6 @@ namespace Tanna
         {
             throw new NotImplementedException();
         }
-        */
+     */   
     }
 }
