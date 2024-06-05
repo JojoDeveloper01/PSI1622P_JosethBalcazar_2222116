@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3ofNv38TcUYJlAZZdazWdnQOOVbmMt9MAZ9G5SoMkMGBEnFjYGPECW/Hdk5Lt10Tz9CI6KSrmDOucdPqCiVzlA==",
+  "dgSpecHash": "STf9jXhiw8J6Qh2p9cHQ6PpnuoPPhczpoWBKvZFdIUh98LiWOITAArzvjLG5LBMYOu/PSUVh7pRD3FqjSV0NhA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\2222116\\OneDrive - Escola Digital\\EscolaDigital\\WorksuWu\\PSI\\11_Ano\\ProjetoFinal\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Tanna.csproj",
+  "projectFilePath": "C:\\Users\\2222116\\OneDrive - Escola Digital\\ProjetoFinal\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Tanna.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\2222116\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\2222116\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

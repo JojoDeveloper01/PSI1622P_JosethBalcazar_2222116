@@ -28,30 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            username = new TextBox();
-            password = new TextBox();
+            usernameLogin = new TextBox();
+            passwordLogin = new TextBox();
             Sing_In = new Button();
             Sing_Up = new Button();
             passwordRegister = new TextBox();
             usernameRegister = new TextBox();
             try_passwordRegister = new TextBox();
-            name = new TextBox();
             User = new Button();
+            Delete = new Button();
+            UsernameDel = new TextBox();
             SuspendLayout();
             // 
-            // username
+            // usernameLogin
             // 
-            username.Location = new Point(503, 268);
-            username.Name = "username";
-            username.Size = new Size(133, 23);
-            username.TabIndex = 0;
+            usernameLogin.Location = new Point(503, 268);
+            usernameLogin.Name = "usernameLogin";
+            usernameLogin.Size = new Size(133, 23);
+            usernameLogin.TabIndex = 0;
             // 
-            // password
+            // passwordLogin
             // 
-            password.Location = new Point(503, 311);
-            password.Name = "password";
-            password.Size = new Size(133, 23);
-            password.TabIndex = 1;
+            passwordLogin.Location = new Point(503, 311);
+            passwordLogin.Name = "passwordLogin";
+            passwordLogin.Size = new Size(133, 23);
+            passwordLogin.TabIndex = 1;
             // 
             // Sing_In
             // 
@@ -94,17 +95,9 @@
             try_passwordRegister.Size = new Size(133, 23);
             try_passwordRegister.TabIndex = 6;
             // 
-            // name
-            // 
-            name.Location = new Point(710, 192);
-            name.Name = "name";
-            name.Size = new Size(100, 23);
-            name.TabIndex = 7;
-            name.TextChanged += name_TextChanged;
-            // 
             // User
             // 
-            User.Location = new Point(467, 460);
+            User.Location = new Point(854, 477);
             User.Name = "User";
             User.Size = new Size(185, 77);
             User.TabIndex = 8;
@@ -112,21 +105,39 @@
             User.UseVisualStyleBackColor = true;
             User.Click += User_Click;
             // 
+            // Delete
+            // 
+            Delete.Location = new Point(918, 311);
+            Delete.Name = "Delete";
+            Delete.Size = new Size(108, 29);
+            Delete.TabIndex = 11;
+            Delete.Text = "Delete";
+            Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click;
+            // 
+            // UsernameDel
+            // 
+            UsernameDel.Location = new Point(918, 268);
+            UsernameDel.Name = "UsernameDel";
+            UsernameDel.Size = new Size(133, 23);
+            UsernameDel.TabIndex = 9;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
             ClientSize = new Size(1171, 663);
+            Controls.Add(Delete);
+            Controls.Add(UsernameDel);
             Controls.Add(User);
-            Controls.Add(name);
             Controls.Add(try_passwordRegister);
             Controls.Add(Sing_Up);
             Controls.Add(passwordRegister);
             Controls.Add(usernameRegister);
             Controls.Add(Sing_In);
-            Controls.Add(password);
-            Controls.Add(username);
+            Controls.Add(passwordLogin);
+            Controls.Add(usernameLogin);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -136,14 +147,15 @@
 
         #endregion
 
-        private TextBox username;
-        private TextBox password;
+        private TextBox usernameLogin;
+        private TextBox passwordLogin;
         private Button Sing_In;
         private Button Sing_Up;
         private TextBox passwordRegister;
         private TextBox usernameRegister;
         private TextBox try_passwordRegister;
-        private TextBox name;
         private Button User;
+        private Button Delete;
+        private TextBox UsernameDel;
     }
 }

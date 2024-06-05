@@ -20,7 +20,7 @@ namespace Tanna
             // see https://aka.ms/applicationconfiguration.
 
             // Initialize the database connection
-//            InitializeDatabaseConnection();
+            InitializeDatabaseConnection();
 
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
@@ -28,12 +28,12 @@ namespace Tanna
             Application.Run(new Form1());
         }
         
-       /* static void InitializeDatabaseConnection()
+        static void InitializeDatabaseConnection()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 
             // Build the path to the database
-            dbFilePath = Path.Combine(baseDir, @"..\..\..\Tanna.db");
+            dbFilePath = Path.Combine(baseDir, @"..\..\..\..\..\scriptsbd\Tanna.db");
 
             // Ensure the path is correct
             dbFilePath = Path.GetFullPath(dbFilePath);
@@ -52,7 +52,6 @@ namespace Tanna
             try
             {
                 conn.Open();
-                MessageBox.Show("Connection to the database successfully established!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SQLiteException ex)
             {
@@ -60,10 +59,25 @@ namespace Tanna
             }
         }
 
-        internal static SQLiteDataReader ExecuteQuery(string sql)
+        internal static SQLiteDataReader ExecuteQuery(SQLiteCommand cmd)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // SQLiteCommand cmd = new SQLiteCommand(sql, conn);
+                //return cmd.ExecuteReader();
+                cmd.Connection = conn;
+                return cmd.ExecuteReader();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show($"SQLite Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
         }
-     */   
     }
 }
