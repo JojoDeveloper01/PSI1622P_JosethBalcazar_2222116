@@ -1222,11 +1222,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2222116\\OneDrive - Escola Digital\\ProjetoFinal\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Tanna.csproj",
+      "projectUniqueName": "C:\\Users\\2222116\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Tanna.csproj",
       "projectName": "Tanna",
-      "projectPath": "C:\\Users\\2222116\\OneDrive - Escola Digital\\ProjetoFinal\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Tanna.csproj",
+      "projectPath": "C:\\Users\\2222116\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Tanna.csproj",
       "packagesPath": "C:\\Users\\2222116\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2222116\\OneDrive - Escola Digital\\ProjetoFinal\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\obj\\",
+      "outputPath": "C:\\Users\\2222116\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
