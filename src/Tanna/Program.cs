@@ -25,7 +25,7 @@ namespace Tanna
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new Home());
         }
         
         static void InitializeDatabaseConnection()

@@ -1,6 +1,6 @@
 ﻿namespace Tanna
 {
-    partial class Form1
+    partial class Home
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,134 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            usernameLogin = new TextBox();
-            passwordLogin = new TextBox();
-            Sing_In = new Button();
-            Sing_Up = new Button();
-            passwordRegister = new TextBox();
-            usernameRegister = new TextBox();
-            try_passwordRegister = new TextBox();
-            User = new Button();
-            Delete = new Button();
-            UsernameDel = new TextBox();
+            SignUpButton = new Button();
+            SignInButton = new Button();
+            Account = new Button();
             SuspendLayout();
             // 
-            // usernameLogin
+            // SignUpButton
             // 
-            usernameLogin.Location = new Point(503, 268);
-            usernameLogin.Name = "usernameLogin";
-            usernameLogin.Size = new Size(133, 23);
-            usernameLogin.TabIndex = 0;
+            SignUpButton.Location = new Point(1022, 568);
+            SignUpButton.Name = "SignUpButton";
+            SignUpButton.Size = new Size(137, 41);
+            SignUpButton.TabIndex = 12;
+            SignUpButton.Text = "Sign Up";
+            SignUpButton.UseVisualStyleBackColor = true;
+            SignUpButton.Click += SignUpButton_Click;
             // 
-            // passwordLogin
+            // SignInButton
             // 
-            passwordLogin.Location = new Point(503, 311);
-            passwordLogin.Name = "passwordLogin";
-            passwordLogin.Size = new Size(133, 23);
-            passwordLogin.TabIndex = 1;
+            SignInButton.Location = new Point(1022, 615);
+            SignInButton.Name = "SignInButton";
+            SignInButton.Size = new Size(137, 36);
+            SignInButton.TabIndex = 13;
+            SignInButton.Text = "Sign In";
+            SignInButton.UseVisualStyleBackColor = true;
+            SignInButton.Click += SignInButton_Click;
             // 
-            // Sing_In
+            // Account
             // 
-            Sing_In.Location = new Point(503, 351);
-            Sing_In.Name = "Sing_In";
-            Sing_In.Size = new Size(108, 29);
-            Sing_In.TabIndex = 2;
-            Sing_In.Text = "Sing In";
-            Sing_In.UseVisualStyleBackColor = true;
-            Sing_In.Click += Sing_In_Click;
+            Account.Location = new Point(1022, 599);
+            Account.Name = "Account";
+            Account.Size = new Size(137, 52);
+            Account.TabIndex = 14;
+            Account.Text = "Account";
+            Account.UseVisualStyleBackColor = true;
+            Account.Click += Account_Click;
             // 
-            // Sing_Up
-            // 
-            Sing_Up.Location = new Point(710, 398);
-            Sing_Up.Name = "Sing_Up";
-            Sing_Up.Size = new Size(108, 29);
-            Sing_Up.TabIndex = 5;
-            Sing_Up.Text = "Sing Up";
-            Sing_Up.UseVisualStyleBackColor = true;
-            Sing_Up.Click += Sing_Up_Click;
-            // 
-            // passwordRegister
-            // 
-            passwordRegister.Location = new Point(710, 311);
-            passwordRegister.Name = "passwordRegister";
-            passwordRegister.Size = new Size(133, 23);
-            passwordRegister.TabIndex = 4;
-            // 
-            // usernameRegister
-            // 
-            usernameRegister.Location = new Point(710, 268);
-            usernameRegister.Name = "usernameRegister";
-            usernameRegister.Size = new Size(133, 23);
-            usernameRegister.TabIndex = 3;
-            // 
-            // try_passwordRegister
-            // 
-            try_passwordRegister.Location = new Point(710, 355);
-            try_passwordRegister.Name = "try_passwordRegister";
-            try_passwordRegister.Size = new Size(133, 23);
-            try_passwordRegister.TabIndex = 6;
-            // 
-            // User
-            // 
-            User.Location = new Point(854, 477);
-            User.Name = "User";
-            User.Size = new Size(185, 77);
-            User.TabIndex = 8;
-            User.Text = "User";
-            User.UseVisualStyleBackColor = true;
-            User.Click += User_Click;
-            // 
-            // Delete
-            // 
-            Delete.Location = new Point(918, 311);
-            Delete.Name = "Delete";
-            Delete.Size = new Size(108, 29);
-            Delete.TabIndex = 11;
-            Delete.Text = "Delete";
-            Delete.UseVisualStyleBackColor = true;
-            Delete.Click += Delete_Click;
-            // 
-            // UsernameDel
-            // 
-            UsernameDel.Location = new Point(918, 268);
-            UsernameDel.Name = "UsernameDel";
-            UsernameDel.Size = new Size(133, 23);
-            UsernameDel.TabIndex = 9;
-            // 
-            // Form1
+            // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
             ClientSize = new Size(1171, 663);
-            Controls.Add(Delete);
-            Controls.Add(UsernameDel);
-            Controls.Add(User);
-            Controls.Add(try_passwordRegister);
-            Controls.Add(Sing_Up);
-            Controls.Add(passwordRegister);
-            Controls.Add(usernameRegister);
-            Controls.Add(Sing_In);
-            Controls.Add(passwordLogin);
-            Controls.Add(usernameLogin);
-            Name = "Form1";
-            Text = "Form1";
-            Load += Form1_Load;
+            Controls.Add(Account);
+            Controls.Add(SignInButton);
+            Controls.Add(SignUpButton);
+            Name = "Home";
+            Text = "Home";
+            Load += Home_Load;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private TextBox usernameLogin;
-        private TextBox passwordLogin;
-        private Button Sing_In;
-        private Button Sing_Up;
-        private TextBox passwordRegister;
-        private TextBox usernameRegister;
-        private TextBox try_passwordRegister;
-        private Button User;
-        private Button Delete;
-        private TextBox UsernameDel;
+        private Button SignUpButton;
+        private Button SignInButton;
+        private Button Account;
     }
 }
