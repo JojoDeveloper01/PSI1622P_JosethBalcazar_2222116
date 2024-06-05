@@ -19,10 +19,7 @@ namespace Tanna
         private void InitializeCustomComponents()
         {
             Account.Visible = false;
-        }
-
-        private void Home_Load(object sender, EventArgs e)
-        {
+            Logout.Visible = false;
         }
 
         private void UpdateUI()
@@ -32,6 +29,9 @@ namespace Tanna
             SignUpButton.Visible = !isLoggedIn;
             SignInButton.Visible = !isLoggedIn;
             Account.Visible = isLoggedIn;
+            Logout.Visible = isLoggedIn;
+
+            Account.Text = GlobalVar.Username;
         }
 
         private void SignUpButton_Click(object sender, EventArgs e)
@@ -57,6 +57,15 @@ namespace Tanna
             Account account = new();
             account.ShowDialog();
             this.Show();
+        }
+
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            G_Username = null;
+            G_Password = null;
+            G_ID = 0;
+            G_Type = null;
+            UpdateUI();
         }
     }
 }

@@ -31,6 +31,7 @@
             SignUpButton = new Button();
             SignInButton = new Button();
             Account = new Button();
+            Logout = new Button();
             SuspendLayout();
             // 
             // SignUpButton
@@ -63,18 +64,27 @@
             Account.UseVisualStyleBackColor = true;
             Account.Click += Account_Click;
             // 
+            // Logout
+            // 
+            Logout.Location = new Point(1051, 568);
+            Logout.Name = "Logout";
+            Logout.Size = new Size(75, 23);
+            Logout.TabIndex = 16;
+            Logout.Text = "Logout";
+            Logout.UseVisualStyleBackColor = true;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
             ClientSize = new Size(1171, 663);
+            Controls.Add(Logout);
             Controls.Add(Account);
             Controls.Add(SignInButton);
             Controls.Add(SignUpButton);
             Name = "Home";
             Text = "Home";
-            Load += Home_Load;
             ResumeLayout(false);
         }
 
@@ -82,5 +92,6 @@
         private Button SignUpButton;
         private Button SignInButton;
         private Button Account;
+        private Button Logout;
     }
 }

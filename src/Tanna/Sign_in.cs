@@ -50,7 +50,7 @@ namespace Tanna
                 if (dr != null && dr.Read())
                 {
                     GlobalVar.ID = Convert.ToInt32(dr["id_player"]);
-                    GlobalVar.Type = dr["type"].ToString();
+                    GlobalVar.Type = Convert.ToInt32(dr["type"]);
                     GlobalVar.Username = username;
                     GlobalVar.Password = password;
                     this.Close();

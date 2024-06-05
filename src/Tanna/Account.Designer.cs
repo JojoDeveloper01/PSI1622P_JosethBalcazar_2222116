@@ -37,6 +37,8 @@
             Delete = new Button();
             UsernameDel = new TextBox();
             See_All_Users = new Button();
+            AdminLabel = new Label();
+            label5 = new Label();
             SuspendLayout();
             // 
             // ID
@@ -114,12 +116,32 @@
             See_All_Users.UseVisualStyleBackColor = true;
             See_All_Users.Click += See_All_Users_Click;
             // 
+            // AdminLabel
+            // 
+            AdminLabel.AutoSize = true;
+            AdminLabel.Location = new Point(404, 124);
+            AdminLabel.Name = "AdminLabel";
+            AdminLabel.Size = new Size(43, 15);
+            AdminLabel.TabIndex = 15;
+            AdminLabel.Text = "Admin";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(353, 40);
+            label5.Name = "label5";
+            label5.Size = new Size(52, 15);
+            label5.TabIndex = 16;
+            label5.Text = "Account";
+            // 
             // Account
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
+            Controls.Add(label5);
+            Controls.Add(AdminLabel);
             Controls.Add(See_All_Users);
             Controls.Add(Delete);
             Controls.Add(UsernameDel);
@@ -146,5 +168,7 @@
         private Button Delete;
         private TextBox UsernameDel;
         private Button See_All_Users;
+        private Label AdminLabel;
+        private Label label5;
     }
 }

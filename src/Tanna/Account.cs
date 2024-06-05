@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,19 @@ namespace Tanna
         public Account()
         {
             InitializeComponent();
+
+            AdminLabel.Visible = false;
+            UsernameDel.Visible = false;
+            Delete.Visible = false;
+            See_All_Users.Visible = false;
+
+            if (GlobalVar.Type == 1)
+            {
+                AdminLabel.Visible = true;
+                UsernameDel.Visible = true;
+                Delete.Visible = true;
+                See_All_Users.Visible = true;
+            }
         }
 
         private void Delete_Click(object sender, EventArgs e)
