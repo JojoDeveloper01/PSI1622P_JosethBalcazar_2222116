@@ -36,7 +36,7 @@
             // 
             // SignUpButton
             // 
-            SignUpButton.Location = new Point(1022, 568);
+            SignUpButton.Location = new Point(808, 328);
             SignUpButton.Name = "SignUpButton";
             SignUpButton.Size = new Size(137, 41);
             SignUpButton.TabIndex = 12;
@@ -46,7 +46,7 @@
             // 
             // SignInButton
             // 
-            SignInButton.Location = new Point(1022, 615);
+            SignInButton.Location = new Point(808, 375);
             SignInButton.Name = "SignInButton";
             SignInButton.Size = new Size(137, 36);
             SignInButton.TabIndex = 13;
@@ -56,7 +56,7 @@
             // 
             // Account
             // 
-            Account.Location = new Point(1022, 599);
+            Account.Location = new Point(808, 359);
             Account.Name = "Account";
             Account.Size = new Size(137, 52);
             Account.TabIndex = 14;
@@ -66,19 +66,20 @@
             // 
             // Logout
             // 
-            Logout.Location = new Point(1051, 568);
+            Logout.Location = new Point(870, 337);
             Logout.Name = "Logout";
             Logout.Size = new Size(75, 23);
             Logout.TabIndex = 16;
             Logout.Text = "Logout";
             Logout.UseVisualStyleBackColor = true;
+            Logout.Click += Logout_Click;
             // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(1171, 663);
+            ClientSize = new Size(957, 423);
             Controls.Add(Logout);
             Controls.Add(Account);
             Controls.Add(SignInButton);

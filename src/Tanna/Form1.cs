@@ -31,7 +31,10 @@ namespace Tanna
             Account.Visible = isLoggedIn;
             Logout.Visible = isLoggedIn;
 
-            Account.Text = GlobalVar.Username;
+            if (isLoggedIn)
+            {
+                Account.Text = GlobalVar.Username;
+            }
         }
 
         private void SignUpButton_Click(object sender, EventArgs e)
@@ -61,10 +64,19 @@ namespace Tanna
 
         private void Logout_Click(object sender, EventArgs e)
         {
-            G_Username = null;
-            G_Password = null;
-            G_ID = 0;
-            G_Type = null;
+            LogoutFunc();
+        }
+            
+        private void LogoutFunc()
+        {
+
+            // Redefinir as variáveis globais para o estado de deslogado
+            GlobalVar.Username = null;
+            GlobalVar.Password = null;
+            GlobalVar.ID = 0;
+            GlobalVar.Type = 0;
+
+            // Atualizar a interface do usuário para refletir o estado de deslogado
             UpdateUI();
         }
     }

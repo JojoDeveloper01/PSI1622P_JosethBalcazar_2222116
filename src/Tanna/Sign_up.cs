@@ -20,38 +20,38 @@ namespace Tanna
 
         private void SignUp_Click(object sender, EventArgs e)
         {
-                string username = usernameRegister.Text;
-                string password = passwordRegister.Text;
-                string tryPassword = try_passwordRegister.Text;
+            string username = usernameRegister.Text;
+            string password = passwordRegister.Text;
+            string tryPassword = try_passwordRegister.Text;
 
-                if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(tryPassword))
-                {
-                    MessageBox.Show("Please fill the field.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(tryPassword))
+            {
+                MessageBox.Show("Please fill the field.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (!username.All(char.IsLetter))
-                {
-                    MessageBox.Show("Username must contain only letters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            if (!username.All(char.IsLetter))
+            {
+                MessageBox.Show("Username must contain only letters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (password.Length < 8)
-                {
-                    MessageBox.Show("Password must be longer than 8 characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            if (password.Length < 8)
+            {
+                MessageBox.Show("Password must be longer than 8 characters!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (password != tryPassword)
-                {
-                    MessageBox.Show("Passwords do not match!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+            if (password != tryPassword)
+            {
+                MessageBox.Show("Passwords do not match!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (InsertPlayer(username, password))
-                {
-                    MessageBox.Show("User registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+            if (InsertPlayer(username, password))
+            {
+                MessageBox.Show("User registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private bool InsertPlayer(string username, string password)
         {

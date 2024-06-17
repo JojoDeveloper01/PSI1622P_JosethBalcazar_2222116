@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\Tanna"
   ],
-  "SelectedNode": "\\Tanna.sln (src\\Tanna\\Tanna.sln)",
+  "SelectedNode": "\\src\\Tanna\\Sign_up.cs",
   "PreviewInSolutionExplorer": false
 }

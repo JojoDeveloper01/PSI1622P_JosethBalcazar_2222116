@@ -13,5 +13,13 @@ namespace Tanna
         public static int ID { get; set; }
         public static int Type { get; set; }
 
+        public static void Logout(Home homeForm)
+        {
+            // Redefinir as variáveis globais para o estado de deslogado
+            Username = null;
+            Password = null;
+            ID = 0;
+            Type = 0;
+        }
     }
 }

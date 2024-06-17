@@ -35,7 +35,7 @@
             // 
             // SignIn
             // 
-            SignIn.Location = new Point(322, 241);
+            SignIn.Location = new Point(95, 189);
             SignIn.Name = "SignIn";
             SignIn.Size = new Size(108, 29);
             SignIn.TabIndex = 5;
@@ -45,14 +45,14 @@
             // 
             // passwordLogin
             // 
-            passwordLogin.Location = new Point(322, 201);
+            passwordLogin.Location = new Point(95, 149);
             passwordLogin.Name = "passwordLogin";
             passwordLogin.Size = new Size(133, 23);
             passwordLogin.TabIndex = 4;
             // 
             // usernameLogin
             // 
-            usernameLogin.Location = new Point(322, 158);
+            usernameLogin.Location = new Point(95, 106);
             usernameLogin.Name = "usernameLogin";
             usernameLogin.Size = new Size(133, 23);
             usernameLogin.TabIndex = 3;
@@ -62,7 +62,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(330, 332);
             Controls.Add(SignIn);
             Controls.Add(passwordLogin);
             Controls.Add(usernameLogin);

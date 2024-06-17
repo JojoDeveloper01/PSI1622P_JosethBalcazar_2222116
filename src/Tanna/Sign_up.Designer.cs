@@ -36,14 +36,14 @@
             // 
             // try_passwordRegister
             // 
-            try_passwordRegister.Location = new Point(320, 222);
+            try_passwordRegister.Location = new Point(98, 167);
             try_passwordRegister.Name = "try_passwordRegister";
             try_passwordRegister.Size = new Size(133, 23);
             try_passwordRegister.TabIndex = 10;
             // 
             // SignUp
             // 
-            SignUp.Location = new Point(320, 265);
+            SignUp.Location = new Point(98, 210);
             SignUp.Name = "SignUp";
             SignUp.Size = new Size(108, 29);
             SignUp.TabIndex = 9;
@@ -53,29 +53,29 @@
             // 
             // passwordRegister
             // 
-            passwordRegister.Location = new Point(320, 178);
+            passwordRegister.Location = new Point(98, 123);
             passwordRegister.Name = "passwordRegister";
             passwordRegister.Size = new Size(133, 23);
             passwordRegister.TabIndex = 8;
             // 
             // usernameRegister
             // 
-            usernameRegister.Location = new Point(320, 135);
+            usernameRegister.Location = new Point(98, 80);
             usernameRegister.Name = "usernameRegister";
             usernameRegister.Size = new Size(133, 23);
             usernameRegister.TabIndex = 7;
             // 
-            // sing_up
+            // Sign_up
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(335, 342);
             Controls.Add(try_passwordRegister);
             Controls.Add(SignUp);
             Controls.Add(passwordRegister);
             Controls.Add(usernameRegister);
-            Name = "sing_up";
+            Name = "Sign_up";
             Text = "sing_up";
             ResumeLayout(false);
             PerformLayout();

@@ -22,6 +22,7 @@ namespace Tanna
             AdminLabel.Visible = false;
             UsernameDel.Visible = false;
             Delete.Visible = false;
+            Create.Visible = false;
             See_All_Users.Visible = false;
 
             if (GlobalVar.Type == 1)
@@ -29,8 +30,16 @@ namespace Tanna
                 AdminLabel.Visible = true;
                 UsernameDel.Visible = true;
                 Delete.Visible = true;
+                Create.Visible = true;
                 See_All_Users.Visible = true;
             }
+        }
+
+        private void Account_Load(object sender, EventArgs e)
+        {
+            ID.Text = GlobalVar.ID.ToString();
+            Username.Text = GlobalVar.Username;
+            Password.Text = GlobalVar.Password;
         }
 
         private void Delete_Click(object sender, EventArgs e)
@@ -41,29 +50,26 @@ namespace Tanna
             {
                 MessageBox.Show($"Delete Player {username} successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
-            {
-                MessageBox.Show("Player was not removed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
         private bool DeletePlayer(string username)
         {
             try
             {
-                var sqlCheck = "SELECT COUNT(*) FROM player WHERE name != @name";
+                // Verificar se o nome de usuário existe
+                var sqlCheck = "SELECT COUNT(*) FROM player WHERE name = @name";
                 using (var cmdCheck = new SQLiteCommand(sqlCheck, Program.conn))
                 {
                     cmdCheck.Parameters.AddWithValue("@name", username);
                     int count = Convert.ToInt32(cmdCheck.ExecuteScalar());
-                    if (count > 0)
+                    if (count == 0)
                     {
-                        MessageBox.Show("Username does not exist", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Username does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                 }
 
-                var sql = "DELETE FROM player WHERE name=@name";
-
+                // Deletar o jogador
+                var sql = "DELETE FROM player WHERE name = @name";
                 using (var cmd = new SQLiteCommand(sql, Program.conn))
                 {
                     cmd.Parameters.AddWithValue("@name", username);
@@ -73,11 +79,76 @@ namespace Tanna
             }
             catch (SQLiteException ex)
             {
-                MessageBox.Show("Erro do SQLite: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("SQLite Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
         }
+
+        private void Create_Click(object sender, EventArgs e)
+        {
+            string username = UserCreate.Text;
+            string password = PasswordCreate.Text; // Supondo que você tenha um campo para a senha também
+
+            if (CreatePlayer(username, password))
+            {
+                MessageBox.Show($"Player {username} created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Player was not created", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool CreatePlayer(string username, string password)
+        {
+            try
+            {
+                // Verifique se a conexão está aberta
+                if (Program.conn.State != System.Data.ConnectionState.Open)
+                {
+                    MessageBox.Show("Database connection is not open.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                MessageBox.Show("Checking if username exists...", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Verificar se o nome de usuário já existe
+                var sqlCheck = "SELECT COUNT(*) FROM player WHERE name = @name";
+                using (var cmdCheck = new SQLiteCommand(sqlCheck, Program.conn))
+                {
+                    cmdCheck.Parameters.AddWithValue("@name", username);
+                    int count = Convert.ToInt32(cmdCheck.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Username already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+
+                MessageBox.Show("Inserting new player...", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Inserir o novo jogador
+                var sql = "INSERT INTO player (name, password) VALUES (@name, @password)";
+                using (var cmd = new SQLiteCommand(sql, Program.conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", username);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("SQLite Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
 
         private void See_All_Users_Click(object sender, EventArgs e)
         {
@@ -121,6 +192,35 @@ namespace Tanna
             catch (Exception ex)
             {
                 MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            string query = "UPDATE player SET name = @name, Password = @password WHERE id_player = @id";
+            using (SQLiteCommand cmd = new SQLiteCommand(query, Program.conn))
+            {
+                cmd.Parameters.AddWithValue("@id", GlobalVar.ID);
+                cmd.Parameters.AddWithValue("@name", Username.Text);
+                cmd.Parameters.AddWithValue("@password", Password.Text);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("User data updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Atualizar variáveis globais
+                    GlobalVar.Username = Username.Text;
+                    GlobalVar.Password = Password.Text;
+                }
+                catch (SQLiteException ex)
+                {
+                    MessageBox.Show($"SQLite Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
