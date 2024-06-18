@@ -33,16 +33,11 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            Delete = new Button();
-            UsernameDel = new TextBox();
-            See_All_Users = new Button();
-            AdminLabel = new Label();
             label5 = new Label();
             Save = new Button();
             ID = new Label();
-            Create = new Button();
-            UserCreate = new TextBox();
-            PasswordCreate = new TextBox();
+            CreateWorld = new Button();
+            EditUsers = new Button();
             SuspendLayout();
             // 
             // Username
@@ -86,42 +81,6 @@
             label3.TabIndex = 5;
             label3.Text = "Password";
             // 
-            // Delete
-            // 
-            Delete.Location = new Point(349, 160);
-            Delete.Name = "Delete";
-            Delete.Size = new Size(108, 29);
-            Delete.TabIndex = 13;
-            Delete.Text = "Delete User";
-            Delete.UseVisualStyleBackColor = true;
-            Delete.Click += Delete_Click;
-            // 
-            // UsernameDel
-            // 
-            UsernameDel.Location = new Point(349, 128);
-            UsernameDel.Name = "UsernameDel";
-            UsernameDel.Size = new Size(133, 23);
-            UsernameDel.TabIndex = 12;
-            // 
-            // See_All_Users
-            // 
-            See_All_Users.Location = new Point(299, 258);
-            See_All_Users.Name = "See_All_Users";
-            See_All_Users.Size = new Size(115, 33);
-            See_All_Users.TabIndex = 14;
-            See_All_Users.Text = "See all users";
-            See_All_Users.UseVisualStyleBackColor = true;
-            See_All_Users.Click += See_All_Users_Click;
-            // 
-            // AdminLabel
-            // 
-            AdminLabel.AutoSize = true;
-            AdminLabel.Location = new Point(456, 90);
-            AdminLabel.Name = "AdminLabel";
-            AdminLabel.Size = new Size(85, 15);
-            AdminLabel.TabIndex = 15;
-            AdminLabel.Text = "Admin Section";
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -150,52 +109,44 @@
             ID.Size = new Size(0, 15);
             ID.TabIndex = 18;
             // 
-            // Create
+            // CreateWorld
             // 
-            Create.Location = new Point(521, 184);
-            Create.Name = "Create";
-            Create.Size = new Size(108, 29);
-            Create.TabIndex = 20;
-            Create.Text = "Create User";
-            Create.UseVisualStyleBackColor = true;
+            CreateWorld.Location = new Point(378, 160);
+            CreateWorld.Name = "CreateWorld";
+            CreateWorld.Size = new Size(107, 35);
+            CreateWorld.TabIndex = 22;
+            CreateWorld.Text = "Create a World";
+            CreateWorld.UseVisualStyleBackColor = true;
+            CreateWorld.Click += CreateWorld_Click;
             // 
-            // UserCreate
+            // EditUsers
             // 
-            UserCreate.Location = new Point(521, 126);
-            UserCreate.Name = "UserCreate";
-            UserCreate.Size = new Size(133, 23);
-            UserCreate.TabIndex = 19;
-            // 
-            // PasswordCreate
-            // 
-            PasswordCreate.Location = new Point(521, 155);
-            PasswordCreate.Name = "PasswordCreate";
-            PasswordCreate.Size = new Size(133, 23);
-            PasswordCreate.TabIndex = 21;
+            EditUsers.Location = new Point(378, 119);
+            EditUsers.Name = "EditUsers";
+            EditUsers.Size = new Size(107, 35);
+            EditUsers.TabIndex = 23;
+            EditUsers.Text = "Edit Users";
+            EditUsers.UseVisualStyleBackColor = true;
+            EditUsers.Click += EditUsers_Click;
             // 
             // Account
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(700, 303);
-            Controls.Add(PasswordCreate);
-            Controls.Add(Create);
-            Controls.Add(UserCreate);
+            ClientSize = new Size(569, 303);
+            Controls.Add(EditUsers);
+            Controls.Add(CreateWorld);
             Controls.Add(ID);
             Controls.Add(Save);
             Controls.Add(label5);
-            Controls.Add(AdminLabel);
-            Controls.Add(See_All_Users);
-            Controls.Add(Delete);
-            Controls.Add(UsernameDel);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(Password);
             Controls.Add(Username);
             Name = "Account";
-            Text = "Account";
+            Text = "bu";
             Load += Account_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -207,15 +158,10 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private Button Delete;
-        private TextBox UsernameDel;
-        private Button See_All_Users;
-        private Label AdminLabel;
         private Label label5;
         private Button Save;
         private Label ID;
-        private Button Create;
-        private TextBox UserCreate;
-        private TextBox PasswordCreate;
+        private Button CreateWorld;
+        private Button EditUsers;
     }
 }

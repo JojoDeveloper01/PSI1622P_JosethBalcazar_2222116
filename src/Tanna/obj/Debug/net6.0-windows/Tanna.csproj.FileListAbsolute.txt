@@ -103,3 +103,7 @@ C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net
 C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.Sign_in.resources
 C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.Account.resources
 C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.Home.resources
+C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.CreateBoss.resources
+C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.CreateEnemies.resources
+C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.CreateWorld.resources
+C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.EditUsers.resources

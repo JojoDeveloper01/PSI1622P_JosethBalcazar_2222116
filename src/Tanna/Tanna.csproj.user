@@ -4,6 +4,18 @@
     <Compile Update="Account.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="CreateBoss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CreateEnemies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CreateWorld.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="EditUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
