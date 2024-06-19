@@ -4,12 +4,6 @@
     <Compile Update="Account.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="CreateBoss.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="CreateEnemies.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="CreateWorld.cs">
       <SubType>Form</SubType>
     </Compile>

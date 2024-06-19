@@ -14,4 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Tanna
-build_property.ProjectDir = C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\
+build_property.ProjectDir = C:\Users\jojop\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

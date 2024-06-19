@@ -52,6 +52,7 @@
             Create.TabIndex = 27;
             Create.Text = "Create User";
             Create.UseVisualStyleBackColor = true;
+            Create.Click += Create_Click;
             // 
             // UserCreate
             // 
@@ -77,6 +78,7 @@
             See_All_Users.TabIndex = 24;
             See_All_Users.Text = "See all users";
             See_All_Users.UseVisualStyleBackColor = true;
+            See_All_Users.Click += See_All_Users_Click;
             // 
             // Delete
             // 
@@ -86,6 +88,7 @@
             Delete.TabIndex = 23;
             Delete.Text = "Delete User";
             Delete.UseVisualStyleBackColor = true;
+            Delete.Click += Delete_Click;
             // 
             // UsernameDel
             // 
