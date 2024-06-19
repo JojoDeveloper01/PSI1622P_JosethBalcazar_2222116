@@ -20,10 +20,12 @@ namespace Tanna
             InitializeComponent();
 
             EditUsers.Visible = false;
+            CreateWorld.Visible = false;
 
             if (GlobalVar.Type == 1)
             {
                 EditUsers.Visible = true;
+                CreateWorld.Visible = true;
             }
         }
 
