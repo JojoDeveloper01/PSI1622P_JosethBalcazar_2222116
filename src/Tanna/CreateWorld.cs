@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
@@ -16,7 +17,11 @@ namespace Tanna
         public CreateWorld()
         {
             InitializeComponent();
+            LoadAllData();
         }
+
+        private int _recentFinalBossId = -1;
+        private List<int> _recentEnemiesIds = new List<int>();
 
         private void CreateWorlds_Click(object sender, EventArgs e)
         {
@@ -37,60 +42,56 @@ namespace Tanna
                 return;
             }
 
-            // Verificar se o boss final foi criado
-            var finalBossId = GetFinalBossId();
-            if (finalBossId == -1)
+            if (_recentFinalBossId == -1)
             {
                 MessageBox.Show("FinalBoss must be created before creating a World.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Verificar se pelo menos um grupo de inimigos foi criado
-            var enemiesIds = GetEnemiesIds();
-            if (enemiesIds.Count == 0)
+            if (_recentEnemiesIds.Count == 0)
             {
                 MessageBox.Show("At least one group of Enemies must be created before creating a World.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Criar o mundo e associar os IDs do boss final e dos inimigos
-            if (Create(columnCreate, new Dictionary<string, string>
-    {
-        { "name", name },
-        { "size", size },
-        { "duration", duration },
-        { "id_Enemies", string.Join(",", enemiesIds) },
-        { "id_FinalBoss", finalBossId.ToString() }
-    }))
-            {
-                MessageBox.Show($"{columnCreate} {name} created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+            int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
 
-        private int GetFinalBossId()
-        {
-            const string sql = "SELECT id FROM FinalBoss LIMIT 1";
-            using (var cmd = new SQLiteCommand(sql, Program.conn))
+            using (var transaction = Program.conn.BeginTransaction())
             {
-                var result = cmd.ExecuteScalar();
-                return result != null ? Convert.ToInt32(result) : -1;
-            }
-        }
-
-        private List<int> GetEnemiesIds()
-        {
-            const string sql = "SELECT id FROM Enemies";
-            var ids = new List<int>();
-            using (var cmd = new SQLiteCommand(sql, Program.conn))
-            using (var reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
+                try
                 {
-                    ids.Add(reader.GetInt32(0));
+                    if (Create(columnCreate, new Dictionary<string, string>
+            {
+                { "name", name },
+                { "size", size },
+                { "duration", duration },
+                { "id_FinalBoss", _recentFinalBossId.ToString() }
+            }, playerId)) // Passa playerId para o método Create
+                    {
+                        int worldId = GetLastInsertId(columnCreate);
+
+                        foreach (var enemyId in _recentEnemiesIds)
+                        {
+                            CreateWorldEnemiesAssociation(worldId, enemyId);
+                        }
+
+                        transaction.Commit();
+                        MessageBox.Show($"{columnCreate} {name} created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadAllData();
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"Error creating {columnCreate}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            return ids;
         }
+
 
         private void CreateFB_Click(object sender, EventArgs e)
         {
@@ -115,6 +116,8 @@ namespace Tanna
                 return;
             }
 
+            int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
+
             if (Create(columnCreate, new Dictionary<string, string>
     {
         { "name", name },
@@ -122,11 +125,13 @@ namespace Tanna
         { "stamina", stamina },
         { "velocity", velocity },
         { "energy", energy }
-    }))
+    }, playerId)) // Passa playerId para o método Create
             {
+                _recentFinalBossId = GetLastInsertId(columnCreate);
                 MessageBox.Show($"{columnCreate} {name} created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
 
         private void CreateGroupEnemies_Click(object sender, EventArgs e)
         {
@@ -147,15 +152,113 @@ namespace Tanna
                 return;
             }
 
+            int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
+
             if (Create(columnCreate, new Dictionary<string, string>
     {
         { "name", name },
         { "amount", amount },
         { "life", life }
-    }))
+    }, playerId)) // Passa playerId para o método Create
             {
+                _recentEnemiesIds.Add(GetLastInsertId(columnCreate));
                 MessageBox.Show($"{columnCreate} {name} created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void CreateWorldEnemiesAssociation(int worldId, int enemyId)
+        {
+            const string sql = "INSERT INTO World_Enemies (world_id, enemy_id) VALUES (@worldId, @enemyId)";
+            using (var cmd = new SQLiteCommand(sql, Program.conn))
+            {
+                cmd.Parameters.AddWithValue("@worldId", worldId);
+                cmd.Parameters.AddWithValue("@enemyId", enemyId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private int GetLastInsertId(string tableName)
+        {
+            const string sqlTemplate = "SELECT seq FROM sqlite_sequence WHERE name = @tableName";
+            using (var cmd = new SQLiteCommand(sqlTemplate, Program.conn))
+            {
+                cmd.Parameters.AddWithValue("@tableName", tableName);
+                var result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : -1;
+            }
+        }
+
+        private bool Create(string tableName, Dictionary<string, string> columns, int playerId)
+        {
+            try
+            {
+                // Adiciona o campo player_id ao dicionário de colunas
+                columns.Add("player_id", playerId.ToString());
+
+                var columnNames = string.Join(", ", columns.Keys);
+                var columnValues = string.Join(", ", columns.Values.Select(v => $"'{v}'"));
+                string query = $"INSERT INTO {tableName} ({columnNames}) VALUES ({columnValues})";
+
+                using (var cmd = new SQLiteCommand(query, Program.conn))
+                {
+                    cmd.ExecuteNonQuery();
+                    LoadAllData(); // Considerando que LoadAllData() carrega novamente os dados atualizados
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error creating {tableName}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+
+
+
+
+        private void LoadData(string tableName, DataGridView dataGridView)
+        {
+            string sql;
+
+            switch (tableName)
+            {
+                case "World":
+                    sql = $"SELECT name, size, duration FROM World WHERE player_id = {GlobalVar.ID}";
+                    break;
+                case "FinalBoss":
+                    sql = $"SELECT name, life, stamina, velocity, energy FROM FinalBoss WHERE player_id = {GlobalVar.ID}";
+                    break;
+                case "Enemies":
+                    sql = $"SELECT name, amount, life FROM Enemies WHERE player_id = {GlobalVar.ID}";
+                    break;
+                default:
+                    MessageBox.Show("Invalid table name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+            }
+
+            try
+            {
+                using (var cmd = new SQLiteCommand(sql, Program.conn))
+                using (var adapter = new SQLiteDataAdapter(cmd))
+                {
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    dataGridView.DataSource = dataTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ocorreu um erro ao carregar os dados da tabela {tableName}: " + ex.Message);
+            }
+        }
+
+        private void LoadAllData()
+        {
+            LoadData("World", WorldsCreated);
+            LoadData("FinalBoss", FBCreated);
+            LoadData("Enemies", EnemiesCreated);
         }
 
         private void DelWorld_Click(object sender, EventArgs e)
@@ -194,56 +297,7 @@ namespace Tanna
 
         /*-------------------------------------------------------------*/
 
-        private bool Create(string columnCreate, Dictionary<string, string> parameters)
-        {
-            try
-            {
-                // Verifique se a conexão está aberta
-                if (Program.conn.State != System.Data.ConnectionState.Open)
-                {
-                    MessageBox.Show("Database connection is not open.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
 
-                // Verificar se o nome já existe
-                var sqlCheck = $"SELECT COUNT(*) FROM {columnCreate} WHERE name = @name";
-                using (var cmdCheck = new SQLiteCommand(sqlCheck, Program.conn))
-                {
-                    cmdCheck.Parameters.AddWithValue("@name", parameters["name"]);
-                    int count = Convert.ToInt32(cmdCheck.ExecuteScalar());
-                    if (count > 0)
-                    {
-                        MessageBox.Show($"Name of {columnCreate} already exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-                }
-
-                // Construir dinamicamente a consulta SQL para inserção
-                var columns = string.Join(", ", parameters.Keys);
-                var values = string.Join(", ", parameters.Keys.Select(k => "@" + k));
-                var sql = $"INSERT INTO {columnCreate} ({columns}) VALUES ({values})";
-
-                using (var cmd = new SQLiteCommand(sql, Program.conn))
-                {
-                    foreach (var param in parameters)
-                    {
-                        cmd.Parameters.AddWithValue("@" + param.Key, param.Value);
-                    }
-                    cmd.ExecuteNonQuery();
-                }
-                return true;
-            }
-            catch (SQLiteException ex)
-            {
-                MessageBox.Show("SQLite Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Unexpected Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
 
         private bool Delete(string name, string column)
         {
@@ -277,6 +331,5 @@ namespace Tanna
                 return false;
             }
         }
-
     }
 }

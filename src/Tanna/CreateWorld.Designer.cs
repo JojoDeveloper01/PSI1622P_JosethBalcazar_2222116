@@ -132,16 +132,16 @@
             // 
             // DurationWorld
             // 
-            DurationWorld.Location = new Point(101, 168);
+            DurationWorld.Location = new Point(99, 168);
             DurationWorld.Name = "DurationWorld";
-            DurationWorld.Size = new Size(98, 23);
+            DurationWorld.Size = new Size(100, 23);
             DurationWorld.TabIndex = 6;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(477, 69);
+            label5.Location = new Point(477, 66);
             label5.Name = "label5";
             label5.Size = new Size(95, 25);
             label5.TabIndex = 7;
@@ -239,7 +239,7 @@
             // 
             // CreateWorlds
             // 
-            CreateWorlds.Location = new Point(101, 217);
+            CreateWorlds.Location = new Point(99, 220);
             CreateWorlds.Name = "CreateWorlds";
             CreateWorlds.Size = new Size(100, 28);
             CreateWorlds.TabIndex = 20;
@@ -259,11 +259,11 @@
             // 
             // CreateGroupEnemies
             // 
-            CreateGroupEnemies.Location = new Point(941, 217);
+            CreateGroupEnemies.Location = new Point(1040, 220);
             CreateGroupEnemies.Name = "CreateGroupEnemies";
-            CreateGroupEnemies.Size = new Size(106, 28);
+            CreateGroupEnemies.Size = new Size(100, 28);
             CreateGroupEnemies.TabIndex = 30;
-            CreateGroupEnemies.Text = "Create a Group of Enemies";
+            CreateGroupEnemies.Text = "Create a Group";
             CreateGroupEnemies.UseVisualStyleBackColor = true;
             CreateGroupEnemies.Click += CreateGroupEnemies_Click;
             // 
@@ -271,7 +271,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(941, 56);
+            label11.Location = new Point(1040, 66);
             label11.Name = "label11";
             label11.Size = new Size(82, 25);
             label11.TabIndex = 29;
@@ -279,21 +279,21 @@
             // 
             // LifeEnemies
             // 
-            LifeEnemies.Location = new Point(941, 165);
+            LifeEnemies.Location = new Point(1040, 165);
             LifeEnemies.Name = "LifeEnemies";
             LifeEnemies.Size = new Size(100, 23);
             LifeEnemies.TabIndex = 28;
             // 
             // AmountEnemies
             // 
-            AmountEnemies.Location = new Point(941, 136);
+            AmountEnemies.Location = new Point(1040, 136);
             AmountEnemies.Name = "AmountEnemies";
             AmountEnemies.Size = new Size(100, 23);
             AmountEnemies.TabIndex = 27;
             // 
             // NameEnemies
             // 
-            NameEnemies.Location = new Point(941, 107);
+            NameEnemies.Location = new Point(1040, 107);
             NameEnemies.Name = "NameEnemies";
             NameEnemies.Size = new Size(100, 23);
             NameEnemies.TabIndex = 26;
@@ -301,7 +301,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(911, 168);
+            label13.Location = new Point(1010, 168);
             label13.Name = "label13";
             label13.Size = new Size(26, 15);
             label13.TabIndex = 24;
@@ -310,7 +310,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(886, 139);
+            label14.Location = new Point(985, 139);
             label14.Name = "label14";
             label14.Size = new Size(51, 15);
             label14.TabIndex = 23;
@@ -319,7 +319,7 @@
             // label35345
             // 
             label35345.AutoSize = true;
-            label35345.Location = new Point(896, 110);
+            label35345.Location = new Point(995, 110);
             label35345.Name = "label35345";
             label35345.Size = new Size(39, 15);
             label35345.TabIndex = 22;
@@ -328,17 +328,17 @@
             // EnemiesCreated
             // 
             EnemiesCreated.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            EnemiesCreated.Location = new Point(941, 331);
+            EnemiesCreated.Location = new Point(1040, 331);
             EnemiesCreated.Name = "EnemiesCreated";
             EnemiesCreated.RowTemplate.Height = 25;
-            EnemiesCreated.Size = new Size(238, 225);
+            EnemiesCreated.Size = new Size(320, 259);
             EnemiesCreated.TabIndex = 31;
             // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(941, 283);
+            label12.Location = new Point(1040, 283);
             label12.Name = "label12";
             label12.Size = new Size(153, 25);
             label12.TabIndex = 32;
@@ -346,7 +346,7 @@
             // 
             // NameDelEnemies
             // 
-            NameDelEnemies.Location = new Point(1079, 107);
+            NameDelEnemies.Location = new Point(1219, 110);
             NameDelEnemies.Name = "NameDelEnemies";
             NameDelEnemies.Size = new Size(100, 23);
             NameDelEnemies.TabIndex = 34;
@@ -354,7 +354,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(1079, 89);
+            label15.Location = new Point(1174, 113);
             label15.Name = "label15";
             label15.Size = new Size(39, 15);
             label15.TabIndex = 33;
@@ -364,7 +364,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.Location = new Point(1079, 58);
+            label16.Location = new Point(1219, 66);
             label16.Name = "label16";
             label16.Size = new Size(141, 25);
             label16.TabIndex = 35;
@@ -372,7 +372,7 @@
             // 
             // DelEnemies
             // 
-            DelEnemies.Location = new Point(1079, 143);
+            DelEnemies.Location = new Point(1219, 146);
             DelEnemies.Name = "DelEnemies";
             DelEnemies.Size = new Size(100, 28);
             DelEnemies.TabIndex = 36;
@@ -382,7 +382,7 @@
             // 
             // DelFB
             // 
-            DelFB.Location = new Point(686, 154);
+            DelFB.Location = new Point(711, 148);
             DelFB.Name = "DelFB";
             DelFB.Size = new Size(121, 28);
             DelFB.TabIndex = 40;
@@ -394,7 +394,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(679, 67);
+            label17.Location = new Point(711, 66);
             label17.Name = "label17";
             label17.Size = new Size(154, 25);
             label17.TabIndex = 39;
@@ -402,7 +402,7 @@
             // 
             // NameDelFB
             // 
-            NameDelFB.Location = new Point(686, 116);
+            NameDelFB.Location = new Point(711, 110);
             NameDelFB.Name = "NameDelFB";
             NameDelFB.Size = new Size(121, 23);
             NameDelFB.TabIndex = 38;
@@ -410,7 +410,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(686, 98);
+            label18.Location = new Point(666, 113);
             label18.Name = "label18";
             label18.Size = new Size(39, 15);
             label18.TabIndex = 37;
@@ -418,7 +418,7 @@
             // 
             // DelWorld
             // 
-            DelWorld.Location = new Point(223, 152);
+            DelWorld.Location = new Point(272, 148);
             DelWorld.Name = "DelWorld";
             DelWorld.Size = new Size(100, 28);
             DelWorld.TabIndex = 44;
@@ -430,7 +430,7 @@
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label19.Location = new Point(223, 67);
+            label19.Location = new Point(272, 66);
             label19.Name = "label19";
             label19.Size = new Size(122, 25);
             label19.TabIndex = 43;
@@ -438,7 +438,7 @@
             // 
             // NameDelWorld
             // 
-            NameDelWorld.Location = new Point(223, 116);
+            NameDelWorld.Location = new Point(272, 112);
             NameDelWorld.Name = "NameDelWorld";
             NameDelWorld.Size = new Size(100, 23);
             NameDelWorld.TabIndex = 42;
@@ -446,7 +446,7 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(223, 98);
+            label20.Location = new Point(223, 113);
             label20.Name = "label20";
             label20.Size = new Size(39, 15);
             label20.TabIndex = 41;
@@ -468,7 +468,7 @@
             FBCreated.Location = new Point(477, 331);
             FBCreated.Name = "FBCreated";
             FBCreated.RowTemplate.Height = 25;
-            FBCreated.Size = new Size(309, 225);
+            FBCreated.Size = new Size(510, 259);
             FBCreated.TabIndex = 45;
             // 
             // label22
@@ -487,7 +487,7 @@
             WorldsCreated.Location = new Point(101, 331);
             WorldsCreated.Name = "WorldsCreated";
             WorldsCreated.RowTemplate.Height = 25;
-            WorldsCreated.Size = new Size(222, 225);
+            WorldsCreated.Size = new Size(327, 259);
             WorldsCreated.TabIndex = 47;
             // 
             // CreateWorld
@@ -495,7 +495,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1265, 612);
+            ClientSize = new Size(1399, 711);
             Controls.Add(label22);
             Controls.Add(WorldsCreated);
             Controls.Add(label21);
