@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:createworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\createworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\createworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:createworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -62,8 +62,7 @@
               "RelativeToolTip": "GlobalVar.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T11:09:18.336Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-20T11:09:18.336Z"
             },
             {
               "$type": "Document",
@@ -85,7 +84,7 @@
               "RelativeDocumentMoniker": "CreateWorld.cs",
               "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateWorld.cs",
               "RelativeToolTip": "CreateWorld.cs",
-              "ViewState": "AQIAAIMAAAAAAAAAAAAgwLwAAAAJAAAA",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAAwFQBAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-20T08:17:13.65Z",
               "EditorCaption": ""
@@ -99,8 +98,7 @@
               "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\EditUsers.cs [Projeto]",
               "RelativeToolTip": "EditUsers.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T23:07:47.93Z",
-              "EditorCaption": " [Projeto]"
+              "WhenOpened": "2024-06-18T23:07:47.93Z"
             },
             {
               "$type": "Document",
@@ -112,8 +110,7 @@
               "RelativeToolTip": "EditUsers.Designer.cs",
               "ViewState": "AQIAAFYAAAAAAAAAAAAqwGwAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T23:05:50.992Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T23:05:50.992Z"
             },
             {
               "$type": "Document",

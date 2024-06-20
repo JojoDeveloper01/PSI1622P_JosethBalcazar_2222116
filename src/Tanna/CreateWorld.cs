@@ -23,6 +23,66 @@ namespace Tanna
         private int _recentFinalBossId = -1;
         private List<int> _recentEnemiesIds = new List<int>();
 
+        private void CreateGame_Click(object sender, EventArgs e)
+        {
+            string columnCreate = "Game";
+
+            if (_recentFinalBossId == -1)
+            {
+                MessageBox.Show("FinalBoss must be created before creating a Game.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (_recentEnemiesIds.Count == 0)
+            {
+                MessageBox.Show("At least one group of Enemies must be created before creating a Game.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Assumindo que você tem um método para selecionar o mundo a ser usado no jogo
+            int worldId = GetSelectedWorldId(); // Obter o ID do mundo selecionado
+            if (worldId == -1)
+            {
+                MessageBox.Show("A valid World must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
+
+            using (var transaction = Program.conn.BeginTransaction())
+            {
+                try
+                {
+                    if (Create(columnCreate, new Dictionary<string, string>
+            {
+                { "world_id", worldId.ToString() },
+                { "finalBoss_id", _recentFinalBossId.ToString() }
+            }, playerId)) // Passa playerId para o método Create
+                    {
+                        int gameId = GetLastInsertId(columnCreate);
+
+                        foreach (var enemyId in _recentEnemiesIds)
+                        {
+                            CreateGameEnemiesAssociation(gameId, enemyId);
+                        }
+
+                        transaction.Commit();
+                        MessageBox.Show($"Game created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadAllData();
+                    }
+                    else
+                    {
+                        transaction.Rollback();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"Error creating game: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private void CreateWorlds_Click(object sender, EventArgs e)
         {
             string columnCreate = "World";
@@ -92,7 +152,6 @@ namespace Tanna
             }
         }
 
-
         private void CreateFB_Click(object sender, EventArgs e)
         {
             string columnCreate = "FinalBoss";
@@ -119,6 +178,80 @@ namespace Tanna
             int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
 
             if (Create(columnCreate, new Dictionary<string, string>
+            {
+        { "name", name },
+        { "life", life },
+        { "stamina", stamina },
+        { "velocity", velocity },
+        { "energy", energy }}, playerId)) // Passa playerId para o método Create
+            {
+                _recentFinalBossId = GetLastInsertId(columnCreate);
+                MessageBox.Show($"{columnCreate} {name} created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private int Createworld()
+        {
+            string columnCreate = "World";
+            string name = NameWorld.Text;
+            string size = SizeWorld.Text;
+            string duration = DurationWorld.Text;
+
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(size) || string.IsNullOrWhiteSpace(duration))
+            {
+                MessageBox.Show("All fields must be filled for World creation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            if (!int.TryParse(size, out _) || !int.TryParse(duration, out _))
+            {
+                MessageBox.Show("Size and Duration must be numeric for World creation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
+
+            if (Create(columnCreate, new Dictionary<string, string>
+    {
+        { "name", name },
+        { "size", size },
+        { "duration", duration }
+    }, playerId)) // Passa playerId para o método Create
+            {
+                return GetLastInsertId(columnCreate);
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        private int CreateFinalBoss()
+        {
+            string columnCreate = "FinalBoss";
+            string name = NameFB.Text;
+            string life = LifeFB.Text;
+            string stamina = StaminaFB.Text;
+            string velocity = VelocityFB.Text;
+            string energy = EnergyFB.Text;
+
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(life) ||
+                string.IsNullOrWhiteSpace(stamina) || string.IsNullOrWhiteSpace(velocity) || string.IsNullOrWhiteSpace(energy))
+            {
+                MessageBox.Show("All fields must be filled for FinalBoss creation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            if (!int.TryParse(life, out _) || !int.TryParse(stamina, out _) ||
+                !int.TryParse(velocity, out _) || !int.TryParse(energy, out _))
+            {
+                MessageBox.Show("Life, Stamina, Velocity, and Energy must be numeric for FinalBoss creation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
+
+            if (Create(columnCreate, new Dictionary<string, string>
     {
         { "name", name },
         { "life", life },
@@ -127,11 +260,39 @@ namespace Tanna
         { "energy", energy }
     }, playerId)) // Passa playerId para o método Create
             {
-                _recentFinalBossId = GetLastInsertId(columnCreate);
-                MessageBox.Show($"{columnCreate} {name} created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return GetLastInsertId(columnCreate);
+            }
+            else
+            {
+                return -1;
             }
         }
 
+        private int GetSelectedWorldId()
+        {
+            // Verifica se há uma linha selecionada no DataGridView
+            if (WorldsCreated.SelectedRows.Count > 0)
+            {
+                // Obtém a primeira linha selecionada
+                var selectedRow = WorldsCreated.SelectedRows[0];
+
+                // Assume que a primeira coluna contém o ID do mundo
+                if (int.TryParse(selectedRow.Cells[0].Value.ToString(), out int worldId))
+                {
+                    return worldId;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid world ID selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return -1;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No world selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
 
         private void CreateGroupEnemies_Click(object sender, EventArgs e)
         {
@@ -163,6 +324,17 @@ namespace Tanna
             {
                 _recentEnemiesIds.Add(GetLastInsertId(columnCreate));
                 MessageBox.Show($"{columnCreate} {name} created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void CreateGameEnemiesAssociation(int gameId, int enemyId)
+        {
+            const string sql = "INSERT INTO Game_Enemies (game_id, enemy_id) VALUES (@gameId, @enemyId)";
+            using (var cmd = new SQLiteCommand(sql, Program.conn))
+            {
+                cmd.Parameters.AddWithValue("@gameId", gameId);
+                cmd.Parameters.AddWithValue("@enemyId", enemyId);
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -212,10 +384,6 @@ namespace Tanna
                 return false;
             }
         }
-
-
-
-
 
         private void LoadData(string tableName, DataGridView dataGridView)
         {
@@ -330,6 +498,21 @@ namespace Tanna
                 MessageBox.Show("SQLite Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+        private void chooseWorld_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chooseFB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chooseEnemie_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

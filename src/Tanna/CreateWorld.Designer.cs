@@ -47,7 +47,7 @@
             VelocityFB = new TextBox();
             label7 = new Label();
             label10 = new Label();
-            CreateWorlds = new Button();
+            AddWorlds = new Button();
             CreateFB = new Button();
             CreateGroupEnemies = new Button();
             label11 = new Label();
@@ -75,6 +75,13 @@
             FBCreated = new DataGridView();
             label22 = new Label();
             WorldsCreated = new DataGridView();
+            chooseWorld = new ComboBox();
+            label23 = new Label();
+            label24 = new Label();
+            chooseFB = new ComboBox();
+            label25 = new Label();
+            chooseEnemie = new ComboBox();
+            CreateGame = new Button();
             ((System.ComponentModel.ISupportInitialize)EnemiesCreated).BeginInit();
             ((System.ComponentModel.ISupportInitialize)FBCreated).BeginInit();
             ((System.ComponentModel.ISupportInitialize)WorldsCreated).BeginInit();
@@ -237,15 +244,15 @@
             label10.TabIndex = 16;
             label10.Text = "Velocity";
             // 
-            // CreateWorlds
+            // AddWorlds
             // 
-            CreateWorlds.Location = new Point(99, 220);
-            CreateWorlds.Name = "CreateWorlds";
-            CreateWorlds.Size = new Size(100, 28);
-            CreateWorlds.TabIndex = 20;
-            CreateWorlds.Text = "Create World";
-            CreateWorlds.UseVisualStyleBackColor = true;
-            CreateWorlds.Click += CreateWorlds_Click;
+            AddWorlds.Location = new Point(101, 220);
+            AddWorlds.Name = "AddWorlds";
+            AddWorlds.Size = new Size(100, 28);
+            AddWorlds.TabIndex = 20;
+            AddWorlds.Text = "Create World";
+            AddWorlds.UseVisualStyleBackColor = true;
+            AddWorlds.Click += CreateWorlds_Click;
             // 
             // CreateFB
             // 
@@ -490,12 +497,83 @@
             WorldsCreated.Size = new Size(327, 259);
             WorldsCreated.TabIndex = 47;
             // 
+            // chooseWorld
+            // 
+            chooseWorld.FormattingEnabled = true;
+            chooseWorld.Location = new Point(158, 614);
+            chooseWorld.Name = "chooseWorld";
+            chooseWorld.Size = new Size(140, 23);
+            chooseWorld.TabIndex = 49;
+            chooseWorld.SelectedIndexChanged += chooseWorld_SelectedIndexChanged;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(101, 617);
+            label23.Name = "label23";
+            label23.Size = new Size(47, 15);
+            label23.TabIndex = 50;
+            label23.Text = "Escolhe";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(479, 612);
+            label24.Name = "label24";
+            label24.Size = new Size(47, 15);
+            label24.TabIndex = 52;
+            label24.Text = "Escolhe";
+            // 
+            // chooseFB
+            // 
+            chooseFB.FormattingEnabled = true;
+            chooseFB.Location = new Point(536, 609);
+            chooseFB.Name = "chooseFB";
+            chooseFB.Size = new Size(140, 23);
+            chooseFB.TabIndex = 51;
+            chooseFB.SelectedIndexChanged += chooseFB_SelectedIndexChanged;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(1043, 607);
+            label25.Name = "label25";
+            label25.Size = new Size(47, 15);
+            label25.TabIndex = 54;
+            label25.Text = "Escolhe";
+            // 
+            // chooseEnemie
+            // 
+            chooseEnemie.FormattingEnabled = true;
+            chooseEnemie.Location = new Point(1100, 604);
+            chooseEnemie.Name = "chooseEnemie";
+            chooseEnemie.Size = new Size(140, 23);
+            chooseEnemie.TabIndex = 53;
+            chooseEnemie.SelectedIndexChanged += chooseEnemie_SelectedIndexChanged;
+            // 
+            // CreateGame
+            // 
+            CreateGame.Location = new Point(307, 255);
+            CreateGame.Name = "CreateGame";
+            CreateGame.Size = new Size(97, 23);
+            CreateGame.TabIndex = 55;
+            CreateGame.Text = "Create Game";
+            CreateGame.UseVisualStyleBackColor = true;
+            CreateGame.Click += CreateGame_Click;
+            // 
             // CreateWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1399, 711);
+            ClientSize = new Size(1399, 778);
+            Controls.Add(CreateGame);
+            Controls.Add(label25);
+            Controls.Add(chooseEnemie);
+            Controls.Add(label24);
+            Controls.Add(chooseFB);
+            Controls.Add(label23);
+            Controls.Add(chooseWorld);
             Controls.Add(label22);
             Controls.Add(WorldsCreated);
             Controls.Add(label21);
@@ -523,7 +601,7 @@
             Controls.Add(label14);
             Controls.Add(label35345);
             Controls.Add(CreateFB);
-            Controls.Add(CreateWorlds);
+            Controls.Add(AddWorlds);
             Controls.Add(EnergyFB);
             Controls.Add(VelocityFB);
             Controls.Add(label7);
@@ -573,7 +651,7 @@
         private TextBox VelocityFB;
         private Label label7;
         private Label label10;
-        private Button CreateWorlds;
+        private Button AddWorlds;
         private Button CreateFB;
         private Button CreateGroupEnemies;
         private Label label11;
@@ -601,5 +679,12 @@
         private DataGridView FBCreated;
         private Label label22;
         private DataGridView WorldsCreated;
+        private ComboBox chooseWorld;
+        private Label label23;
+        private Label label24;
+        private ComboBox chooseFB;
+        private Label label25;
+        private ComboBox chooseEnemie;
+        private Button CreateGame;
     }
 }
