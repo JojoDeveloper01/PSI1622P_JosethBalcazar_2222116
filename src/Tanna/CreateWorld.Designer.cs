@@ -75,12 +75,6 @@
             FBCreated = new DataGridView();
             label22 = new Label();
             WorldsCreated = new DataGridView();
-            chooseWorld = new ComboBox();
-            label23 = new Label();
-            label24 = new Label();
-            chooseFB = new ComboBox();
-            label25 = new Label();
-            chooseEnemie = new ComboBox();
             CreateGame = new Button();
             ((System.ComponentModel.ISupportInitialize)EnemiesCreated).BeginInit();
             ((System.ComponentModel.ISupportInitialize)FBCreated).BeginInit();
@@ -497,60 +491,6 @@
             WorldsCreated.Size = new Size(327, 259);
             WorldsCreated.TabIndex = 47;
             // 
-            // chooseWorld
-            // 
-            chooseWorld.FormattingEnabled = true;
-            chooseWorld.Location = new Point(158, 614);
-            chooseWorld.Name = "chooseWorld";
-            chooseWorld.Size = new Size(140, 23);
-            chooseWorld.TabIndex = 49;
-            chooseWorld.SelectedIndexChanged += chooseWorld_SelectedIndexChanged;
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Location = new Point(101, 617);
-            label23.Name = "label23";
-            label23.Size = new Size(47, 15);
-            label23.TabIndex = 50;
-            label23.Text = "Escolhe";
-            // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Location = new Point(479, 612);
-            label24.Name = "label24";
-            label24.Size = new Size(47, 15);
-            label24.TabIndex = 52;
-            label24.Text = "Escolhe";
-            // 
-            // chooseFB
-            // 
-            chooseFB.FormattingEnabled = true;
-            chooseFB.Location = new Point(536, 609);
-            chooseFB.Name = "chooseFB";
-            chooseFB.Size = new Size(140, 23);
-            chooseFB.TabIndex = 51;
-            chooseFB.SelectedIndexChanged += chooseFB_SelectedIndexChanged;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Location = new Point(1043, 607);
-            label25.Name = "label25";
-            label25.Size = new Size(47, 15);
-            label25.TabIndex = 54;
-            label25.Text = "Escolhe";
-            // 
-            // chooseEnemie
-            // 
-            chooseEnemie.FormattingEnabled = true;
-            chooseEnemie.Location = new Point(1100, 604);
-            chooseEnemie.Name = "chooseEnemie";
-            chooseEnemie.Size = new Size(140, 23);
-            chooseEnemie.TabIndex = 53;
-            chooseEnemie.SelectedIndexChanged += chooseEnemie_SelectedIndexChanged;
-            // 
             // CreateGame
             // 
             CreateGame.Location = new Point(307, 255);
@@ -566,14 +506,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1399, 778);
+            ClientSize = new Size(1399, 639);
             Controls.Add(CreateGame);
-            Controls.Add(label25);
-            Controls.Add(chooseEnemie);
-            Controls.Add(label24);
-            Controls.Add(chooseFB);
-            Controls.Add(label23);
-            Controls.Add(chooseWorld);
             Controls.Add(label22);
             Controls.Add(WorldsCreated);
             Controls.Add(label21);
@@ -679,12 +613,6 @@
         private DataGridView FBCreated;
         private Label label22;
         private DataGridView WorldsCreated;
-        private ComboBox chooseWorld;
-        private Label label23;
-        private Label label24;
-        private ComboBox chooseFB;
-        private Label label25;
-        private ComboBox chooseEnemie;
         private Button CreateGame;
     }
 }
