@@ -36,7 +36,7 @@
             label5 = new Label();
             Save = new Button();
             ID = new Label();
-            CreateWorld = new Button();
+            CreateGame = new Button();
             EditUsers = new Button();
             SuspendLayout();
             // 
@@ -109,15 +109,15 @@
             ID.Size = new Size(0, 15);
             ID.TabIndex = 18;
             // 
-            // CreateWorld
+            // CreateGame
             // 
-            CreateWorld.Location = new Point(378, 160);
-            CreateWorld.Name = "CreateWorld";
-            CreateWorld.Size = new Size(107, 35);
-            CreateWorld.TabIndex = 22;
-            CreateWorld.Text = "Create a World";
-            CreateWorld.UseVisualStyleBackColor = true;
-            CreateWorld.Click += CreateWorld_Click;
+            CreateGame.Location = new Point(378, 160);
+            CreateGame.Name = "CreateGame";
+            CreateGame.Size = new Size(107, 35);
+            CreateGame.TabIndex = 22;
+            CreateGame.Text = "Create a Game";
+            CreateGame.UseVisualStyleBackColor = true;
+            CreateGame.Click += CreateGame_Click;
             // 
             // EditUsers
             // 
@@ -136,7 +136,7 @@
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(569, 303);
             Controls.Add(EditUsers);
-            Controls.Add(CreateWorld);
+            Controls.Add(CreateGame);
             Controls.Add(ID);
             Controls.Add(Save);
             Controls.Add(label5);
@@ -161,7 +161,7 @@
         private Label label5;
         private Button Save;
         private Label ID;
-        private Button CreateWorld;
+        private Button CreateGame;
         private Button EditUsers;
     }
 }

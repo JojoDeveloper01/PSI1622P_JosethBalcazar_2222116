@@ -20,12 +20,12 @@ namespace Tanna
             InitializeComponent();
 
             EditUsers.Visible = false;
-            CreateWorld.Visible = false;
+            CreateGame.Visible = false;
 
             if (GlobalVar.Type == 1)
             {
                 EditUsers.Visible = true;
-                CreateWorld.Visible = true;
+                CreateGame.Visible = true;
             }
         }
 
@@ -72,11 +72,11 @@ namespace Tanna
             this.Show();
         }
 
-        private void CreateWorld_Click(object sender, EventArgs e)
+        private void CreateGame_Click(object sender, EventArgs e)
         {
             this.Hide();
-            CreateWorld createWorld = new();
-            createWorld.ShowDialog();
+            CreateGame createGame = new();
+            createGame.ShowDialog();
             this.Show();
         }
     }

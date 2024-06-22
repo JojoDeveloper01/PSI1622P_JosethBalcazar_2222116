@@ -43,6 +43,7 @@
             DelWorld = new Button();
             WorldsCreated = new DataGridView();
             label22 = new Label();
+            VoltarWorld = new Button();
             ((System.ComponentModel.ISupportInitialize)WorldsCreated).BeginInit();
             SuspendLayout();
             // 
@@ -178,12 +179,23 @@
             label22.TabIndex = 48;
             label22.Text = "Worlds Created";
             // 
+            // VoltarWorld
+            // 
+            VoltarWorld.Location = new Point(480, 381);
+            VoltarWorld.Name = "VoltarWorld";
+            VoltarWorld.Size = new Size(119, 32);
+            VoltarWorld.TabIndex = 52;
+            VoltarWorld.Text = "Voltar";
+            VoltarWorld.UseVisualStyleBackColor = true;
+            VoltarWorld.Click += VoltarWorld_Click;
+            // 
             // CreateWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(636, 416);
+            ClientSize = new Size(636, 422);
+            Controls.Add(VoltarWorld);
             Controls.Add(label22);
             Controls.Add(WorldsCreated);
             Controls.Add(DelWorld);
@@ -222,5 +234,6 @@
         private Button DelWorld;
         private DataGridView WorldsCreated;
         private Label label22;
+        private Button VoltarWorld;
     }
 }

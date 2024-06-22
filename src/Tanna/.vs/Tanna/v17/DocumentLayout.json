@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\globalvar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:globalvar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\creategame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:creategame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\creategame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:creategame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\createenemies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:createenemies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\createfinalboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:createfinalboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\createfinalboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:createfinalboss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\createworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:createworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,28 +35,12 @@
       "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:createworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\globalvar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:globalvar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\createenemies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:createenemies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\editusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:editusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\editusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:editusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\editusers.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:editusers.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\createenemies.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:createenemies.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,19 +62,108 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "GlobalVar.cs",
               "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\GlobalVar.cs",
               "RelativeDocumentMoniker": "GlobalVar.cs",
               "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\GlobalVar.cs",
               "RelativeToolTip": "GlobalVar.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAcAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAA6wCUAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T11:09:18.336Z"
+              "WhenOpened": "2024-06-20T11:09:18.336Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "CreateGame.cs",
+              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateGame.cs",
+              "RelativeDocumentMoniker": "CreateGame.cs",
+              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateGame.cs",
+              "RelativeToolTip": "CreateGame.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T18:30:20.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreateGame.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateGame.cs",
+              "RelativeDocumentMoniker": "CreateGame.cs",
+              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateGame.cs [Projeto]",
+              "RelativeToolTip": "CreateGame.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T18:30:10.752Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CreateFinalBoss.cs",
+              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateFinalBoss.cs",
+              "RelativeDocumentMoniker": "CreateFinalBoss.cs",
+              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateFinalBoss.cs",
+              "RelativeToolTip": "CreateFinalBoss.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAMwBIAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T19:55:00.293Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CreateFinalBoss.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateFinalBoss.cs",
+              "RelativeDocumentMoniker": "CreateFinalBoss.cs",
+              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateFinalBoss.cs [Projeto]",
+              "RelativeToolTip": "CreateFinalBoss.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T20:02:53.958Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CreateEnemies.cs",
+              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateEnemies.cs",
+              "RelativeDocumentMoniker": "CreateEnemies.cs",
+              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateEnemies.cs",
+              "RelativeToolTip": "CreateEnemies.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T18:31:08.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CreateEnemies.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateEnemies.cs",
+              "RelativeDocumentMoniker": "CreateEnemies.cs",
+              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateEnemies.cs [Projeto]",
+              "RelativeToolTip": "CreateEnemies.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T20:05:56.65Z",
+              "EditorCaption": " [Projeto]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CreateWorld.cs",
+              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateWorld.cs",
+              "RelativeDocumentMoniker": "CreateWorld.cs",
+              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateWorld.cs",
+              "RelativeToolTip": "CreateWorld.cs",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAAwFQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-20T08:17:13.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "CreateWorld.cs [Projeto]",
               "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateWorld.cs",
               "RelativeDocumentMoniker": "CreateWorld.cs",
@@ -78,74 +175,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateWorld.cs",
-              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateWorld.cs",
-              "RelativeDocumentMoniker": "CreateWorld.cs",
-              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateWorld.cs",
-              "RelativeToolTip": "CreateWorld.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAAwFQBAABMAAAA",
+              "DocumentIndex": 9,
+              "Title": "CreateEnemies.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateEnemies.Designer.cs",
+              "RelativeDocumentMoniker": "CreateEnemies.Designer.cs",
+              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\CreateEnemies.Designer.cs",
+              "RelativeToolTip": "CreateEnemies.Designer.cs",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAtwG8AAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T08:17:13.65Z",
+              "WhenOpened": "2024-06-21T20:05:18.887Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EditUsers.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\EditUsers.cs",
-              "RelativeDocumentMoniker": "EditUsers.cs",
-              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\EditUsers.cs [Projeto]",
-              "RelativeToolTip": "EditUsers.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T23:07:47.93Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "EditUsers.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\EditUsers.Designer.cs",
-              "RelativeDocumentMoniker": "EditUsers.Designer.cs",
-              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\EditUsers.Designer.cs",
-              "RelativeToolTip": "EditUsers.Designer.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAAqwGwAAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T23:05:50.992Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "EditUsers.cs",
-              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\EditUsers.cs",
-              "RelativeDocumentMoniker": "EditUsers.cs",
-              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\EditUsers.cs",
-              "RelativeToolTip": "EditUsers.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T23:05:07.595Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Form1.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Form1.cs [Projeto]",
-              "RelativeToolTip": "Form1.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T23:00:43.636Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Form1.cs",
-              "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAABQAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T20:27:02.357Z"
             }
           ]
         }

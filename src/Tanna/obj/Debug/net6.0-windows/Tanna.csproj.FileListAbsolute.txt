@@ -148,3 +148,6 @@ C:\Users\jojop\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.
 C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.CreateGame.resources
 C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.CreateEnemies.resources
 C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.CreateFinalBoss.resources
+C:\Users\jojop\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.CreateEnemies.resources
+C:\Users\jojop\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.CreateFinalBoss.resources
+C:\Users\jojop\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.CreateGame.resources

@@ -46,6 +46,7 @@
             label9 = new Label();
             labelaaa = new Label();
             label5 = new Label();
+            VoltarFB = new Button();
             ((System.ComponentModel.ISupportInitialize)FBCreated).BeginInit();
             SuspendLayout();
             // 
@@ -70,18 +71,19 @@
             // 
             // DelFB
             // 
-            DelFB.Location = new Point(71, 366);
+            DelFB.Location = new Point(71, 326);
             DelFB.Name = "DelFB";
             DelFB.Size = new Size(121, 28);
             DelFB.TabIndex = 71;
             DelFB.Text = "Delete Final Boss";
             DelFB.UseVisualStyleBackColor = true;
+            DelFB.Click += DelFB_Click;
             // 
             // label17
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(71, 284);
+            label17.Location = new Point(71, 244);
             label17.Name = "label17";
             label17.Size = new Size(154, 25);
             label17.TabIndex = 70;
@@ -89,7 +91,7 @@
             // 
             // NameDelFB
             // 
-            NameDelFB.Location = new Point(71, 328);
+            NameDelFB.Location = new Point(71, 288);
             NameDelFB.Name = "NameDelFB";
             NameDelFB.Size = new Size(121, 23);
             NameDelFB.TabIndex = 69;
@@ -97,7 +99,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(26, 331);
+            label18.Location = new Point(26, 291);
             label18.Name = "label18";
             label18.Size = new Size(39, 15);
             label18.TabIndex = 68;
@@ -111,6 +113,7 @@
             CreateFB.TabIndex = 67;
             CreateFB.Text = "Create Final Boss";
             CreateFB.UseVisualStyleBackColor = true;
+            CreateFB.Click += CreateFB_Click;
             // 
             // EnergyFB
             // 
@@ -202,12 +205,23 @@
             label5.TabIndex = 56;
             label5.Text = "Final Boss";
             // 
+            // VoltarFB
+            // 
+            VoltarFB.Location = new Point(670, 404);
+            VoltarFB.Name = "VoltarFB";
+            VoltarFB.Size = new Size(119, 32);
+            VoltarFB.TabIndex = 74;
+            VoltarFB.Text = "Voltar";
+            VoltarFB.UseVisualStyleBackColor = true;
+            VoltarFB.Click += VoltarFB_Click;
+            // 
             // CreateFinalBoss
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(818, 418);
+            ClientSize = new Size(818, 448);
+            Controls.Add(VoltarFB);
             Controls.Add(label21);
             Controls.Add(FBCreated);
             Controls.Add(DelFB);
@@ -252,5 +266,6 @@
         private Label label9;
         private Label labelaaa;
         private Label label5;
+        private Button VoltarFB;
     }
 }

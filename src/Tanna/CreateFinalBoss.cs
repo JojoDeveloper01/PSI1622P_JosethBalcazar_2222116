@@ -12,10 +12,12 @@ namespace Tanna
 {
     public partial class CreateFinalBoss : Form
     {
-        public CreateFinalBoss()
+        private Form previousForm;
+        public CreateFinalBoss(Form previousForm)
         {
             InitializeComponent();
             GlobalVar.LoadData("FinalBoss", FBCreated);
+            this.previousForm = previousForm;
         }
 
         private void CreateFB_Click(object sender, EventArgs e)
@@ -50,13 +52,12 @@ namespace Tanna
             int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
 
             if (GlobalVar.Create(columnCreate, new Dictionary<string, string>
-    {
-        { "name", name },
-        { "life", life },
-        { "stamina", stamina },
-        { "velocity", velocity },
-        { "energy", energy }
-    }, playerId)) // Passa playerId para o método Create
+            {
+             { "name", name },
+             { "life", life },
+             { "stamina", stamina },
+             { "velocity", velocity },
+             { "energy", energy } }, playerId)) // Passa playerId para o método Create
             {
                 int finalBossId = GlobalVar.GetIdByName("FinalBoss", name);
                 if (finalBossId != -1)
@@ -96,5 +97,13 @@ namespace Tanna
             }
         }
 
+        private void VoltarFB_Click(object sender, EventArgs e)
+        {
+            GetSelectedFinalBossName();
+            MessageBox.Show($"SelectedFBName {GlobalVar.SelectedFBName}");
+
+            this.previousForm.Show();
+            this.Close();
+        }
     }
 }

@@ -20,13 +20,26 @@ namespace Tanna
             ID = 0;
             Type = 0;
         }
-
         public static void LoadData(string tableName, DataGridView dataGridView)
         {
             string sql;
 
             switch (tableName)
             {
+                case "Game":
+                    sql = $@"SELECT 
+                        g.name,
+                        w.name as World,
+                        f.name as 'FinalBoss'
+                    FROM 
+                        Game g
+                    JOIN 
+                        World w ON g.world_id = w.id
+                    JOIN 
+                        FinalBoss f ON g.finalBoss_id = f.id
+                    WHERE 
+                        g.player_id = {GlobalVar.ID}";
+                    break;
                 case "World":
                     sql = $"SELECT name, size, duration FROM World WHERE player_id = {GlobalVar.ID}";
                     break;
@@ -44,12 +57,24 @@ namespace Tanna
             try
             {
                 using (var cmd = new SQLiteCommand(sql, Program.conn))
-                using (var adapter = new SQLiteDataAdapter(cmd))
                 {
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
+                    using (var adapter = new SQLiteDataAdapter(cmd))
+                    {
+                        DataTable dataTable = new DataTable();
+                        adapter.Fill(dataTable);
 
-                    dataGridView.DataSource = dataTable;
+                        // Verificação de depuração
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            MessageBox.Show($"Dados carregados com sucesso para a tabela {tableName}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Nenhum dado encontrado para a tabela {tableName}.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
+                        dataGridView.DataSource = dataTable;
+                    }
                 }
             }
             catch (Exception ex)
@@ -57,6 +82,8 @@ namespace Tanna
                 MessageBox.Show($"Ocorreu um erro ao carregar os dados da tabela {tableName}: " + ex.Message);
             }
         }
+
+
 
         public static bool Create(string tableName, Dictionary<string, string> columns, int playerId)
         {

@@ -17,47 +17,6 @@ namespace Tanna
         {
             InitializeComponent();
         }
-        private void Delete_Click(object sender, EventArgs e)
-        {
-            string username = UsernameDel.Text;
-
-            if (DeletePlayer(username))
-            {
-                MessageBox.Show($"Delete Player {username} successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-        private bool DeletePlayer(string username)
-        {
-            try
-            {
-                // Verificar se o nome de usuário existe
-                var sqlCheck = "SELECT COUNT(*) FROM player WHERE name = @name";
-                using (var cmdCheck = new SQLiteCommand(sqlCheck, Program.conn))
-                {
-                    cmdCheck.Parameters.AddWithValue("@name", username);
-                    int count = Convert.ToInt32(cmdCheck.ExecuteScalar());
-                    if (count == 0)
-                    {
-                        MessageBox.Show("Username does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-                }
-
-                // Deletar o jogador
-                var sql = "DELETE FROM player WHERE name = @name";
-                using (var cmd = new SQLiteCommand(sql, Program.conn))
-                {
-                    cmd.Parameters.AddWithValue("@name", username);
-                    cmd.ExecuteNonQuery();
-                }
-                return true;
-            }
-            catch (SQLiteException ex)
-            {
-                MessageBox.Show("SQLite Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
         private void Create_Click(object sender, EventArgs e)
         {
             string username = UserCreate.Text;
@@ -155,6 +114,47 @@ namespace Tanna
             catch (Exception ex)
             {
                 MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            string username = UsernameDel.Text;
+
+            if (DeletePlayer(username))
+            {
+                MessageBox.Show($"Delete Player {username} successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private bool DeletePlayer(string username)
+        {
+            try
+            {
+                // Verificar se o nome de usuário existe
+                var sqlCheck = "SELECT COUNT(*) FROM player WHERE name = @name";
+                using (var cmdCheck = new SQLiteCommand(sqlCheck, Program.conn))
+                {
+                    cmdCheck.Parameters.AddWithValue("@name", username);
+                    int count = Convert.ToInt32(cmdCheck.ExecuteScalar());
+                    if (count == 0)
+                    {
+                        MessageBox.Show("Username does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                }
+
+                // Deletar o jogador
+                var sql = "DELETE FROM player WHERE name = @name";
+                using (var cmd = new SQLiteCommand(sql, Program.conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", username);
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("SQLite Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
     }

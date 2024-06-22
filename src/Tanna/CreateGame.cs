@@ -15,7 +15,8 @@ namespace Tanna
         public CreateGame()
         {
             InitializeComponent();
-            GlobalVar.LoadData("Games Created", GamesCreated);
+            GlobalVar.LoadData("Game", GamesCreated);
+            //MessageBox.Show($"SelectedFBName {GlobalVar.SelectedFBName}");
         }
 
         private void EditWorld_Click(object sender, EventArgs e)
@@ -30,7 +31,7 @@ namespace Tanna
         {
 
             this.Hide();
-            CreateFinalBoss createFB = new();
+            CreateFinalBoss createFB = new(this);
             createFB.ShowDialog();
             this.Show();
         }
@@ -44,7 +45,7 @@ namespace Tanna
             this.Show();
         }
 
-        private void CreateGame_Click(object sender, EventArgs e)
+        private void AddGame_Click(object sender, EventArgs e)
         {
             string finalBossName = GlobalVar.SelectedFBName;
             if (string.IsNullOrEmpty(finalBossName))
@@ -106,7 +107,8 @@ namespace Tanna
             }, playerId))
                     {
                         transaction.Commit();
-                        GlobalVar.LoadData("Games Created", GamesCreated);
+
+                        GlobalVar.LoadData("Game", GamesCreated);
                         MessageBox.Show("Game created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -121,7 +123,5 @@ namespace Tanna
                 }
             }
         }
-
-
     }
 }

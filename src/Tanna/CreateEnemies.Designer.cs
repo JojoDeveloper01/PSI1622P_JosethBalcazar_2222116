@@ -42,6 +42,7 @@
             label13 = new Label();
             label14 = new Label();
             label35345 = new Label();
+            VoltarEnemies = new Button();
             ((System.ComponentModel.ISupportInitialize)EnemiesCreated).BeginInit();
             SuspendLayout();
             // 
@@ -53,6 +54,7 @@
             DelEnemies.TabIndex = 50;
             DelEnemies.Text = "Delete Enemies";
             DelEnemies.UseVisualStyleBackColor = true;
+            DelEnemies.Click += DelEnemies_Click;
             // 
             // label16
             // 
@@ -107,6 +109,7 @@
             CreateGroupEnemies.TabIndex = 44;
             CreateGroupEnemies.Text = "Create Enemies";
             CreateGroupEnemies.UseVisualStyleBackColor = true;
+            CreateGroupEnemies.Click += CreateGroupEnemies_Click;
             // 
             // label11
             // 
@@ -166,12 +169,23 @@
             label35345.TabIndex = 37;
             label35345.Text = "Name";
             // 
+            // VoltarEnemies
+            // 
+            VoltarEnemies.Location = new Point(454, 387);
+            VoltarEnemies.Name = "VoltarEnemies";
+            VoltarEnemies.Size = new Size(119, 32);
+            VoltarEnemies.TabIndex = 51;
+            VoltarEnemies.Text = "Voltar";
+            VoltarEnemies.UseVisualStyleBackColor = true;
+            VoltarEnemies.Click += VoltarEnemies_Click;
+            // 
             // CreateEnemies
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(602, 405);
+            ClientSize = new Size(602, 431);
+            Controls.Add(VoltarEnemies);
             Controls.Add(DelEnemies);
             Controls.Add(label16);
             Controls.Add(NameDelEnemies);
@@ -209,5 +223,6 @@
         private Label label13;
         private Label label14;
         private Label label35345;
+        private Button VoltarEnemies;
     }
 }
