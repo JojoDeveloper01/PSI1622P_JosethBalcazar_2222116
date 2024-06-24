@@ -97,7 +97,7 @@ namespace Tanna
             }
         }
 
-        private void VoltarFB_Click(object sender, EventArgs e)
+        private void BackFB_Click(object sender, EventArgs e)
         {
             GetSelectedFinalBossName();
             this.previousForm.Show();

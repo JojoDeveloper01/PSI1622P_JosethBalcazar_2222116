@@ -213,7 +213,7 @@
             VoltarFB.TabIndex = 74;
             VoltarFB.Text = "Voltar";
             VoltarFB.UseVisualStyleBackColor = true;
-            VoltarFB.Click += VoltarFB_Click;
+            VoltarFB.Click += BackFB_Click;
             // 
             // CreateFinalBoss
             // 

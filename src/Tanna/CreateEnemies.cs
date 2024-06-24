@@ -88,7 +88,7 @@ namespace Tanna
             }
         }
 
-        private void VoltarEnemies_Click(object sender, EventArgs e)
+        private void BackEnemies_Click(object sender, EventArgs e)
         {
             GetSelectedEnemyNames();
             this.previousForm.Show();

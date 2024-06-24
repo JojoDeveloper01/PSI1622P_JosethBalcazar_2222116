@@ -12,6 +12,7 @@ namespace Tanna
         public static string SelectedWorldName { get; set; }
         public static string SelectedFBName { get; set; }
         public static List<string> SelectedEnemiesName { get; set; } = new List<string>();
+        public static List<int> SelectedEnemiesIds = new List<int>();
         public static void Logout(Home homeForm)
         {
             // Redefinir as variáveis globais para o estado de deslogado
@@ -93,7 +94,6 @@ namespace Tanna
             // Ajusta a largura das colunas para caber no conteúdo
             dataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
-
 
         public static bool Create(string tableName, Dictionary<string, string> columns, int playerId)
         {

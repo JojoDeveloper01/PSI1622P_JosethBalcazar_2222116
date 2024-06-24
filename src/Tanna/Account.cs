@@ -74,6 +74,7 @@ namespace Tanna
 
         private void CreateGame_Click(object sender, EventArgs e)
         {
+
             this.Hide();
             CreateGame createGame = new();
             createGame.ShowDialog();

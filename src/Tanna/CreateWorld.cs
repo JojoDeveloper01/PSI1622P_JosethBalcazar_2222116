@@ -86,17 +86,6 @@ namespace Tanna
             }
         }
 
-        private void CreateGameEnemiesAssociation(int gameId, int enemyId)
-        {
-            const string sql = "INSERT INTO Game_Enemies (game_id, enemy_id) VALUES (@gameId, @enemyId)";
-            using (var cmd = new SQLiteCommand(sql, Program.conn))
-            {
-                cmd.Parameters.AddWithValue("@gameId", gameId);
-                cmd.Parameters.AddWithValue("@enemyId", enemyId);
-                cmd.ExecuteNonQuery();
-            }
-        }
-
         private void GetSelectedWorldName()
         {
             if (WorldsCreated.SelectedRows.Count > 0)
@@ -110,7 +99,6 @@ namespace Tanna
             }
         }
 
-
         private void DelWorld_Click(object sender, EventArgs e)
         {
             string name = NameDelWorld.Text;
@@ -123,7 +111,7 @@ namespace Tanna
             }
         }
 
-        private void VoltarWorld_Click(object sender, EventArgs e)
+        private void BackWorld_Click(object sender, EventArgs e)
         {
             GetSelectedWorldName();
             this.previousForm.Show();

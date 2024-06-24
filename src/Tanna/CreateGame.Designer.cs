@@ -40,7 +40,7 @@
             label5 = new Label();
             EditEnemies = new Button();
             label6 = new Label();
-            FBselected = new Button();
+            UpdateProperties = new Button();
             SelectedProperties = new DataGridView();
             label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)GamesCreated).BeginInit();
@@ -165,15 +165,16 @@
             label6.TabIndex = 10;
             label6.Text = "Add/Delete Enemies";
             // 
-            // FBselected
+            // UpdateProperties
             // 
-            FBselected.Location = new Point(473, 44);
-            FBselected.Name = "FBselected";
-            FBselected.Size = new Size(142, 23);
-            FBselected.TabIndex = 12;
-            FBselected.Text = "final boss selected";
-            FBselected.UseVisualStyleBackColor = true;
-            FBselected.Click += FBselected_Click;
+            UpdateProperties.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            UpdateProperties.Location = new Point(274, 420);
+            UpdateProperties.Name = "UpdateProperties";
+            UpdateProperties.Size = new Size(66, 29);
+            UpdateProperties.TabIndex = 12;
+            UpdateProperties.Text = "Update";
+            UpdateProperties.UseVisualStyleBackColor = true;
+            UpdateProperties.Click += UpdateProperties_Click;
             // 
             // SelectedProperties
             // 
@@ -202,7 +203,7 @@
             ClientSize = new Size(955, 450);
             Controls.Add(label7);
             Controls.Add(SelectedProperties);
-            Controls.Add(FBselected);
+            Controls.Add(UpdateProperties);
             Controls.Add(EditEnemies);
             Controls.Add(label6);
             Controls.Add(EditFB);
@@ -217,7 +218,7 @@
             Controls.Add(label1);
             Name = "CreateGame";
             Text = "CreateGame";
-            Load += FBselected_Click;
+            Load += UpdateProperties_Click;
             ((System.ComponentModel.ISupportInitialize)GamesCreated).EndInit();
             ((System.ComponentModel.ISupportInitialize)SelectedProperties).EndInit();
             ResumeLayout(false);
@@ -238,7 +239,7 @@
         private Label label5;
         private Button EditEnemies;
         private Label label6;
-        private Button FBselected;
+        private Button UpdateProperties;
         private DataGridView SelectedProperties;
         private Label label7;
     }

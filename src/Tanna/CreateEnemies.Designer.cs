@@ -42,7 +42,7 @@
             label13 = new Label();
             label14 = new Label();
             label35345 = new Label();
-            VoltarEnemies = new Button();
+            BackEnemies = new Button();
             ((System.ComponentModel.ISupportInitialize)EnemiesCreated).BeginInit();
             SuspendLayout();
             // 
@@ -169,15 +169,15 @@
             label35345.TabIndex = 37;
             label35345.Text = "Name";
             // 
-            // VoltarEnemies
+            // BackEnemies
             // 
-            VoltarEnemies.Location = new Point(454, 387);
-            VoltarEnemies.Name = "VoltarEnemies";
-            VoltarEnemies.Size = new Size(119, 32);
-            VoltarEnemies.TabIndex = 51;
-            VoltarEnemies.Text = "Voltar";
-            VoltarEnemies.UseVisualStyleBackColor = true;
-            VoltarEnemies.Click += VoltarEnemies_Click;
+            BackEnemies.Location = new Point(454, 387);
+            BackEnemies.Name = "BackEnemies";
+            BackEnemies.Size = new Size(119, 32);
+            BackEnemies.TabIndex = 51;
+            BackEnemies.Text = "Back";
+            BackEnemies.UseVisualStyleBackColor = true;
+            BackEnemies.Click += BackEnemies_Click;
             // 
             // CreateEnemies
             // 
@@ -185,7 +185,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(602, 431);
-            Controls.Add(VoltarEnemies);
+            Controls.Add(BackEnemies);
             Controls.Add(DelEnemies);
             Controls.Add(label16);
             Controls.Add(NameDelEnemies);
@@ -223,6 +223,6 @@
         private Label label13;
         private Label label14;
         private Label label35345;
-        private Button VoltarEnemies;
+        private Button BackEnemies;
     }
 }

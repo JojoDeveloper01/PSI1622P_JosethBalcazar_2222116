@@ -43,7 +43,7 @@
             DelWorld = new Button();
             WorldsCreated = new DataGridView();
             label22 = new Label();
-            VoltarWorld = new Button();
+            BackWorld = new Button();
             ((System.ComponentModel.ISupportInitialize)WorldsCreated).BeginInit();
             SuspendLayout();
             // 
@@ -179,15 +179,15 @@
             label22.TabIndex = 48;
             label22.Text = "Worlds Created";
             // 
-            // VoltarWorld
+            // BackWorld
             // 
-            VoltarWorld.Location = new Point(480, 381);
-            VoltarWorld.Name = "VoltarWorld";
-            VoltarWorld.Size = new Size(119, 32);
-            VoltarWorld.TabIndex = 52;
-            VoltarWorld.Text = "Voltar";
-            VoltarWorld.UseVisualStyleBackColor = true;
-            VoltarWorld.Click += VoltarWorld_Click;
+            BackWorld.Location = new Point(480, 381);
+            BackWorld.Name = "BackWorld";
+            BackWorld.Size = new Size(119, 32);
+            BackWorld.TabIndex = 52;
+            BackWorld.Text = "Back";
+            BackWorld.UseVisualStyleBackColor = true;
+            BackWorld.Click += BackWorld_Click;
             // 
             // CreateWorld
             // 
@@ -195,7 +195,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(636, 422);
-            Controls.Add(VoltarWorld);
+            Controls.Add(BackWorld);
             Controls.Add(label22);
             Controls.Add(WorldsCreated);
             Controls.Add(DelWorld);
@@ -234,6 +234,6 @@
         private Button DelWorld;
         private DataGridView WorldsCreated;
         private Label label22;
-        private Button VoltarWorld;
+        private Button BackWorld;
     }
 }

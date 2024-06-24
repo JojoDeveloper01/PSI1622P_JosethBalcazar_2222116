@@ -146,7 +146,7 @@
             Controls.Add(Password);
             Controls.Add(Username);
             Name = "Account";
-            Text = "bu";
+            Text = "W";
             Load += Account_Load;
             ResumeLayout(false);
             PerformLayout();
