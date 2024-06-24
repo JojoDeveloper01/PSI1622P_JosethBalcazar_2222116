@@ -14,10 +14,12 @@ namespace Tanna
 {
     public partial class CreateWorld : Form
     {
-        public CreateWorld()
+        private Form previousForm;
+        public CreateWorld(Form previousForm)
         {
             InitializeComponent();
             GlobalVar.LoadData("World", WorldsCreated);
+            this.previousForm = previousForm;
         }
 
         private void CreateWorlds_Click(object sender, EventArgs e)
@@ -84,6 +86,17 @@ namespace Tanna
             }
         }
 
+        private void CreateGameEnemiesAssociation(int gameId, int enemyId)
+        {
+            const string sql = "INSERT INTO Game_Enemies (game_id, enemy_id) VALUES (@gameId, @enemyId)";
+            using (var cmd = new SQLiteCommand(sql, Program.conn))
+            {
+                cmd.Parameters.AddWithValue("@gameId", gameId);
+                cmd.Parameters.AddWithValue("@enemyId", enemyId);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         private void GetSelectedWorldName()
         {
             if (WorldsCreated.SelectedRows.Count > 0)
@@ -97,16 +110,6 @@ namespace Tanna
             }
         }
 
-        private void CreateGameEnemiesAssociation(int gameId, int enemyId)
-        {
-            const string sql = "INSERT INTO Game_Enemies (game_id, enemy_id) VALUES (@gameId, @enemyId)";
-            using (var cmd = new SQLiteCommand(sql, Program.conn))
-            {
-                cmd.Parameters.AddWithValue("@gameId", gameId);
-                cmd.Parameters.AddWithValue("@enemyId", enemyId);
-                cmd.ExecuteNonQuery();
-            }
-        }
 
         private void DelWorld_Click(object sender, EventArgs e)
         {
@@ -122,7 +125,9 @@ namespace Tanna
 
         private void VoltarWorld_Click(object sender, EventArgs e)
         {
-
+            GetSelectedWorldName();
+            this.previousForm.Show();
+            this.Close();
         }
     }
 }

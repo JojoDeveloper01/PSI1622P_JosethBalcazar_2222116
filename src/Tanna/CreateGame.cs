@@ -16,13 +16,18 @@ namespace Tanna
         {
             InitializeComponent();
             GlobalVar.LoadData("Game", GamesCreated);
-            //MessageBox.Show($"SelectedFBName {GlobalVar.SelectedFBName}");
+
+        }
+
+        private void CreateGame_Load(object sender, EventArgs e)
+        {
+            GlobalVar.LoadData("SelectedGames", SelectedProperties);
         }
 
         private void EditWorld_Click(object sender, EventArgs e)
         {
             this.Hide();
-            CreateWorld createWorld = new();
+            CreateWorld createWorld = new(this);
             createWorld.ShowDialog();
             this.Show();
         }
@@ -40,7 +45,7 @@ namespace Tanna
         {
 
             this.Hide();
-            CreateEnemies createEnemies = new();
+            CreateEnemies createEnemies = new(this);
             createEnemies.ShowDialog();
             this.Show();
         }
@@ -122,6 +127,11 @@ namespace Tanna
                     MessageBox.Show($"Error creating game: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void FBselected_Click(object sender, EventArgs e)
+        {
+            GlobalVar.LoadData("SelectedGames", SelectedProperties);
         }
     }
 }

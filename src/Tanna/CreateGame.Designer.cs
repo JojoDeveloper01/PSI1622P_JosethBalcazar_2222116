@@ -40,7 +40,11 @@
             label5 = new Label();
             EditEnemies = new Button();
             label6 = new Label();
+            FBselected = new Button();
+            SelectedProperties = new DataGridView();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)GamesCreated).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)SelectedProperties).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -56,7 +60,7 @@
             // GamesCreated
             // 
             GamesCreated.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            GamesCreated.Location = new Point(243, 131);
+            GamesCreated.Location = new Point(579, 131);
             GamesCreated.Name = "GamesCreated";
             GamesCreated.RowTemplate.Height = 25;
             GamesCreated.Size = new Size(343, 283);
@@ -66,7 +70,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(243, 98);
+            label2.Location = new Point(579, 98);
             label2.Name = "label2";
             label2.Size = new Size(116, 21);
             label2.TabIndex = 2;
@@ -161,12 +165,44 @@
             label6.TabIndex = 10;
             label6.Text = "Add/Delete Enemies";
             // 
+            // FBselected
+            // 
+            FBselected.Location = new Point(473, 44);
+            FBselected.Name = "FBselected";
+            FBselected.Size = new Size(142, 23);
+            FBselected.TabIndex = 12;
+            FBselected.Text = "final boss selected";
+            FBselected.UseVisualStyleBackColor = true;
+            FBselected.Click += FBselected_Click;
+            // 
+            // SelectedProperties
+            // 
+            SelectedProperties.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            SelectedProperties.Location = new Point(273, 131);
+            SelectedProperties.Name = "SelectedProperties";
+            SelectedProperties.RowTemplate.Height = 25;
+            SelectedProperties.Size = new Size(273, 283);
+            SelectedProperties.TabIndex = 13;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(273, 98);
+            label7.Name = "label7";
+            label7.Size = new Size(143, 21);
+            label7.TabIndex = 14;
+            label7.Text = "Selected Properties";
+            // 
             // CreateGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(631, 450);
+            ClientSize = new Size(955, 450);
+            Controls.Add(label7);
+            Controls.Add(SelectedProperties);
+            Controls.Add(FBselected);
             Controls.Add(EditEnemies);
             Controls.Add(label6);
             Controls.Add(EditFB);
@@ -181,7 +217,9 @@
             Controls.Add(label1);
             Name = "CreateGame";
             Text = "CreateGame";
+            Load += FBselected_Click;
             ((System.ComponentModel.ISupportInitialize)GamesCreated).EndInit();
+            ((System.ComponentModel.ISupportInitialize)SelectedProperties).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -200,5 +238,8 @@
         private Label label5;
         private Button EditEnemies;
         private Label label6;
+        private Button FBselected;
+        private DataGridView SelectedProperties;
+        private Label label7;
     }
 }

@@ -28,17 +28,17 @@ namespace Tanna
             {
                 case "Game":
                     sql = $@"SELECT 
-                        g.name,
-                        w.name as World,
-                        f.name as 'FinalBoss'
-                    FROM 
-                        Game g
-                    JOIN 
-                        World w ON g.world_id = w.id
-                    JOIN 
-                        FinalBoss f ON g.finalBoss_id = f.id
-                    WHERE 
-                        g.player_id = {GlobalVar.ID}";
+                g.name,
+                w.name as World,
+                f.name as 'FinalBoss'
+            FROM 
+                Game g
+            JOIN 
+                World w ON g.world_id = w.id
+            JOIN 
+                FinalBoss f ON g.finalBoss_id = f.id
+            WHERE 
+                g.player_id = {GlobalVar.ID}";
                     break;
                 case "World":
                     sql = $"SELECT name, size, duration FROM World WHERE player_id = {GlobalVar.ID}";
@@ -49,6 +49,9 @@ namespace Tanna
                 case "Enemies":
                     sql = $"SELECT name, amount, life FROM Enemies WHERE player_id = {GlobalVar.ID}";
                     break;
+                case "SelectedGames":
+                    ShowSelectedDataVertical(dataGridView);
+                    return; // Retorna para evitar execução do restante do código
                 default:
                     MessageBox.Show("Invalid table name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -57,24 +60,12 @@ namespace Tanna
             try
             {
                 using (var cmd = new SQLiteCommand(sql, Program.conn))
+                using (var adapter = new SQLiteDataAdapter(cmd))
                 {
-                    using (var adapter = new SQLiteDataAdapter(cmd))
-                    {
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
 
-                        // Verificação de depuração
-                        if (dataTable.Rows.Count > 0)
-                        {
-                            MessageBox.Show($"Dados carregados com sucesso para a tabela {tableName}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Nenhum dado encontrado para a tabela {tableName}.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-
-                        dataGridView.DataSource = dataTable;
-                    }
+                    dataGridView.DataSource = dataTable;
                 }
             }
             catch (Exception ex)
@@ -83,6 +74,25 @@ namespace Tanna
             }
         }
 
+        public static void ShowSelectedDataVertical(DataGridView dataGridView)
+        {
+            // Limpa o DataGridView antes de adicionar novos itens
+            dataGridView.Rows.Clear();
+            dataGridView.Columns.Clear();
+
+            // Adiciona as colunas ao DataGridView
+            dataGridView.Columns.Add("Attribute", "Attribute");
+            dataGridView.Columns.Add("Value", "Value");
+
+
+            dataGridView.Rows.Add("World", GlobalVar.SelectedWorldName);
+            dataGridView.Rows.Add("Final Boss", GlobalVar.SelectedFBName);
+            string selectedEnemies = string.Join(", ", GlobalVar.SelectedEnemiesName);
+            dataGridView.Rows.Add("Enemies", selectedEnemies);
+
+            // Ajusta a largura das colunas para caber no conteúdo
+            dataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        }
 
 
         public static bool Create(string tableName, Dictionary<string, string> columns, int playerId)

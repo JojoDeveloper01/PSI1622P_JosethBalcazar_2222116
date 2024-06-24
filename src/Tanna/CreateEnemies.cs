@@ -12,10 +12,12 @@ namespace Tanna
 {
     public partial class CreateEnemies : Form
     {
-        public CreateEnemies()
+        private Form previousForm;
+        public CreateEnemies(Form previousForm)
         {
             InitializeComponent();
             GlobalVar.LoadData("Enemies", EnemiesCreated);
+            this.previousForm = previousForm;
         }
 
         private void CreateGroupEnemies_Click(object sender, EventArgs e)
@@ -88,7 +90,9 @@ namespace Tanna
 
         private void VoltarEnemies_Click(object sender, EventArgs e)
         {
-
+            GetSelectedEnemyNames();
+            this.previousForm.Show();
+            this.Close();
         }
     }
 }

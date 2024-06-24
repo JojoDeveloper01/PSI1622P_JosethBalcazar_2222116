@@ -100,8 +100,6 @@ namespace Tanna
         private void VoltarFB_Click(object sender, EventArgs e)
         {
             GetSelectedFinalBossName();
-            MessageBox.Show($"SelectedFBName {GlobalVar.SelectedFBName}");
-
             this.previousForm.Show();
             this.Close();
         }
