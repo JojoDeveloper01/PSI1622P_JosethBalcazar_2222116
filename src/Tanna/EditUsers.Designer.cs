@@ -32,21 +32,26 @@
             Create = new Button();
             UserCreate = new TextBox();
             AdminLabel = new Label();
-            See_All_Users = new Button();
             Delete = new Button();
             UsernameDel = new TextBox();
+            SeeAllUsers = new DataGridView();
+            UpdateAllUsers = new Button();
+            BackAdminSec = new Button();
+            ((System.ComponentModel.ISupportInitialize)SeeAllUsers).BeginInit();
             SuspendLayout();
             // 
             // PasswordCreate
             // 
-            PasswordCreate.Location = new Point(281, 142);
+            PasswordCreate.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            PasswordCreate.Location = new Point(38, 153);
             PasswordCreate.Name = "PasswordCreate";
             PasswordCreate.Size = new Size(133, 23);
             PasswordCreate.TabIndex = 28;
+            PasswordCreate.Text = "Password";
             // 
             // Create
             // 
-            Create.Location = new Point(281, 171);
+            Create.Location = new Point(38, 182);
             Create.Name = "Create";
             Create.Size = new Size(108, 29);
             Create.TabIndex = 27;
@@ -56,33 +61,26 @@
             // 
             // UserCreate
             // 
-            UserCreate.Location = new Point(281, 113);
+            UserCreate.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            UserCreate.Location = new Point(38, 124);
             UserCreate.Name = "UserCreate";
             UserCreate.Size = new Size(133, 23);
             UserCreate.TabIndex = 26;
+            UserCreate.Text = "Name";
             // 
             // AdminLabel
             // 
             AdminLabel.AutoSize = true;
-            AdminLabel.Location = new Point(216, 77);
+            AdminLabel.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            AdminLabel.Location = new Point(38, 47);
             AdminLabel.Name = "AdminLabel";
-            AdminLabel.Size = new Size(85, 15);
+            AdminLabel.Size = new Size(204, 37);
             AdminLabel.TabIndex = 25;
             AdminLabel.Text = "Admin Section";
             // 
-            // See_All_Users
-            // 
-            See_All_Users.Location = new Point(196, 243);
-            See_All_Users.Name = "See_All_Users";
-            See_All_Users.Size = new Size(115, 33);
-            See_All_Users.TabIndex = 24;
-            See_All_Users.Text = "See all users";
-            See_All_Users.UseVisualStyleBackColor = true;
-            See_All_Users.Click += See_All_Users_Click;
-            // 
             // Delete
             // 
-            Delete.Location = new Point(109, 147);
+            Delete.Location = new Point(38, 277);
             Delete.Name = "Delete";
             Delete.Size = new Size(108, 29);
             Delete.TabIndex = 23;
@@ -92,26 +90,61 @@
             // 
             // UsernameDel
             // 
-            UsernameDel.Location = new Point(109, 115);
+            UsernameDel.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            UsernameDel.Location = new Point(38, 241);
             UsernameDel.Name = "UsernameDel";
             UsernameDel.Size = new Size(133, 23);
             UsernameDel.TabIndex = 22;
+            UsernameDel.Text = "Name";
+            // 
+            // SeeAllUsers
+            // 
+            SeeAllUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            SeeAllUsers.Location = new Point(244, 124);
+            SeeAllUsers.Name = "SeeAllUsers";
+            SeeAllUsers.RowTemplate.Height = 25;
+            SeeAllUsers.Size = new Size(435, 279);
+            SeeAllUsers.TabIndex = 29;
+            // 
+            // UpdateAllUsers
+            // 
+            UpdateAllUsers.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            UpdateAllUsers.Location = new Point(613, 89);
+            UpdateAllUsers.Name = "UpdateAllUsers";
+            UpdateAllUsers.Size = new Size(66, 29);
+            UpdateAllUsers.TabIndex = 30;
+            UpdateAllUsers.Text = "Update";
+            UpdateAllUsers.UseVisualStyleBackColor = true;
+            UpdateAllUsers.Click += UpdateAllUsers_Click;
+            // 
+            // BackAdminSec
+            // 
+            BackAdminSec.Location = new Point(565, 422);
+            BackAdminSec.Name = "BackAdminSec";
+            BackAdminSec.Size = new Size(114, 32);
+            BackAdminSec.TabIndex = 76;
+            BackAdminSec.Text = "Back";
+            BackAdminSec.UseVisualStyleBackColor = true;
+            BackAdminSec.Click += BackAdminSec_Click;
             // 
             // EditUsers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(532, 337);
+            ClientSize = new Size(691, 466);
+            Controls.Add(BackAdminSec);
+            Controls.Add(UpdateAllUsers);
+            Controls.Add(SeeAllUsers);
             Controls.Add(PasswordCreate);
             Controls.Add(Create);
             Controls.Add(UserCreate);
             Controls.Add(AdminLabel);
-            Controls.Add(See_All_Users);
             Controls.Add(Delete);
             Controls.Add(UsernameDel);
             Name = "EditUsers";
             Text = "EditUsers";
+            ((System.ComponentModel.ISupportInitialize)SeeAllUsers).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -122,8 +155,10 @@
         private Button Create;
         private TextBox UserCreate;
         private Label AdminLabel;
-        private Button See_All_Users;
         private Button Delete;
         private TextBox UsernameDel;
+        private DataGridView SeeAllUsers;
+        private Button UpdateAllUsers;
+        private Button BackAdminSec;
     }
 }

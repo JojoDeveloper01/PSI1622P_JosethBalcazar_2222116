@@ -94,7 +94,6 @@ namespace Tanna
             }
             else
             {
-                MessageBox.Show("No world selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 GlobalVar.SelectedWorldName = string.Empty;
             }
         }

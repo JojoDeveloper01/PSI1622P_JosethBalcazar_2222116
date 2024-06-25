@@ -80,7 +80,6 @@ namespace Tanna
             }
             else
             {
-                MessageBox.Show("No Final Boss selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 GlobalVar.SelectedFBName = string.Empty;
             }
         }

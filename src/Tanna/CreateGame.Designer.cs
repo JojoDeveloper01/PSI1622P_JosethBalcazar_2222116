@@ -35,14 +35,16 @@
             CreatedGameName = new TextBox();
             AddGame = new Button();
             EditWorld = new Button();
-            label4 = new Label();
             EditFB = new Button();
-            label5 = new Label();
             EditEnemies = new Button();
-            label6 = new Label();
             UpdateProperties = new Button();
             SelectedProperties = new DataGridView();
             label7 = new Label();
+            DelGame = new Button();
+            label16 = new Label();
+            NameDelGame = new TextBox();
+            UpdateGamesCreated = new Button();
+            BackGame = new Button();
             ((System.ComponentModel.ISupportInitialize)GamesCreated).BeginInit();
             ((System.ComponentModel.ISupportInitialize)SelectedProperties).BeginInit();
             SuspendLayout();
@@ -51,7 +53,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(119, 30);
+            label1.Location = new Point(34, 35);
             label1.Name = "label1";
             label1.Size = new Size(182, 37);
             label1.TabIndex = 0;
@@ -60,36 +62,36 @@
             // GamesCreated
             // 
             GamesCreated.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            GamesCreated.Location = new Point(579, 131);
+            GamesCreated.Location = new Point(227, 314);
             GamesCreated.Name = "GamesCreated";
             GamesCreated.RowTemplate.Height = 25;
-            GamesCreated.Size = new Size(343, 283);
+            GamesCreated.Size = new Size(498, 181);
             GamesCreated.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(579, 98);
+            label2.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(227, 269);
             label2.Name = "label2";
-            label2.Size = new Size(116, 21);
+            label2.Size = new Size(140, 25);
             label2.TabIndex = 2;
             label2.Text = "Games Created";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(45, 102);
+            label3.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(32, 104);
             label3.Name = "label3";
-            label3.Size = new Size(92, 17);
+            label3.Size = new Size(121, 25);
             label3.TabIndex = 3;
             label3.Text = "Create Game";
             // 
             // CreatedGameName
             // 
             CreatedGameName.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            CreatedGameName.Location = new Point(45, 131);
+            CreatedGameName.Location = new Point(34, 151);
             CreatedGameName.Name = "CreatedGameName";
             CreatedGameName.Size = new Size(100, 23);
             CreatedGameName.TabIndex = 4;
@@ -97,7 +99,7 @@
             // 
             // AddGame
             // 
-            AddGame.Location = new Point(45, 170);
+            AddGame.Location = new Point(32, 192);
             AddGame.Name = "AddGame";
             AddGame.Size = new Size(75, 23);
             AddGame.TabIndex = 5;
@@ -107,68 +109,38 @@
             // 
             // EditWorld
             // 
-            EditWorld.Location = new Point(45, 249);
+            EditWorld.Location = new Point(227, 224);
             EditWorld.Name = "EditWorld";
             EditWorld.Size = new Size(75, 23);
             EditWorld.TabIndex = 7;
-            EditWorld.Text = "Edit";
+            EditWorld.Text = "Edit World";
             EditWorld.UseVisualStyleBackColor = true;
             EditWorld.Click += EditWorld_Click;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(45, 220);
-            label4.Name = "label4";
-            label4.Size = new Size(119, 17);
-            label4.TabIndex = 6;
-            label4.Text = "Add/Delete World";
-            // 
             // EditFB
             // 
-            EditFB.Location = new Point(45, 320);
+            EditFB.Location = new Point(318, 224);
             EditFB.Name = "EditFB";
-            EditFB.Size = new Size(75, 23);
+            EditFB.Size = new Size(106, 23);
             EditFB.TabIndex = 9;
-            EditFB.Text = "Edit";
+            EditFB.Text = "Final Boss Edit";
             EditFB.UseVisualStyleBackColor = true;
             EditFB.Click += EditFB_Click;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(45, 291);
-            label5.Name = "label5";
-            label5.Size = new Size(147, 17);
-            label5.TabIndex = 8;
-            label5.Text = "Add/Delete Final Boss";
-            // 
             // EditEnemies
             // 
-            EditEnemies.Location = new Point(45, 391);
+            EditEnemies.Location = new Point(442, 224);
             EditEnemies.Name = "EditEnemies";
-            EditEnemies.Size = new Size(75, 23);
+            EditEnemies.Size = new Size(104, 23);
             EditEnemies.TabIndex = 11;
-            EditEnemies.Text = "Edit";
+            EditEnemies.Text = " Edit Enemies";
             EditEnemies.UseVisualStyleBackColor = true;
             EditEnemies.Click += EditEnemies_Click;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(45, 362);
-            label6.Name = "label6";
-            label6.Size = new Size(136, 17);
-            label6.TabIndex = 10;
-            label6.Text = "Add/Delete Enemies";
             // 
             // UpdateProperties
             // 
             UpdateProperties.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            UpdateProperties.Location = new Point(274, 420);
+            UpdateProperties.Location = new Point(659, 116);
             UpdateProperties.Name = "UpdateProperties";
             UpdateProperties.Size = new Size(66, 29);
             UpdateProperties.TabIndex = 12;
@@ -179,37 +151,89 @@
             // SelectedProperties
             // 
             SelectedProperties.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            SelectedProperties.Location = new Point(273, 131);
+            SelectedProperties.Location = new Point(227, 151);
             SelectedProperties.Name = "SelectedProperties";
             SelectedProperties.RowTemplate.Height = 25;
-            SelectedProperties.Size = new Size(273, 283);
+            SelectedProperties.Size = new Size(498, 64);
             SelectedProperties.TabIndex = 13;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(273, 98);
+            label7.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Location = new Point(227, 104);
             label7.Name = "label7";
-            label7.Size = new Size(143, 21);
+            label7.Size = new Size(174, 25);
             label7.TabIndex = 14;
             label7.Text = "Selected Properties";
+            // 
+            // DelGame
+            // 
+            DelGame.Location = new Point(33, 354);
+            DelGame.Name = "DelGame";
+            DelGame.Size = new Size(75, 23);
+            DelGame.TabIndex = 54;
+            DelGame.Text = "Delete Enemies";
+            DelGame.UseVisualStyleBackColor = true;
+            DelGame.Click += DelGame_Click;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label16.Location = new Point(33, 267);
+            label16.Name = "label16";
+            label16.Size = new Size(128, 25);
+            label16.TabIndex = 53;
+            label16.Text = "Delete Games";
+            // 
+            // NameDelGame
+            // 
+            NameDelGame.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            NameDelGame.Location = new Point(34, 314);
+            NameDelGame.Name = "NameDelGame";
+            NameDelGame.Size = new Size(100, 23);
+            NameDelGame.TabIndex = 52;
+            NameDelGame.Text = "Name ";
+            // 
+            // UpdateGamesCreated
+            // 
+            UpdateGamesCreated.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            UpdateGamesCreated.Location = new Point(659, 279);
+            UpdateGamesCreated.Name = "UpdateGamesCreated";
+            UpdateGamesCreated.Size = new Size(66, 29);
+            UpdateGamesCreated.TabIndex = 55;
+            UpdateGamesCreated.Text = "Update";
+            UpdateGamesCreated.UseVisualStyleBackColor = true;
+            UpdateGamesCreated.Click += UpdateGamesCreated_Click;
+            // 
+            // BackGame
+            // 
+            BackGame.Location = new Point(606, 525);
+            BackGame.Name = "BackGame";
+            BackGame.Size = new Size(119, 32);
+            BackGame.TabIndex = 75;
+            BackGame.Text = "Back";
+            BackGame.UseVisualStyleBackColor = true;
+            BackGame.Click += BackGame_Click;
             // 
             // CreateGame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(955, 450);
+            ClientSize = new Size(737, 567);
+            Controls.Add(BackGame);
+            Controls.Add(UpdateGamesCreated);
+            Controls.Add(DelGame);
+            Controls.Add(label16);
+            Controls.Add(NameDelGame);
             Controls.Add(label7);
             Controls.Add(SelectedProperties);
             Controls.Add(UpdateProperties);
             Controls.Add(EditEnemies);
-            Controls.Add(label6);
             Controls.Add(EditFB);
-            Controls.Add(label5);
             Controls.Add(EditWorld);
-            Controls.Add(label4);
             Controls.Add(AddGame);
             Controls.Add(CreatedGameName);
             Controls.Add(label3);
@@ -234,13 +258,15 @@
         private TextBox CreatedGameName;
         private Button AddGame;
         private Button EditWorld;
-        private Label label4;
         private Button EditFB;
-        private Label label5;
         private Button EditEnemies;
-        private Label label6;
         private Button UpdateProperties;
         private DataGridView SelectedProperties;
         private Label label7;
+        private Button DelGame;
+        private Label label16;
+        private TextBox NameDelGame;
+        private Button UpdateGamesCreated;
+        private Button BackGame;
     }
 }

@@ -70,10 +70,7 @@ namespace Tanna
                 GlobalVar.SelectedEnemiesName.Add(row.Cells["Name"].Value.ToString());
             }
 
-            if (GlobalVar.SelectedEnemiesName.Count == 0)
-            {
-                MessageBox.Show("No enemies selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            GlobalVar.UpdateSelectedEnemiesIds();
         }
 
         private void DelEnemies_Click(object sender, EventArgs e)

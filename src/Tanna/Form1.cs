@@ -57,7 +57,7 @@ namespace Tanna
         private void Account_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Account account = new();
+            Account account = new(this);
             account.ShowDialog();
             this.Show();
         }
@@ -66,7 +66,7 @@ namespace Tanna
         {
             LogoutFunc();
         }
-            
+
         private void LogoutFunc()
         {
 
@@ -78,6 +78,11 @@ namespace Tanna
 
             // Atualizar a interface do usuário para refletir o estado de deslogado
             UpdateUI();
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -31,11 +31,12 @@
             SignIn = new Button();
             passwordLogin = new TextBox();
             usernameLogin = new TextBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // SignIn
             // 
-            SignIn.Location = new Point(95, 189);
+            SignIn.Location = new Point(72, 187);
             SignIn.Name = "SignIn";
             SignIn.Size = new Size(108, 29);
             SignIn.TabIndex = 5;
@@ -45,24 +46,39 @@
             // 
             // passwordLogin
             // 
-            passwordLogin.Location = new Point(95, 149);
+            passwordLogin.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            passwordLogin.Location = new Point(72, 147);
             passwordLogin.Name = "passwordLogin";
             passwordLogin.Size = new Size(133, 23);
             passwordLogin.TabIndex = 4;
+            passwordLogin.Text = "Password";
             // 
             // usernameLogin
             // 
-            usernameLogin.Location = new Point(95, 106);
+            usernameLogin.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            usernameLogin.Location = new Point(72, 104);
             usernameLogin.Name = "usernameLogin";
             usernameLogin.Size = new Size(133, 23);
             usernameLogin.TabIndex = 3;
+            usernameLogin.Text = "Name";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(72, 45);
+            label1.Name = "label1";
+            label1.Size = new Size(105, 37);
+            label1.TabIndex = 20;
+            label1.Text = "Sign In";
             // 
             // Sign_in
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(330, 332);
+            ClientSize = new Size(282, 259);
+            Controls.Add(label1);
             Controls.Add(SignIn);
             Controls.Add(passwordLogin);
             Controls.Add(usernameLogin);
@@ -77,5 +93,6 @@
         private Button SignIn;
         private TextBox passwordLogin;
         private TextBox usernameLogin;
+        private Label label1;
     }
 }

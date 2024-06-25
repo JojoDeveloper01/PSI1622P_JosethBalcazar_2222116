@@ -12,7 +12,9 @@ namespace Tanna
         public static string SelectedWorldName { get; set; }
         public static string SelectedFBName { get; set; }
         public static List<string> SelectedEnemiesName { get; set; } = new List<string>();
+
         public static List<int> SelectedEnemiesIds = new List<int>();
+       
         public static void Logout(Home homeForm)
         {
             // Redefinir as variáveis globais para o estado de deslogado
@@ -21,6 +23,7 @@ namespace Tanna
             ID = 0;
             Type = 0;
         }
+        
         public static void LoadData(string tableName, DataGridView dataGridView)
         {
             string sql;
@@ -28,30 +31,40 @@ namespace Tanna
             switch (tableName)
             {
                 case "Game":
-                    sql = $@"SELECT 
-                g.name,
-                w.name as World,
-                f.name as 'FinalBoss'
-            FROM 
-                Game g
-            JOIN 
-                World w ON g.world_id = w.id
-            JOIN 
-                FinalBoss f ON g.finalBoss_id = f.id
-            WHERE 
-                g.player_id = {GlobalVar.ID}";
+                    sql = $@"
+                SELECT 
+                    g.name,
+                    w.name as World,
+                    f.name as 'FinalBoss',
+                    (
+                        SELECT GROUP_CONCAT(e.name, ', ')
+                        FROM Game_Enemies ge
+                        JOIN Enemies e ON ge.enemy_id = e.id
+                        WHERE ge.game_id = g.id
+                    ) as Enemies
+                FROM 
+                    Game g
+                JOIN 
+                    World w ON g.world_id = w.id
+                JOIN 
+                    FinalBoss f ON g.finalBoss_id = f.id
+                WHERE 
+                    g.player_id = {ID}";
                     break;
                 case "World":
-                    sql = $"SELECT name, size, duration FROM World WHERE player_id = {GlobalVar.ID}";
+                    sql = $"SELECT name, size, duration FROM World WHERE player_id = {ID}";
                     break;
                 case "FinalBoss":
-                    sql = $"SELECT name, life, stamina, velocity, energy FROM FinalBoss WHERE player_id = {GlobalVar.ID}";
+                    sql = $"SELECT name, life, stamina, velocity, energy FROM FinalBoss WHERE player_id = {ID}";
                     break;
                 case "Enemies":
-                    sql = $"SELECT name, amount, life FROM Enemies WHERE player_id = {GlobalVar.ID}";
+                    sql = $"SELECT name, amount, life FROM Enemies WHERE player_id = {ID}";
+                    break;
+                case "player":
+                    sql = "SELECT * FROM player";
                     break;
                 case "SelectedGames":
-                    ShowSelectedDataVertical(dataGridView);
+                    ShowGames(dataGridView);
                     return; // Retorna para evitar execução do restante do código
                 default:
                     MessageBox.Show("Invalid table name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -75,21 +88,22 @@ namespace Tanna
             }
         }
 
-        public static void ShowSelectedDataVertical(DataGridView dataGridView)
+        public static void ShowGames(DataGridView dataGridView)
         {
             // Limpa o DataGridView antes de adicionar novos itens
             dataGridView.Rows.Clear();
             dataGridView.Columns.Clear();
 
             // Adiciona as colunas ao DataGridView
-            dataGridView.Columns.Add("Attribute", "Attribute");
-            dataGridView.Columns.Add("Value", "Value");
+            dataGridView.Columns.Add("World", "World");
+            dataGridView.Columns.Add("FinalBoss", "Final Boss");
+            dataGridView.Columns.Add("Enemies", "Enemies");
 
+            // Concatena os nomes dos inimigos selecionados
+            string selectedEnemies = string.Join(", ", SelectedEnemiesName);
 
-            dataGridView.Rows.Add("World", GlobalVar.SelectedWorldName);
-            dataGridView.Rows.Add("Final Boss", GlobalVar.SelectedFBName);
-            string selectedEnemies = string.Join(", ", GlobalVar.SelectedEnemiesName);
-            dataGridView.Rows.Add("Enemies", selectedEnemies);
+            // Adiciona uma linha com os dados selecionados
+            dataGridView.Rows.Add(SelectedWorldName, SelectedFBName, selectedEnemies);
 
             // Ajusta a largura das colunas para caber no conteúdo
             dataGridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
@@ -116,6 +130,20 @@ namespace Tanna
             {
                 MessageBox.Show($"Error creating {tableName}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
+            }
+        }
+
+        public static void UpdateSelectedEnemiesIds()
+        {
+            SelectedEnemiesIds.Clear();
+
+            foreach (var enemyName in SelectedEnemiesName)
+            {
+                int enemyId = GetIdByName("Enemies", enemyName);
+                if (enemyId != -1)
+                {
+                    SelectedEnemiesIds.Add(enemyId);
+                }
             }
         }
 

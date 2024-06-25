@@ -32,11 +32,14 @@
             SignInButton = new Button();
             Account = new Button();
             Logout = new Button();
+            PLay = new Button();
+            Exit = new Button();
+            label1 = new Label();
             SuspendLayout();
             // 
             // SignUpButton
             // 
-            SignUpButton.Location = new Point(808, 328);
+            SignUpButton.Location = new Point(649, 287);
             SignUpButton.Name = "SignUpButton";
             SignUpButton.Size = new Size(137, 41);
             SignUpButton.TabIndex = 12;
@@ -46,7 +49,7 @@
             // 
             // SignInButton
             // 
-            SignInButton.Location = new Point(808, 375);
+            SignInButton.Location = new Point(649, 334);
             SignInButton.Name = "SignInButton";
             SignInButton.Size = new Size(137, 36);
             SignInButton.TabIndex = 13;
@@ -56,7 +59,7 @@
             // 
             // Account
             // 
-            Account.Location = new Point(808, 359);
+            Account.Location = new Point(649, 318);
             Account.Name = "Account";
             Account.Size = new Size(137, 52);
             Account.TabIndex = 14;
@@ -66,7 +69,7 @@
             // 
             // Logout
             // 
-            Logout.Location = new Point(870, 337);
+            Logout.Location = new Point(711, 296);
             Logout.Name = "Logout";
             Logout.Size = new Size(75, 23);
             Logout.TabIndex = 16;
@@ -74,12 +77,46 @@
             Logout.UseVisualStyleBackColor = true;
             Logout.Click += Logout_Click;
             // 
+            // PLay
+            // 
+            PLay.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            PLay.Location = new Point(51, 151);
+            PLay.Name = "PLay";
+            PLay.Size = new Size(153, 49);
+            PLay.TabIndex = 17;
+            PLay.Text = "Play";
+            PLay.UseVisualStyleBackColor = true;
+            // 
+            // Exit
+            // 
+            Exit.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            Exit.Location = new Point(51, 276);
+            Exit.Name = "Exit";
+            Exit.Size = new Size(153, 49);
+            Exit.TabIndex = 18;
+            Exit.Text = "Exit";
+            Exit.UseVisualStyleBackColor = true;
+            Exit.Click += Exit_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(51, 63);
+            label1.Name = "label1";
+            label1.Size = new Size(251, 37);
+            label1.TabIndex = 19;
+            label1.Text = "Minigame Creator";
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Highlight;
-            ClientSize = new Size(957, 423);
+            BackColor = SystemColors.ActiveCaption;
+            ClientSize = new Size(798, 382);
+            Controls.Add(label1);
+            Controls.Add(Exit);
+            Controls.Add(PLay);
             Controls.Add(Logout);
             Controls.Add(Account);
             Controls.Add(SignInButton);
@@ -87,6 +124,7 @@
             Name = "Home";
             Text = "Home";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -94,5 +132,8 @@
         private Button SignInButton;
         private Button Account;
         private Button Logout;
+        private Button PLay;
+        private Button Exit;
+        private Label label1;
     }
 }

@@ -8,19 +8,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Tanna
 {
     public partial class CreateGame : Form
     {
-        public CreateGame()
+        private Form previousForm;
+        public CreateGame(Form previousForm)
         {
             InitializeComponent();
             GlobalVar.LoadData("Game", GamesCreated);
+            this.previousForm = previousForm;
         }
 
         private void AddGame_Click(object sender, EventArgs e)
         {
+            string nameGame = CreatedGameName.Text;
+
+            if (string.IsNullOrWhiteSpace(nameGame))
+            {
+                MessageBox.Show("The fields must be filled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             string worldName = GlobalVar.SelectedWorldName;
             if (string.IsNullOrEmpty(worldName))
             {
@@ -80,13 +91,18 @@ namespace Tanna
                 {
                     if (GlobalVar.Create("Game", new Dictionary<string, string>
                     {
+                        { "name", nameGame },
                         { "world_id", worldId.ToString() },
                         { "finalBoss_id", finalBossId.ToString() }
                     }, playerId))
                     {
                         int gameId = GlobalVar.GetLastInsertId("Game");
 
-                        // Associa os inimigos criados ao jogo na tabela Game_Enemies
+                        string enemiesIdsString = string.Join(", ", GlobalVar.SelectedEnemiesIds);
+
+                        // Exibe os IDs em uma mensagem
+                        MessageBox.Show("IDs dos inimigos selecionados: " + enemiesIdsString);
+
                         foreach (var enemyId in GlobalVar.SelectedEnemiesIds)
                         {
                             CreateGameEnemiesAssociation(gameId, enemyId);
@@ -114,7 +130,6 @@ namespace Tanna
             this.Hide();
             CreateWorld createWorld = new(this);
             createWorld.ShowDialog();
-            this.Show();
         }
 
         private void EditFB_Click(object sender, EventArgs e)
@@ -123,16 +138,13 @@ namespace Tanna
             this.Hide();
             CreateFinalBoss createFB = new(this);
             createFB.ShowDialog();
-            this.Show();
         }
 
         private void EditEnemies_Click(object sender, EventArgs e)
         {
-
             this.Hide();
             CreateEnemies createEnemies = new(this);
             createEnemies.ShowDialog();
-            this.Show();
         }
 
         private void UpdateProperties_Click(object sender, EventArgs e)
@@ -140,6 +152,11 @@ namespace Tanna
             GlobalVar.LoadData("SelectedGames", SelectedProperties);
         }
 
+        private void UpdateGamesCreated_Click(object sender, EventArgs e)
+        {
+            GlobalVar.LoadData("Game", GamesCreated);
+        }
+        
         public void CreateGameEnemiesAssociation(int gameId, int enemyId)
         {
             const string sql = "INSERT INTO Game_Enemies (game_id, enemy_id) VALUES (@gameId, @enemyId)";
@@ -149,6 +166,24 @@ namespace Tanna
                 cmd.Parameters.AddWithValue("@enemyId", enemyId);
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        private void DelGame_Click(object sender, EventArgs e)
+        {
+            string name = NameDelGame.Text;
+            string columnName = "Game";
+
+            if (GlobalVar.Delete(name, columnName))
+            {
+                GlobalVar.LoadData("Game", GamesCreated);
+                MessageBox.Show($"Delete {columnName} {name} successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void BackGame_Click(object sender, EventArgs e)
+        {
+            this.previousForm.Show();
+            this.Close();
         }
     }
 }

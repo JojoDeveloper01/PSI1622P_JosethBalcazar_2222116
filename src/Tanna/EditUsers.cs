@@ -13,9 +13,12 @@ namespace Tanna
 {
     public partial class EditUsers : Form
     {
-        public EditUsers()
+        private Form previousForm;
+        public EditUsers(Form previousForm)
         {
             InitializeComponent();
+            GlobalVar.LoadData("player", SeeAllUsers);
+            this.previousForm = previousForm;
         }
         private void Create_Click(object sender, EventArgs e)
         {
@@ -24,6 +27,7 @@ namespace Tanna
 
             if (CreatePlayer(username, password))
             {
+                GlobalVar.LoadData("player", SeeAllUsers);
                 MessageBox.Show($"Player {username} created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -72,56 +76,18 @@ namespace Tanna
                 return false;
             }
         }
-        private void See_All_Users_Click(object sender, EventArgs e)
+        private void UpdateAllUsers_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var sql = "SELECT * FROM player";
-                var cmd = new SQLiteCommand(sql);
-
-                using (SQLiteDataReader dr = Program.ExecuteQuery(cmd))
-                {
-                    if (dr != null && dr.HasRows)
-                    {
-                        string playerInfo = "Informações dos jogadores:\n";
-
-                        // Itera sobre todos os registros retornados
-                        while (dr.Read())
-                        {
-                            string id_player = dr["id_player"].ToString();
-                            string type = dr["type"].ToString();
-                            string name = dr["name"].ToString();
-                            string password = dr["password"].ToString();
-
-                            // Concatena as informações do jogador atual na variável playerInfo
-                            playerInfo += $"\nid_player: {id_player}" +
-                                          $"\ntype: {type}" +
-                                          $"\nname: {name}" +
-                                          $"\npassword: {password}\n";
-                        }
-                        MessageBox.Show(playerInfo, "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No players found.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (SQLiteException ex)
-            {
-                MessageBox.Show($"SQLite Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            GlobalVar.LoadData("player", SeeAllUsers);
         }
+
         private void Delete_Click(object sender, EventArgs e)
         {
             string username = UsernameDel.Text;
 
             if (DeletePlayer(username))
             {
+                GlobalVar.LoadData("player", SeeAllUsers);
                 MessageBox.Show($"Delete Player {username} successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -156,6 +122,12 @@ namespace Tanna
                 MessageBox.Show("SQLite Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+        private void BackAdminSec_Click(object sender, EventArgs e)
+        {
+            this.previousForm.Show();
+            this.Close();
         }
     }
 }

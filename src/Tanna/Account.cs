@@ -15,7 +15,8 @@ namespace Tanna
 {
     public partial class Account : Form
     {
-        public Account()
+        private Form previousForm;
+        public Account(Form previousForm)
         {
             InitializeComponent();
 
@@ -27,6 +28,8 @@ namespace Tanna
                 EditUsers.Visible = true;
                 CreateGame.Visible = true;
             }
+
+            this.previousForm = previousForm;
         }
 
         private void Account_Load(object sender, EventArgs e)
@@ -67,18 +70,22 @@ namespace Tanna
         private void EditUsers_Click(object sender, EventArgs e)
         {
             this.Hide();
-            EditUsers editUsers = new();
+            EditUsers editUsers = new(this);
             editUsers.ShowDialog();
-            this.Show();
         }
 
         private void CreateGame_Click(object sender, EventArgs e)
         {
 
             this.Hide();
-            CreateGame createGame = new();
+            CreateGame createGame = new(this);
             createGame.ShowDialog();
-            this.Show();
+        }
+
+        private void BackAccount_Click(object sender, EventArgs e)
+        {
+            this.previousForm.Show();
+            this.Close();
         }
     }
 }

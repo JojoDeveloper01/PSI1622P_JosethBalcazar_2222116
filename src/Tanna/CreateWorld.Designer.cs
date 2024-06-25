@@ -28,16 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
             label4 = new Label();
             NameWorld = new TextBox();
             SizeWorld = new TextBox();
             DurationWorld = new TextBox();
             label6 = new Label();
             AddWorlds = new Button();
-            label20 = new Label();
             NameDelWorld = new TextBox();
             label19 = new Label();
             DelWorld = new Button();
@@ -47,68 +43,48 @@
             ((System.ComponentModel.ISupportInitialize)WorldsCreated).BeginInit();
             SuspendLayout();
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(36, 91);
-            label1.Name = "label1";
-            label1.Size = new Size(39, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Name";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(48, 120);
-            label2.Name = "label2";
-            label2.Size = new Size(27, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Size";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(3, 146);
-            label3.Name = "label3";
-            label3.Size = new Size(74, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Duration seg";
-            // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(15, 161);
+            label4.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(134, 149);
             label4.Name = "label4";
-            label4.Size = new Size(62, 15);
+            label4.Size = new Size(57, 15);
             label4.TabIndex = 3;
             label4.Text = " (optional)";
             // 
             // NameWorld
             // 
-            NameWorld.Location = new Point(81, 88);
+            NameWorld.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            NameWorld.Location = new Point(38, 88);
             NameWorld.Name = "NameWorld";
             NameWorld.Size = new Size(100, 23);
             NameWorld.TabIndex = 4;
+            NameWorld.Text = "Name";
             // 
             // SizeWorld
             // 
-            SizeWorld.Location = new Point(81, 117);
+            SizeWorld.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            SizeWorld.Location = new Point(38, 117);
             SizeWorld.Name = "SizeWorld";
             SizeWorld.Size = new Size(100, 23);
             SizeWorld.TabIndex = 5;
+            SizeWorld.Text = "Size";
             // 
             // DurationWorld
             // 
-            DurationWorld.Location = new Point(81, 146);
+            DurationWorld.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DurationWorld.Location = new Point(38, 146);
             DurationWorld.Name = "DurationWorld";
             DurationWorld.Size = new Size(100, 23);
             DurationWorld.TabIndex = 6;
+            DurationWorld.Text = "Duration seg";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(81, 44);
+            label6.Location = new Point(38, 40);
             label6.Name = "label6";
             label6.Size = new Size(63, 25);
             label6.TabIndex = 8;
@@ -116,7 +92,7 @@
             // 
             // AddWorlds
             // 
-            AddWorlds.Location = new Point(81, 189);
+            AddWorlds.Location = new Point(38, 189);
             AddWorlds.Name = "AddWorlds";
             AddWorlds.Size = new Size(100, 28);
             AddWorlds.TabIndex = 20;
@@ -124,27 +100,20 @@
             AddWorlds.UseVisualStyleBackColor = true;
             AddWorlds.Click += CreateWorlds_Click;
             // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Location = new Point(32, 303);
-            label20.Name = "label20";
-            label20.Size = new Size(39, 15);
-            label20.TabIndex = 41;
-            label20.Text = "Name";
-            // 
             // NameDelWorld
             // 
-            NameDelWorld.Location = new Point(81, 302);
+            NameDelWorld.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            NameDelWorld.Location = new Point(38, 298);
             NameDelWorld.Name = "NameDelWorld";
             NameDelWorld.Size = new Size(100, 23);
             NameDelWorld.TabIndex = 42;
+            NameDelWorld.Text = "Name";
             // 
             // label19
             // 
             label19.AutoSize = true;
             label19.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label19.Location = new Point(81, 256);
+            label19.Location = new Point(38, 259);
             label19.Name = "label19";
             label19.Size = new Size(122, 25);
             label19.TabIndex = 43;
@@ -152,7 +121,7 @@
             // 
             // DelWorld
             // 
-            DelWorld.Location = new Point(81, 338);
+            DelWorld.Location = new Point(38, 338);
             DelWorld.Name = "DelWorld";
             DelWorld.Size = new Size(100, 28);
             DelWorld.TabIndex = 44;
@@ -163,17 +132,17 @@
             // WorldsCreated
             // 
             WorldsCreated.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WorldsCreated.Location = new Point(272, 88);
+            WorldsCreated.Location = new Point(240, 88);
             WorldsCreated.Name = "WorldsCreated";
             WorldsCreated.RowTemplate.Height = 25;
-            WorldsCreated.Size = new Size(327, 278);
+            WorldsCreated.Size = new Size(344, 278);
             WorldsCreated.TabIndex = 47;
             // 
             // label22
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label22.Location = new Point(272, 40);
+            label22.Location = new Point(297, 40);
             label22.Name = "label22";
             label22.Size = new Size(142, 25);
             label22.TabIndex = 48;
@@ -181,9 +150,9 @@
             // 
             // BackWorld
             // 
-            BackWorld.Location = new Point(480, 381);
+            BackWorld.Location = new Point(448, 381);
             BackWorld.Name = "BackWorld";
-            BackWorld.Size = new Size(119, 32);
+            BackWorld.Size = new Size(136, 32);
             BackWorld.TabIndex = 52;
             BackWorld.Text = "Back";
             BackWorld.UseVisualStyleBackColor = true;
@@ -194,23 +163,19 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(636, 422);
+            ClientSize = new Size(596, 428);
             Controls.Add(BackWorld);
             Controls.Add(label22);
             Controls.Add(WorldsCreated);
             Controls.Add(DelWorld);
             Controls.Add(label19);
             Controls.Add(NameDelWorld);
-            Controls.Add(label20);
             Controls.Add(AddWorlds);
             Controls.Add(label6);
             Controls.Add(DurationWorld);
             Controls.Add(SizeWorld);
             Controls.Add(NameWorld);
             Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Name = "CreateWorld";
             Text = "CreatWorld";
             ((System.ComponentModel.ISupportInitialize)WorldsCreated).EndInit();
@@ -219,16 +184,12 @@
         }
 
         #endregion
-        private Label label1;
-        private Label label2;
-        private Label label3;
         private Label label4;
         private TextBox NameWorld;
         private TextBox SizeWorld;
         private TextBox DurationWorld;
         private Label label6;
         private Button AddWorlds;
-        private Label label20;
         private TextBox NameDelWorld;
         private Label label19;
         private Button DelWorld;
