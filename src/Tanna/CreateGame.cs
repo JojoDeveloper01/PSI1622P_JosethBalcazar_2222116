@@ -98,11 +98,6 @@ namespace Tanna
                     {
                         int gameId = GlobalVar.GetLastInsertId("Game");
 
-                        string enemiesIdsString = string.Join(", ", GlobalVar.SelectedEnemiesIds);
-
-                        // Exibe os IDs em uma mensagem
-                        MessageBox.Show("IDs dos inimigos selecionados: " + enemiesIdsString);
-
                         foreach (var enemyId in GlobalVar.SelectedEnemiesIds)
                         {
                             CreateGameEnemiesAssociation(gameId, enemyId);

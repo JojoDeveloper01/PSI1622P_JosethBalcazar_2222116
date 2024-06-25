@@ -28,11 +28,7 @@ namespace Tanna
                 MessageBox.Show("Please fill the fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (VerifyUser(username, password))
-            {
-                MessageBox.Show("Sign in successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
+            if (!VerifyUser(username, password))
             {
                 MessageBox.Show("Username or Password does not match", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

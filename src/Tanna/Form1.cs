@@ -80,6 +80,13 @@ namespace Tanna
             UpdateUI();
         }
 
+        private void CreateGame_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CreateGame createGame = new(this);
+            createGame.ShowDialog();
+        }
+
         private void Exit_Click(object sender, EventArgs e)
         {
             this.Close();

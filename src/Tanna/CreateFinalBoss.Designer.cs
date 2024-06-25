@@ -41,6 +41,7 @@
             NameFB = new TextBox();
             label5 = new Label();
             BackFB = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)FBCreated).BeginInit();
             SuspendLayout();
             // 
@@ -167,12 +168,23 @@
             BackFB.UseVisualStyleBackColor = true;
             BackFB.Click += BackFB_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("SansSerif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(279, 414);
+            label1.Name = "label1";
+            label1.Size = new Size(174, 14);
+            label1.TabIndex = 75;
+            label1.Text = "Choose a World for the Game";
+            // 
             // CreateFinalBoss
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(818, 448);
+            Controls.Add(label1);
             Controls.Add(BackFB);
             Controls.Add(label21);
             Controls.Add(FBCreated);
@@ -207,5 +219,6 @@
         private TextBox NameFB;
         private Label label5;
         private Button BackFB;
+        private Label label1;
     }
 }

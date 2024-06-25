@@ -35,6 +35,7 @@
             PLay = new Button();
             Exit = new Button();
             label1 = new Label();
+            CreateGame = new Button();
             SuspendLayout();
             // 
             // SignUpButton
@@ -82,7 +83,7 @@
             PLay.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
             PLay.Location = new Point(51, 151);
             PLay.Name = "PLay";
-            PLay.Size = new Size(153, 49);
+            PLay.Size = new Size(180, 49);
             PLay.TabIndex = 17;
             PLay.Text = "Play";
             PLay.UseVisualStyleBackColor = true;
@@ -90,9 +91,9 @@
             // Exit
             // 
             Exit.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            Exit.Location = new Point(51, 276);
+            Exit.Location = new Point(51, 313);
             Exit.Name = "Exit";
-            Exit.Size = new Size(153, 49);
+            Exit.Size = new Size(180, 49);
             Exit.TabIndex = 18;
             Exit.Text = "Exit";
             Exit.UseVisualStyleBackColor = true;
@@ -108,12 +109,24 @@
             label1.TabIndex = 19;
             label1.Text = "Minigame Creator";
             // 
+            // CreateGame
+            // 
+            CreateGame.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            CreateGame.Location = new Point(51, 225);
+            CreateGame.Name = "CreateGame";
+            CreateGame.Size = new Size(180, 49);
+            CreateGame.TabIndex = 20;
+            CreateGame.Text = "Create Game";
+            CreateGame.UseVisualStyleBackColor = true;
+            CreateGame.Click += CreateGame_Click;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(798, 382);
+            Controls.Add(CreateGame);
             Controls.Add(label1);
             Controls.Add(Exit);
             Controls.Add(PLay);
@@ -135,5 +148,6 @@
         private Button PLay;
         private Button Exit;
         private Label label1;
+        private Button CreateGame;
     }
 }
