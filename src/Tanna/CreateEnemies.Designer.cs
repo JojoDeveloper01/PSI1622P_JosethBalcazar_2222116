@@ -39,6 +39,8 @@
             AmountEnemies = new TextBox();
             NameEnemies = new TextBox();
             BackEnemies = new Button();
+            label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)EnemiesCreated).BeginInit();
             SuspendLayout();
             // 
@@ -147,12 +149,34 @@
             BackEnemies.UseVisualStyleBackColor = true;
             BackEnemies.Click += BackEnemies_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("SansSerif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(242, 387);
+            label1.Name = "label1";
+            label1.Size = new Size(139, 14);
+            label1.TabIndex = 76;
+            label1.Text = "Choose some Enemies";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("SansSerif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(242, 405);
+            label2.Name = "label2";
+            label2.Size = new Size(89, 14);
+            label2.TabIndex = 77;
+            label2.Text = "for your Game";
+            // 
             // CreateEnemies
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(594, 430);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(BackEnemies);
             Controls.Add(DelEnemies);
             Controls.Add(label16);
@@ -184,5 +208,7 @@
         private TextBox AmountEnemies;
         private TextBox NameEnemies;
         private Button BackEnemies;
+        private Label label1;
+        private Label label2;
     }
 }

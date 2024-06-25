@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8aYL5rjWJhLZ9Ry4uOdwz9Y5NjQ2VXEvNWV4+xyHwxlt6SXpFW0ZvsmazqGhVaUBsNUGQITPx3trInXPj/PJxg==",
+  "dgSpecHash": "Xb0WnRCuSSOWZign/3zK5ffzVKKEuauEZ09a8BrfAhFFCa498X1oW0H/a3gdYQAwP8BJWXt83cfYfj+crW5sTQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\2222116\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Tanna.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\2222116\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\2222116\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\2222116\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\2222116\\.nuget\\packages\\sqlite\\3.13.0\\sqlite.3.13.0.nupkg.sha512",
     "C:\\Users\\2222116\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.118\\stub.system.data.sqlite.core.netstandard.1.0.118.nupkg.sha512",
     "C:\\Users\\2222116\\.nuget\\packages\\system.codedom\\4.7.0\\system.codedom.4.7.0.nupkg.sha512",
     "C:\\Users\\2222116\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",

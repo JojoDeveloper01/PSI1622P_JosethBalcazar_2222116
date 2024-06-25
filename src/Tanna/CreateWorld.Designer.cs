@@ -40,6 +40,7 @@
             WorldsCreated = new DataGridView();
             label22 = new Label();
             BackWorld = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)WorldsCreated).BeginInit();
             SuspendLayout();
             // 
@@ -158,12 +159,23 @@
             BackWorld.UseVisualStyleBackColor = true;
             BackWorld.Click += BackWorld_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("SansSerif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(240, 391);
+            label1.Name = "label1";
+            label1.Size = new Size(174, 14);
+            label1.TabIndex = 76;
+            label1.Text = "Choose a World for the Game";
+            // 
             // CreateWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(596, 428);
+            Controls.Add(label1);
             Controls.Add(BackWorld);
             Controls.Add(label22);
             Controls.Add(WorldsCreated);
@@ -196,5 +208,6 @@
         private DataGridView WorldsCreated;
         private Label label22;
         private Button BackWorld;
+        private Label label1;
     }
 }

@@ -174,9 +174,9 @@
             label1.Font = new Font("SansSerif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(279, 414);
             label1.Name = "label1";
-            label1.Size = new Size(174, 14);
+            label1.Size = new Size(201, 14);
             label1.TabIndex = 75;
-            label1.Text = "Choose a World for the Game";
+            label1.Text = "Choose a Final Boss for the Game";
             // 
             // CreateFinalBoss
             // 
