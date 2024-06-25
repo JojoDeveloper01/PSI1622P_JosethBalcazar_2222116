@@ -1,6 +1,9 @@
 using System;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Tanna
 {
@@ -22,8 +25,8 @@ namespace Tanna
             // Initialize the database connection
             InitializeDatabaseConnection();
 
-            System.Windows.Forms.Application.EnableVisualStyles();
-            System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();
             Application.Run(new Home());
         }

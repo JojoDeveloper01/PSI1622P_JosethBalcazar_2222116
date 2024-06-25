@@ -32,7 +32,7 @@
             SignInButton = new Button();
             Account = new Button();
             Logout = new Button();
-            PLay = new Button();
+            Play = new Button();
             Exit = new Button();
             label1 = new Label();
             CreateGame = new Button();
@@ -78,15 +78,16 @@
             Logout.UseVisualStyleBackColor = true;
             Logout.Click += Logout_Click;
             // 
-            // PLay
+            // Play
             // 
-            PLay.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            PLay.Location = new Point(51, 151);
-            PLay.Name = "PLay";
-            PLay.Size = new Size(180, 49);
-            PLay.TabIndex = 17;
-            PLay.Text = "Play";
-            PLay.UseVisualStyleBackColor = true;
+            Play.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            Play.Location = new Point(51, 151);
+            Play.Name = "Play";
+            Play.Size = new Size(180, 49);
+            Play.TabIndex = 17;
+            Play.Text = "Play";
+            Play.UseVisualStyleBackColor = true;
+            Play.Click += Play_Click;
             // 
             // Exit
             // 
@@ -112,7 +113,7 @@
             // CreateGame
             // 
             CreateGame.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            CreateGame.Location = new Point(51, 225);
+            CreateGame.Location = new Point(51, 235);
             CreateGame.Name = "CreateGame";
             CreateGame.Size = new Size(180, 49);
             CreateGame.TabIndex = 20;
@@ -129,7 +130,7 @@
             Controls.Add(CreateGame);
             Controls.Add(label1);
             Controls.Add(Exit);
-            Controls.Add(PLay);
+            Controls.Add(Play);
             Controls.Add(Logout);
             Controls.Add(Account);
             Controls.Add(SignInButton);
@@ -145,7 +146,7 @@
         private Button SignInButton;
         private Button Account;
         private Button Logout;
-        private Button PLay;
+        private Button Play;
         private Button Exit;
         private Label label1;
         private Button CreateGame;

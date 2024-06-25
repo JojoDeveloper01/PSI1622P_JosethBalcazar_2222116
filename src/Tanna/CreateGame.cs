@@ -151,7 +151,7 @@ namespace Tanna
         {
             GlobalVar.LoadData("Game", GamesCreated);
         }
-        
+
         public void CreateGameEnemiesAssociation(int gameId, int enemyId)
         {
             const string sql = "INSERT INTO Game_Enemies (game_id, enemy_id) VALUES (@gameId, @enemyId)";

@@ -61,7 +61,6 @@
             // 
             // GamesCreated
             // 
-            GamesCreated.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             GamesCreated.Location = new Point(227, 314);
             GamesCreated.Name = "GamesCreated";
             GamesCreated.RowTemplate.Height = 25;
@@ -109,7 +108,7 @@
             // 
             // EditWorld
             // 
-            EditWorld.Location = new Point(227, 224);
+            EditWorld.Location = new Point(226, 218);
             EditWorld.Name = "EditWorld";
             EditWorld.Size = new Size(75, 23);
             EditWorld.TabIndex = 7;
@@ -119,21 +118,21 @@
             // 
             // EditFB
             // 
-            EditFB.Location = new Point(318, 224);
+            EditFB.Location = new Point(319, 218);
             EditFB.Name = "EditFB";
             EditFB.Size = new Size(106, 23);
             EditFB.TabIndex = 9;
-            EditFB.Text = "Final Boss Edit";
+            EditFB.Text = "Edit Final Boss";
             EditFB.UseVisualStyleBackColor = true;
             EditFB.Click += EditFB_Click;
             // 
             // EditEnemies
             // 
-            EditEnemies.Location = new Point(442, 224);
+            EditEnemies.Location = new Point(443, 218);
             EditEnemies.Name = "EditEnemies";
             EditEnemies.Size = new Size(104, 23);
             EditEnemies.TabIndex = 11;
-            EditEnemies.Text = " Edit Enemies";
+            EditEnemies.Text = "Edit Enemies";
             EditEnemies.UseVisualStyleBackColor = true;
             EditEnemies.Click += EditEnemies_Click;
             // 
@@ -154,7 +153,7 @@
             SelectedProperties.Location = new Point(227, 151);
             SelectedProperties.Name = "SelectedProperties";
             SelectedProperties.RowTemplate.Height = 25;
-            SelectedProperties.Size = new Size(498, 64);
+            SelectedProperties.Size = new Size(498, 50);
             SelectedProperties.TabIndex = 13;
             // 
             // label7

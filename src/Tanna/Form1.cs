@@ -5,10 +5,6 @@ namespace Tanna
 {
     public partial class Home : Form
     {
-        public static string G_Username;
-        public static string G_Password;
-        public static int G_ID;
-        public static string G_Type;
 
         public Home()
         {
@@ -35,6 +31,14 @@ namespace Tanna
             {
                 Account.Text = GlobalVar.Username;
             }
+        }
+
+        private void Play_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Play play = new();
+            play.ShowDialog();
+            this.Show();
         }
 
         private void SignUpButton_Click(object sender, EventArgs e)
@@ -82,9 +86,24 @@ namespace Tanna
 
         private void CreateGame_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            CreateGame createGame = new(this);
-            createGame.ShowDialog();
+            bool isLoggedIn = !string.IsNullOrEmpty(GlobalVar.Username);
+
+            if (isLoggedIn)
+            {
+                this.Hide();
+                CreateGame createGame = new(this);
+                createGame.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("You need sign in to create Games");
+                this.Hide();
+                Sign_in sign_in = new();
+                sign_in.ShowDialog();
+                this.Show();
+                UpdateUI();
+            }
+
         }
 
         private void Exit_Click(object sender, EventArgs e)
