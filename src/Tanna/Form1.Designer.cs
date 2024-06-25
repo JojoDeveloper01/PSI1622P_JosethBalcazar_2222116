@@ -36,6 +36,7 @@
             Exit = new Button();
             label1 = new Label();
             CreateGame = new Button();
+            Update = new Button();
             SuspendLayout();
             // 
             // SignUpButton
@@ -83,9 +84,9 @@
             Play.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
             Play.Location = new Point(51, 151);
             Play.Name = "Play";
-            Play.Size = new Size(180, 49);
+            Play.Size = new Size(222, 49);
             Play.TabIndex = 17;
-            Play.Text = "Play";
+            Play.Text = "Choose Game";
             Play.UseVisualStyleBackColor = true;
             Play.Click += Play_Click;
             // 
@@ -94,7 +95,7 @@
             Exit.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
             Exit.Location = new Point(51, 313);
             Exit.Name = "Exit";
-            Exit.Size = new Size(180, 49);
+            Exit.Size = new Size(222, 49);
             Exit.TabIndex = 18;
             Exit.Text = "Exit";
             Exit.UseVisualStyleBackColor = true;
@@ -115,11 +116,21 @@
             CreateGame.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
             CreateGame.Location = new Point(51, 235);
             CreateGame.Name = "CreateGame";
-            CreateGame.Size = new Size(180, 49);
+            CreateGame.Size = new Size(222, 49);
             CreateGame.TabIndex = 20;
             CreateGame.Text = "Create Game";
             CreateGame.UseVisualStyleBackColor = true;
             CreateGame.Click += CreateGame_Click;
+            // 
+            // Update
+            // 
+            Update.Location = new Point(711, 12);
+            Update.Name = "Update";
+            Update.Size = new Size(75, 23);
+            Update.TabIndex = 21;
+            Update.Text = "Update";
+            Update.UseVisualStyleBackColor = true;
+            Update.Click += Update_Click;
             // 
             // Home
             // 
@@ -127,6 +138,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(798, 382);
+            Controls.Add(Update);
             Controls.Add(CreateGame);
             Controls.Add(label1);
             Controls.Add(Exit);
@@ -135,6 +147,7 @@
             Controls.Add(Account);
             Controls.Add(SignInButton);
             Controls.Add(SignUpButton);
+            Cursor = Cursors.Cross;
             Name = "Home";
             Text = "Home";
             ResumeLayout(false);
@@ -150,5 +163,6 @@
         private Button Exit;
         private Label label1;
         private Button CreateGame;
+        private Button Update;
     }
 }

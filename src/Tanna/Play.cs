@@ -1,145 +1,163 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Side_Scrolling_Game_MOO_ICT
+﻿namespace Tanna
 {
-    public partial class Form1 : Form
+    public partial class Play : Form
     {
 
+        bool goLeft, goRight, goUp, goDown, gameOver;
+        string facing = "up";
+        int playerHealth = 100;
+        int speed = 10;
+        int ammo = 10;
+        int zombieSpeed = 3;
+        Random randNum = new Random();
+        int score;
+        List<PictureBox> zombiesList = new List<PictureBox>();
 
-        bool goLeft, goRight, jumping, hasKey;
-
-        int jumpSpeed = 10;
-        int force = 8;
-        int score = 0;
-
-        int playerSpeed = 10;
-        int backgroundSpeed = 8;
-
-
-
-        public Form1()
+        public Play()
         {
             InitializeComponent();
-            //txtScore.Parent = background;
+            RestartGame();
         }
 
         private void MainTimerEvent(object sender, EventArgs e)
         {
-            txtScore.Text = "Score: " + score;
-            txtScore.Left = 536;
-            player.Top += jumpSpeed;
-
-            if (goLeft == true && player.Left > 60)
+            if (playerHealth > 1)
             {
-                player.Left -= playerSpeed;
-            }
-            if (goRight == true && player.Left + (player.Width + 60) < this.ClientSize.Width )
-            {
-                player.Left += playerSpeed;
-            }
-
-
-            if (goLeft == true && background.Left < 0)
-            {
-                background.Left += backgroundSpeed;
-                MoveGameElements("forward");
-            }
-
-            if (goRight == true && background.Left > -1372)
-            {
-                background.Left -= backgroundSpeed;
-                MoveGameElements("back");
-            }
-
-            if (jumping == true)
-            {
-                jumpSpeed = -12;
-                force -= 1;
+                healthBar.Value = playerHealth;
             }
             else
             {
-                jumpSpeed = 12;
+                gameOver = true;
+                player.Image = Properties.Resources.dead;
+                GameTimer.Stop();
             }
 
-            if (jumping == true && force < 0)
+            txtAmmo.Text = "Ammo: " + ammo;
+            txtScore.Text = "Kills: " + score;
+
+            if (goLeft == true && player.Left > 0)
             {
-                jumping = false;
+                player.Left -= speed;
+            }
+            if (goRight == true && player.Left + player.Width < this.ClientSize.Width)
+            {
+                player.Left += speed;
+            }
+            if (goUp == true && player.Top > 45)
+            {
+                player.Top -= speed;
+            }
+            if (goDown == true && player.Top + player.Height < this.ClientSize.Height)
+            {
+                player.Top += speed;
             }
 
             foreach (Control x in this.Controls)
             {
+                if (x is PictureBox && (string)x.Tag == "ammo")
+                {
+                    if (player.Bounds.IntersectsWith(x.Bounds))
+                    {
+                        this.Controls.Remove(x);
+                        ((PictureBox)x).Dispose();
+                        ammo += 5;
 
-                if (x is PictureBox && (string)x.Tag == "platform")
+                    }
+                }
+
+                if (x is PictureBox && (string)x.Tag == "zombie")
                 {
 
-                    if (player.Bounds.IntersectsWith(x.Bounds) && jumping == false)
+                    if (player.Bounds.IntersectsWith(x.Bounds))
                     {
-                        force = 8;
-                        player.Top = x.Top - player.Height;
-                        jumpSpeed = 0;
+                        playerHealth -= 1;
                     }
 
-                    x.BringToFront();
+                    if (x.Left > player.Left)
+                    {
+                        x.Left -= zombieSpeed;
+                        ((PictureBox)x).Image = Properties.Resources.zleft;
+                    }
+                    if (x.Left < player.Left)
+                    {
+                        x.Left += zombieSpeed;
+                        ((PictureBox)x).Image = Properties.Resources.zright;
+                    }
+                    if (x.Top > player.Top)
+                    {
+                        x.Top -= zombieSpeed;
+                        ((PictureBox)x).Image = Properties.Resources.zup;
+                    }
+                    if (x.Top < player.Top)
+                    {
+                        x.Top += zombieSpeed;
+                        ((PictureBox)x).Image = Properties.Resources.zdown;
+                    }
 
                 }
-                if (x is PictureBox && (string)x.Tag == "coin")
+
+
+
+                foreach (Control j in this.Controls)
                 {
-
-                    if (player.Bounds.IntersectsWith(x.Bounds) && x.Visible == true)
+                    if (j is PictureBox && (string)j.Tag == "bullet" && x is PictureBox && (string)x.Tag == "zombie" )
                     {
-                        x.Visible = false;
-                        score += 1;
+                        if (x.Bounds.IntersectsWith(j.Bounds))
+                        {
+                            score++;
+
+                            this.Controls.Remove(j);
+                            ((PictureBox)j).Dispose();
+                            this.Controls.Remove(x);
+                            ((PictureBox)x).Dispose();
+                            zombiesList.Remove(((PictureBox)x));
+                            MakeZombies();
+                        }
                     }
-
                 }
+
+
             }
 
-            if (player.Bounds.IntersectsWith(key.Bounds))
-            {
-                key.Visible = false;
-                hasKey = true;
-            }
 
-            if (player.Bounds.IntersectsWith(door.Bounds) && hasKey == true)
-            {
-                door.Image = Properties.Resources.door_open;
-                GameTimer.Stop();
-                MessageBox.Show("Well done, your Journey is complete! " + Environment.NewLine + "Click OK to play again");
-                RestartGame();
-            }
-
-            if (player.Top + player.Height > this.ClientSize.Height)
-            {
-                GameTimer.Stop();
-                MessageBox.Show("You Died!" + Environment.NewLine + "Click OK to play again");
-                RestartGame();
-            }
         }
-
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
 
+            if (gameOver == true)
+            {
+                return;
+            }
+
             if (e.KeyCode == Keys.Left)
             {
                 goLeft = true;
+                facing = "left";
+                player.Image = Properties.Resources.left;
             }
+
             if (e.KeyCode == Keys.Right)
             {
                 goRight = true;
+                facing = "right";
+                player.Image = Properties.Resources.right;
             }
-            if (e.KeyCode == Keys.Space && jumping == false)
+
+            if (e.KeyCode == Keys.Up)
             {
-                jumping = true;
+                goUp = true;
+                facing = "up";
+                player.Image = Properties.Resources.up;
             }
+
+            if (e.KeyCode == Keys.Down)
+            {
+                goDown = true;
+                facing = "down";
+                player.Image = Properties.Resources.down;
+            }
+
 
 
         }
@@ -150,51 +168,104 @@ namespace Side_Scrolling_Game_MOO_ICT
             {
                 goLeft = false;
             }
+
             if (e.KeyCode == Keys.Right)
             {
                 goRight = false;
             }
-            if (jumping == true)
+
+            if (e.KeyCode == Keys.Up)
             {
-                jumping = false;
+                goUp = false;
             }
+
+            if (e.KeyCode == Keys.Down)
+            {
+                goDown = false;
+            }
+
+            if (e.KeyCode == Keys.Space && ammo > 0 && gameOver == false)
+            {
+                ammo--;
+                ShootBullet(facing);
+
+
+                if (ammo < 1)
+                {
+                    DropAmmo();
+                }
+            }
+
+            if (e.KeyCode == Keys.Enter && gameOver == true)
+            {
+                RestartGame();
+            }
+
         }
 
-        private void CloseGame(object sender, FormClosedEventArgs e)
+        private void ShootBullet(string direction)
         {
-            Application.Exit();
+            Bullet shootBullet = new Bullet();
+            shootBullet.direction = direction;
+            shootBullet.bulletLeft = player.Left + (player.Width / 2);
+            shootBullet.bulletTop = player.Top + (player.Height / 2);
+            shootBullet.MakeBullet(this);
+        }
+
+        private void MakeZombies()
+        {
+            PictureBox zombie = new PictureBox();
+            zombie.Tag = "zombie";
+            zombie.Image = Properties.Resources.zdown;
+            zombie.Left = randNum.Next(0, 900);
+            zombie.Top = randNum.Next(0, 800);
+            zombie.SizeMode = PictureBoxSizeMode.AutoSize;
+            zombiesList.Add(zombie);
+            this.Controls.Add(zombie);
+            zombie.BringToFront();
+        }
+
+        private void DropAmmo()
+        {
+            PictureBox ammo = new PictureBox();
+            ammo.Image = Properties.Resources.ammo_Image;
+            ammo.SizeMode = PictureBoxSizeMode.AutoSize;
+            ammo.Left = randNum.Next(10, this.ClientSize.Width - ammo.Width);
+            ammo.Top = randNum.Next(60, this.ClientSize.Height - ammo.Height);
+            ammo.Tag = "ammo";
+            this.Controls.Add(ammo);
+
+            ammo.BringToFront();
+            player.BringToFront();
         }
 
         private void RestartGame()
         {
-            Form1 newWindow = new Form1();
-            newWindow.Show();
-            this.Hide();
-        }
+            player.Image = Properties.Resources.up;
 
-        private void MoveGameElements(string direction)
-        {
-
-            foreach (Control x in this.Controls)
+            foreach (PictureBox i in zombiesList)
             {
-                if (x is PictureBox && (string)x.Tag == "platform" || x is PictureBox && (string)x.Tag == "coin" || x is PictureBox && (string)x.Tag == "key" || x is PictureBox && (string)x.Tag == "door")
-                {
-
-                    if (direction == "back")
-                    {
-                        x.Left -= backgroundSpeed;
-                    }
-                    if (direction == "forward")
-                    {
-                        x.Left += backgroundSpeed;
-                    }
-
-
-                }
+                this.Controls.Remove(i);
             }
 
+            zombiesList.Clear();
 
+            for (int i = 0; i < 3; i++)
+            {
+                MakeZombies();
+            }
 
+            goUp = false;
+            goDown = false;
+            goLeft = false;
+            goRight = false;
+            gameOver = false;
+
+            playerHealth = 100;
+            score = 0;
+            ammo = 10;
+
+            GameTimer.Start();
         }
 
     }

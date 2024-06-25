@@ -1,4 +1,4 @@
-﻿using System.Data.SQLite;
+﻿    using System.Data.SQLite;
 using System.Data;
 
 namespace Tanna
@@ -9,6 +9,7 @@ namespace Tanna
         public static string Password { get; set; }
         public static int ID { get; set; }
         public static int Type { get; set; }
+        public static string SelectedGameName { get; set; }
         public static string SelectedWorldName { get; set; }
         public static string SelectedFBName { get; set; }
         public static List<string> SelectedEnemiesName { get; set; } = new List<string>();
@@ -18,8 +19,8 @@ namespace Tanna
         public static void Logout(Home homeForm)
         {
             // Redefinir as variáveis globais para o estado de deslogado
-            Username = null;
-            Password = null;
+            Username = "";
+            Password = "";
             ID = 0;
             Type = 0;
         }
@@ -51,6 +52,25 @@ namespace Tanna
                 WHERE 
                     g.player_id = {ID}";
                     break;
+                case "AllGames":
+                    sql = @"
+                SELECT 
+                    g.name,
+                    w.name as World,
+                    f.name as 'FinalBoss',
+                    (
+                        SELECT GROUP_CONCAT(e.name, ', ')
+                        FROM Game_Enemies ge
+                        JOIN Enemies e ON ge.enemy_id = e.id
+                        WHERE ge.game_id = g.id
+                    ) as Enemies
+                FROM 
+                    Game g
+                JOIN 
+                    World w ON g.world_id = w.id
+                JOIN 
+                    FinalBoss f ON g.finalBoss_id = f.id;";
+                    break;
                 case "World":
                     sql = $"SELECT name, size, duration FROM World WHERE player_id = {ID}";
                     break;
@@ -80,6 +100,9 @@ namespace Tanna
                     adapter.Fill(dataTable);
 
                     dataGridView.DataSource = dataTable;
+
+                    dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 }
             }
             catch (Exception ex)

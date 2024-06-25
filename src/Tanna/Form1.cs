@@ -1,6 +1,3 @@
-using System.Data.SQLite;
-using System.Drawing;
-using System.Windows.Forms;
 namespace Tanna
 {
     public partial class Home : Form
@@ -9,13 +6,7 @@ namespace Tanna
         public Home()
         {
             InitializeComponent();
-            InitializeCustomComponents();
-        }
-
-        private void InitializeCustomComponents()
-        {
-            Account.Visible = false;
-            Logout.Visible = false;
+            UpdateUI();
         }
 
         private void UpdateUI()
@@ -36,8 +27,8 @@ namespace Tanna
         private void Play_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Play play = new();
-            play.ShowDialog();
+            ChooseGame chooseGame = new(this);
+            chooseGame.ShowDialog();
             this.Show();
         }
 
@@ -75,8 +66,8 @@ namespace Tanna
         {
 
             // Redefinir as variáveis globais para o estado de deslogado
-            GlobalVar.Username = null;
-            GlobalVar.Password = null;
+            GlobalVar.Username = "";
+            GlobalVar.Password = "";
             GlobalVar.ID = 0;
             GlobalVar.Type = 0;
 
@@ -104,6 +95,11 @@ namespace Tanna
                 UpdateUI();
             }
 
+        }
+
+        private void Update_Click(object sender, EventArgs e)
+        {
+            UpdateUI();
         }
 
         private void Exit_Click(object sender, EventArgs e)

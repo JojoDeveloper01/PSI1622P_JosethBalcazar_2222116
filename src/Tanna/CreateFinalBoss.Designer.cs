@@ -42,6 +42,7 @@
             label5 = new Label();
             BackFB = new Button();
             label1 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)FBCreated).BeginInit();
             SuspendLayout();
             // 
@@ -171,12 +172,24 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("SansSerif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(279, 414);
+            label1.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(300, 404);
             label1.Name = "label1";
-            label1.Size = new Size(201, 14);
+            label1.Size = new Size(225, 15);
             label1.TabIndex = 75;
             label1.Text = "Choose a Final Boss for the Game";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(279, 393);
+            label3.Name = "label3";
+            label3.Size = new Size(28, 32);
+            label3.TabIndex = 84;
+            label3.Text = "⬆️";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            label3.UseMnemonic = false;
             // 
             // CreateFinalBoss
             // 
@@ -185,6 +198,7 @@
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(818, 448);
             Controls.Add(label1);
+            Controls.Add(label3);
             Controls.Add(BackFB);
             Controls.Add(label21);
             Controls.Add(FBCreated);
@@ -220,5 +234,6 @@
         private Label label5;
         private Button BackFB;
         private Label label1;
+        private Label label3;
     }
 }

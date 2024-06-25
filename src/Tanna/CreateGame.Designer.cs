@@ -108,7 +108,7 @@
             // 
             // EditWorld
             // 
-            EditWorld.Location = new Point(226, 218);
+            EditWorld.Location = new Point(222, 232);
             EditWorld.Name = "EditWorld";
             EditWorld.Size = new Size(75, 23);
             EditWorld.TabIndex = 7;
@@ -118,7 +118,7 @@
             // 
             // EditFB
             // 
-            EditFB.Location = new Point(319, 218);
+            EditFB.Location = new Point(315, 232);
             EditFB.Name = "EditFB";
             EditFB.Size = new Size(106, 23);
             EditFB.TabIndex = 9;
@@ -128,7 +128,7 @@
             // 
             // EditEnemies
             // 
-            EditEnemies.Location = new Point(443, 218);
+            EditEnemies.Location = new Point(439, 232);
             EditEnemies.Name = "EditEnemies";
             EditEnemies.Size = new Size(104, 23);
             EditEnemies.TabIndex = 11;
@@ -153,7 +153,7 @@
             SelectedProperties.Location = new Point(227, 151);
             SelectedProperties.Name = "SelectedProperties";
             SelectedProperties.RowTemplate.Height = 25;
-            SelectedProperties.Size = new Size(498, 50);
+            SelectedProperties.Size = new Size(498, 75);
             SelectedProperties.TabIndex = 13;
             // 
             // label7
