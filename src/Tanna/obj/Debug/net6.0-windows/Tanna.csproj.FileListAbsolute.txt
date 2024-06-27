@@ -212,3 +212,5 @@ C:\Users\2222116\Documents\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\n
 C:\Users\2222116\Documents\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.pdb
 C:\Users\2222116\Documents\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.genruntimeconfig.cache
 C:\Users\2222116\Documents\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\ref\Tanna.dll
+C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.ChooseGame.resources
+C:\Users\2222116\Desktop\PSI1622P_JosethBalcazar_2222116\src\Tanna\obj\Debug\net6.0-windows\Tanna.Properties.Resources.resources

@@ -4,7 +4,6 @@ using System.Text;
 namespace Tanna
 
 {
-
     public partial class Play : Form
 
     {
@@ -30,18 +29,30 @@ namespace Tanna
         private string worldSize;
         private int? worldDuration;
 
-        private List<string> enemyNames = new List<string>(); // Inicialização das listas
+        private List<string> enemyNames = new List<string>();
         private List<int> enemyAmounts = new List<int>();
         private List<int> enemyIds = new List<int>();
         private List<int> enemyLives = new List<int>();
-
 
         public Play()
         {
             InitializeComponent();
             AddPlayerNameLabel();
             GetGameDetails();
+            InitializeEnemyCounts();
             RestartGame();
+        }
+
+        private Dictionary<string, int> remainingEnemies = new Dictionary<string, int>();
+
+        private void InitializeEnemyCounts()
+        {
+            // Inicializar o dicionário de inimigos restantes
+            remainingEnemies.Clear();
+            for (int i = 0; i < enemyNames.Count; i++)
+            {
+                remainingEnemies[enemyNames[i]] = enemyAmounts[i];
+            }
         }
 
         private void GetGameDetails()
@@ -177,7 +188,6 @@ namespace Tanna
             txtAmmo.Text = "Ammo: " + ammo;
             txtScore.Text = "Kills: " + score;
 
-
             // Movimento do jogador principal
             if (goLeft && player.Left > 0)
             {
@@ -244,13 +254,25 @@ namespace Tanna
                     {
                         if (x.Bounds.IntersectsWith(j.Bounds))
                         {
+                            string enemyName = x.Name; // Obtém o nome do inimigo
+                            if (remainingEnemies.ContainsKey(enemyName))
+                            {
+                                remainingEnemies[enemyName]--;
+                            }
+
+                            // Remover a bala e o inimigo
                             score++;
                             this.Controls.Remove(j);
                             ((PictureBox)j).Dispose();
                             this.Controls.Remove(x);
                             ((PictureBox)x).Dispose();
-                            EnemiesList.Remove(((PictureBox)x));
+                            EnemiesList.Remove((PictureBox)x);
+
+                            // Criar um novo inimigo se ainda houver quantidade restante
                             MakeEnemies();
+
+                            // Atualizar as informações do jogo
+                            UpdateGameInfo();
                         }
                     }
                 }
@@ -338,55 +360,47 @@ namespace Tanna
 
         private void MakeEnemies()
         {
-            // Ensure there are enemies to create
-            if (enemyNames.Count == 0)
+            // Selecionar um nome de inimigo aleatório que ainda tenha inimigos restantes
+            List<string> availableEnemies = remainingEnemies.Where(kvp => kvp.Value > 0).Select(kvp => kvp.Key).ToList();
+            if (availableEnemies.Count == 0)
             {
-                return;
+                return; // Nenhum inimigo restante para criar
             }
 
-            // Select a random enemy name from the list
-            string enemyName = enemyNames[randNum.Next(enemyNames.Count)];
+            string enemyName = availableEnemies[randNum.Next(availableEnemies.Count)];
 
-            // Definir o tamanho inicial do PictureBox do inimigo
-            int enemyWidth = 80; // Largura inicial
-            int enemyHeight = 80; // Altura inicial
-
-            PictureBox Enemy = new PictureBox();
-            Enemy.Tag = "Enemy";
-            Enemy.Image = Properties.Resources.zdown; // Imagem inicial
-            Enemy.Left = randNum.Next(0, 900);
-            Enemy.Top = randNum.Next(0, 800);
-            Enemy.SizeMode = PictureBoxSizeMode.StretchImage; // Ajustar para que a imagem se ajuste ao tamanho
-            Enemy.Size = new Size(enemyWidth, enemyHeight); // Definir tamanho inicial do PictureBox
-
-            // Set the name of the enemy PictureBox
-            Enemy.Name = enemyName;
+            // Criar um novo inimigo
+            PictureBox Enemy = new PictureBox
+            {
+                Tag = "Enemy",
+                Image = Properties.Resources.zdown, // Imagem inicial
+                Left = randNum.Next(0, 900),
+                Top = randNum.Next(0, 800),
+                SizeMode = PictureBoxSizeMode.StretchImage, // Ajustar para que a imagem se ajuste ao tamanho
+                Size = new Size(80, 80), // Definir tamanho inicial do PictureBox
+                Name = enemyName // Set the name of the enemy PictureBox
+            };
 
             // Create a new coverPanel with a random color
-            Panel coverPanel = new Panel();
-            coverPanel.BackColor = GetRandomColor(); // Cor aleatória para o painel de cobertura
-
-            // Definir o tamanho do painel de cobertura igual ao do PictureBox
-            coverPanel.Size = new Size(Enemy.Width, Enemy.Height);
-
-            // DockStyle para ocupar todo o espaço do PictureBox
-            coverPanel.Dock = DockStyle.Top;
+            Panel coverPanel = new Panel
+            {
+                BackColor = GetRandomColor(), // Cor aleatória para o painel de cobertura
+                Size = new Size(Enemy.Width, Enemy.Height),
+                Dock = DockStyle.Top
+            };
             Enemy.Controls.Add(coverPanel); // Adicionar o Panel como filho do PictureBox
 
             // Adicionar um Label para mostrar o nome do Enemy
-            Label nameLabel = new Label();
-            nameLabel.Text = enemyName; // Nome do inimigo
-            nameLabel.ForeColor = Color.White; // Cor do texto
-            nameLabel.Font = new Font("Arial", 9, FontStyle.Bold); // Fonte e tamanho do texto inicial
-            nameLabel.AutoSize = false; // Desativar o ajuste automático de tamanho
-            nameLabel.TextAlign = ContentAlignment.MiddleCenter; // Alinhar o texto ao centro
-
-            // Reduzir o tamanho da fonte para que o texto caiba no Label
+            Label nameLabel = new Label
+            {
+                Text = enemyName, // Nome do inimigo
+                ForeColor = Color.White, // Cor do texto
+                Font = new Font("Arial", 9, FontStyle.Bold), // Fonte e tamanho do texto inicial
+                AutoSize = false, // Desativar o ajuste automático de tamanho
+                TextAlign = ContentAlignment.MiddleCenter // Alinhar o texto ao centro
+            };
             FitLabelFontSize(nameLabel, coverPanel.Size);
-
-            // Posicionar o Label centrado horizontalmente e no topo do painel de cobertura
             nameLabel.Location = new Point((coverPanel.Width - nameLabel.Width) / 2, 0);
-
             coverPanel.Controls.Add(nameLabel); // Adicionar o Label como filho do Panel de cobertura
 
             // Adicionar o PictureBox à janela principal
@@ -394,6 +408,9 @@ namespace Tanna
             Enemy.BringToFront(); // Colocar o PictureBox à frente de outros controles
 
             EnemiesList.Add(Enemy);
+
+            // Atualizar a quantidade restante de inimigos deste tipo
+            remainingEnemies[enemyName]--;
 
             UpdateGameInfo();
         }
@@ -431,35 +448,18 @@ namespace Tanna
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Final Boss: {finalBossName}");
             sb.AppendLine($"World: {worldName}");
+            sb.AppendLine($"Enemies:");
 
-            // Verifica se há inimigos para mostrar
-            if (EnemiesList != null && EnemiesList.Count > 0)
+            // Iterar sobre todos os nomes de inimigos conhecidos
+            foreach (var enemyName in enemyNames)
             {
-                // Agrupar inimigos pelo nome e cor
-                var groupedEnemies = EnemiesList.GroupBy(e => e.Name).ToList();
+                // Encontra a quantidade total de inimigos deste tipo
+                int totalEnemies = enemyAmounts[enemyNames.IndexOf(enemyName)];
 
-                sb.AppendLine($"Enemies:");
-                foreach (var group in groupedEnemies)
-                {
-                    string enemyName = group.Key;
-                    int totalEnemies = enemyAmounts[enemyNames.IndexOf(enemyName)];
-                    int remainingEnemies = totalEnemies - group.Count(); // Calcular inimigos restantes
+                // Verifica a quantidade restante no dicionário
+                int remainingEnemiesCount = remainingEnemies.ContainsKey(enemyName) ? remainingEnemies[enemyName] : 0;
 
-                    if (remainingEnemies > 0)
-                    {
-                        sb.AppendLine($"{enemyName} {remainingEnemies}/{totalEnemies}");    
-                    }
-                    else
-                    {
-                        // Remove o grupo de inimigos da lista
-                        foreach (var enemy in group)
-                        {
-                            this.Controls.Remove(enemy);
-                            EnemiesList.Remove(enemy);
-                            enemy.Dispose();
-                        }
-                    }
-                }
+                sb.AppendLine($"{enemyName} {remainingEnemiesCount}/{totalEnemies}");
             }
 
             // Atualiza o texto da label com as informações
@@ -487,6 +487,9 @@ namespace Tanna
                 this.Controls.Remove(i);
             }
             EnemiesList.Clear();
+
+            // Garantir que os contadores de inimigos estejam inicializados corretamente
+            InitializeEnemyCounts();
 
             for (int i = 0; i < 3; i++)
             {
