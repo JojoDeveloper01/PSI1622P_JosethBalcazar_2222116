@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using System.Text;
 
 namespace Tanna
 
@@ -17,33 +18,48 @@ namespace Tanna
         Random randNum = new Random();
         List<PictureBox> EnemiesList = new List<PictureBox>();
 
+        private Label lblGameInfo;
         private int gameId;
+        private string gameName;
         private string finalBossName;
+        private int finalBossLife;
+        private int finalBossStamina;
+        private int finalBossVelocity;
+        private int finalBossEnergy;
         private string worldName;
-        private List<int> enemyIds;
-        private List<string> enemyNames;
+        private string worldSize;
+        private int? worldDuration;
+
+        private List<string> enemyNames = new List<string>(); // Inicialização das listas
+        private List<int> enemyAmounts = new List<int>();
+        private List<int> enemyIds = new List<int>();
+        private List<int> enemyLives = new List<int>();
+
 
         public Play()
-
         {
             InitializeComponent();
-            RestartGame();
+            AddPlayerNameLabel();
             GetGameDetails();
+            RestartGame();
         }
 
         private void GetGameDetails()
         {
-            string gameName = GlobalVar.SelectedGameName;
+            gameName = GlobalVar.SelectedGameName;
 
-            // Consultar o ID do jogo, nome do boss final e nome do mundo
+            // Consultar detalhes do jogo, boss final, mundo e inimigos
             using (SQLiteCommand cmd = new SQLiteCommand())
             {
                 cmd.CommandText = @"
-                SELECT g.id, b.name AS final_boss_name, w.name AS world_name
-                FROM Game g
-                JOIN FinalBoss b ON g.FinalBoss_id = b.id
-                JOIN World w ON g.World_id = w.id
-                WHERE g.name = @gameName";
+             SELECT g.id, g.name AS game_name,
+                           b.name AS final_boss_name, b.life AS final_boss_life, b.stamina AS final_boss_stamina, 
+                           b.velocity AS final_boss_velocity, b.energy AS final_boss_energy,
+                           w.name AS world_name, w.size AS world_size, w.duration AS world_duration
+                    FROM Game g
+                    JOIN FinalBoss b ON g.FinalBoss_id = b.id
+                    JOIN World w ON g.World_id = w.id
+                    WHERE g.name = @gameName;";
                 cmd.Parameters.AddWithValue("@gameName", gameName);
 
                 using (SQLiteDataReader reader = Program.ExecuteQuery(cmd))
@@ -51,20 +67,40 @@ namespace Tanna
                     if (reader.Read())
                     {
                         gameId = reader.GetInt32(0);
-                        finalBossName = reader.GetString(1);
-                        worldName = reader.GetString(2);
+                        gameName = reader.GetString(1);
+                        finalBossName = reader.GetString(2);
+                        finalBossLife = reader.GetInt32(3);
+                        finalBossStamina = reader.GetInt32(4);
+                        finalBossVelocity = reader.GetInt32(5);
+                        finalBossEnergy = reader.GetInt32(6);
+                        worldName = reader.GetString(7);
+                        worldSize = reader.GetInt32(8).ToString();
+                        // Verifica se world_duration foi retornado antes de lê-lo
+                        if (!reader.IsDBNull(9))
+                        {
+                            worldDuration = reader.GetInt32(9);
+                        }
+                        else
+                        {
+                            worldDuration = null; // Se world_duration for NULL no banco de dados
+                        }
                     }
                 }
             }
 
-            // Consultar os IDs dos inimigos do jogo
+            // Consultar os IDs, nomes, quantidades e vidas dos inimigos do jogo
             enemyIds = new List<int>();
+            enemyNames = new List<string>();
+            enemyAmounts = new List<int>();
+            enemyLives = new List<int>();
+
             using (SQLiteCommand cmd = new SQLiteCommand())
             {
                 cmd.CommandText = @"
-                SELECT enemy_id
-                FROM Game_Enemies
-                WHERE game_id = @gameId";
+                SELECT e.id, e.name, e.amount, e.life
+                FROM Enemies e
+                JOIN Game_Enemies ge ON e.id = ge.enemy_id
+                WHERE ge.game_id = @gameId";
                 cmd.Parameters.AddWithValue("@gameId", gameId);
 
                 using (SQLiteDataReader reader = Program.ExecuteQuery(cmd))
@@ -72,34 +108,25 @@ namespace Tanna
                     while (reader.Read())
                     {
                         enemyIds.Add(reader.GetInt32(0));
+                        enemyNames.Add(reader.GetString(1));
+                        enemyAmounts.Add(reader.GetInt32(2));
+                        enemyLives.Add(reader.GetInt32(3));
                     }
                 }
             }
 
-            // Consultar os nomes dos inimigos com base nos IDs
-            enemyNames = new List<string>();
-            foreach (int enemyId in enemyIds)
+            MessageBox.Show($"Game Name: {gameName}\n\nWorld:\nName: {worldName}\nSize: {worldSize}\nDuration: {worldDuration}\n\nFinal Boss:\nName: {finalBossName}\nLife: {finalBossLife}\nStamina: {finalBossStamina}\nVelocity: {finalBossVelocity}\nEnergy: {finalBossEnergy}\n\nEnemies:\n{GetEnemiesInfo()}");
+
+            // Aqui está uma função auxiliar para formatar a informação dos inimigos
+            string GetEnemiesInfo()
             {
-                using (SQLiteCommand cmd = new SQLiteCommand())
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < enemyIds.Count; i++)
                 {
-                    cmd.CommandText = @"
-                    SELECT name
-                    FROM Enemies
-                    WHERE id = @enemyId";
-                    cmd.Parameters.AddWithValue("@enemyId", enemyId);
-
-                    using (SQLiteDataReader reader = Program.ExecuteQuery(cmd))
-                    {
-                        if (reader.Read())
-                        {
-                            enemyNames.Add(reader.GetString(0));
-                        }
-                    }
+                    sb.AppendLine($"ID: {enemyIds[i]}, Name: {enemyNames[i]}, Amount: {enemyAmounts[i]}, Life: {enemyLives[i]}");
                 }
+                return sb.ToString();
             }
-
-            // Exibir os resultados para verificação (opcional)
-            MessageBox.Show($"Game ID: {gameId}\nFinal Boss: {finalBossName}\nWorld: {worldName}\nEnemies: {string.Join(", ", enemyNames)}");
         }
 
         private void AddPlayerNameLabel()
@@ -122,188 +149,117 @@ namespace Tanna
             player.Controls.Add(playerNameLabel);
             playerNameLabel.BringToFront();
             playerNameLabel.Location = new Point((player.Width - playerNameLabel.Width) / 2, 0);
+
+            lblGameInfo = new Label();
+            lblGameInfo.ForeColor = Color.White;
+            lblGameInfo.Font = new Font("Arial", 10, FontStyle.Bold);
+            lblGameInfo.AutoSize = true;
+
+            lblGameInfo.Location = new Point(10, 60);
+
+            this.Controls.Add(lblGameInfo);
+            lblGameInfo.BringToFront();
         }
 
         private void MainTimerEvent(object sender, EventArgs e)
-
         {
-
             if (playerHealth > 1)
-
             {
                 healthBar.Value = playerHealth;
             }
-
             else
-
             {
-
                 gameOver = true;
-
                 player.Image = Properties.Resources.dead;
-
                 GameTimer.Stop();
-
             }
 
             txtAmmo.Text = "Ammo: " + ammo;
-
             txtScore.Text = "Kills: " + score;
 
+
             // Movimento do jogador principal
-
-            if (goLeft == true && player.Left > 0)
-
+            if (goLeft && player.Left > 0)
             {
-
                 player.Left -= speed;
-
             }
-
-            if (goRight == true && player.Left + player.Width < this.ClientSize.Width)
-
+            if (goRight && player.Left + player.Width < this.ClientSize.Width)
             {
-
                 player.Left += speed;
-
             }
-
-            if (goUp == true && player.Top > 45)
-
+            if (goUp && player.Top > 45)
             {
-
                 player.Top -= speed;
-
             }
-
-            if (goDown == true && player.Top + player.Height < this.ClientSize.Height)
-
+            if (goDown && player.Top + player.Height < this.ClientSize.Height)
             {
-
                 player.Top += speed;
-
             }
 
             // Movimento e interação com os Enemies
-
             foreach (Control x in this.Controls)
-
             {
-
                 if (x is PictureBox && (string)x.Tag == "ammo")
-
                 {
-
                     if (player.Bounds.IntersectsWith(x.Bounds))
-
                     {
-
                         this.Controls.Remove(x);
-
-                        x.Dispose(); // Dispose o controle removido
-
+                        x.Dispose();
                         ammo += 5;
-
                     }
-
                 }
 
                 if (x is PictureBox && (string)x.Tag == "Enemy")
-
                 {
-
                     if (player.Bounds.IntersectsWith(x.Bounds))
-
                     {
-
                         playerHealth -= 1;
-
                     }
-
-                    // Movimento dos Enemies e mudança de cor
 
                     if (x.Left > player.Left)
-
                     {
-
                         x.Left -= Enemiespeed;
-
                         ((PictureBox)x).Image = Properties.Resources.zleft;
-
                     }
-
                     if (x.Left < player.Left)
-
                     {
-
                         x.Left += Enemiespeed;
-
                         ((PictureBox)x).Image = Properties.Resources.zright;
-
                     }
-
                     if (x.Top > player.Top)
-
                     {
-
                         x.Top -= Enemiespeed;
-
                         ((PictureBox)x).Image = Properties.Resources.zup;
-
                     }
-
                     if (x.Top < player.Top)
-
                     {
-
                         x.Top += Enemiespeed;
-
                         ((PictureBox)x).Image = Properties.Resources.zdown;
-
                     }
-
                 }
 
                 foreach (Control j in this.Controls)
-
                 {
-
                     if (j is PictureBox && (string)j.Tag == "bullet" && x is PictureBox && (string)x.Tag == "Enemy")
-
                     {
-
                         if (x.Bounds.IntersectsWith(j.Bounds))
-
                         {
-
                             score++;
-
                             this.Controls.Remove(j);
-
                             ((PictureBox)j).Dispose();
-
                             this.Controls.Remove(x);
-
                             ((PictureBox)x).Dispose();
-
                             EnemiesList.Remove(((PictureBox)x));
-
                             MakeEnemies();
-
                         }
-
                     }
-
                 }
-
             }
-
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-
-            if (gameOver == true)
+            if (gameOver)
             {
                 return;
             }
@@ -314,30 +270,24 @@ namespace Tanna
                 facing = "left";
                 player.Image = Properties.Resources.left;
             }
-
             if (e.KeyCode == Keys.Right)
             {
                 goRight = true;
                 facing = "right";
                 player.Image = Properties.Resources.right;
             }
-
             if (e.KeyCode == Keys.Up)
             {
                 goUp = true;
                 facing = "up";
                 player.Image = Properties.Resources.up;
             }
-
             if (e.KeyCode == Keys.Down)
             {
                 goDown = true;
                 facing = "down";
                 player.Image = Properties.Resources.down;
             }
-
-
-
         }
 
         private void KeyIsUp(object sender, KeyEventArgs e)
@@ -346,27 +296,23 @@ namespace Tanna
             {
                 goLeft = false;
             }
-
             if (e.KeyCode == Keys.Right)
             {
                 goRight = false;
             }
-
             if (e.KeyCode == Keys.Up)
             {
                 goUp = false;
             }
-
             if (e.KeyCode == Keys.Down)
             {
                 goDown = false;
             }
 
-            if (e.KeyCode == Keys.Space && ammo > 0 && gameOver == false)
+            if (e.KeyCode == Keys.Space && ammo > 0 && !gameOver)
             {
                 ammo--;
                 ShootBullet(facing);
-
 
                 if (ammo < 1)
                 {
@@ -374,167 +320,189 @@ namespace Tanna
                 }
             }
 
-            if (e.KeyCode == Keys.Enter && gameOver == true)
+            if (e.KeyCode == Keys.Enter && gameOver)
             {
                 RestartGame();
             }
-
         }
 
         private void ShootBullet(string direction)
-
         {
-
             Bullet shootBullet = new Bullet();
-
             shootBullet.direction = direction;
-
             shootBullet.bulletLeft = player.Left + (player.Width / 2);
-
             shootBullet.bulletTop = player.Top + (player.Height / 2);
-
             shootBullet.MakeBullet(this);
-
+            UpdateGameInfo();
         }
 
         private void MakeEnemies()
-
         {
+            // Ensure there are enemies to create
+            if (enemyNames.Count == 0)
+            {
+                return;
+            }
+
+            // Select a random enemy name from the list
+            string enemyName = enemyNames[randNum.Next(enemyNames.Count)];
+
+            // Definir o tamanho inicial do PictureBox do inimigo
+            int enemyWidth = 80; // Largura inicial
+            int enemyHeight = 80; // Altura inicial
 
             PictureBox Enemy = new PictureBox();
-
             Enemy.Tag = "Enemy";
-
             Enemy.Image = Properties.Resources.zdown; // Imagem inicial
-
             Enemy.Left = randNum.Next(0, 900);
-
             Enemy.Top = randNum.Next(0, 800);
+            Enemy.SizeMode = PictureBoxSizeMode.StretchImage; // Ajustar para que a imagem se ajuste ao tamanho
+            Enemy.Size = new Size(enemyWidth, enemyHeight); // Definir tamanho inicial do PictureBox
 
-            Enemy.SizeMode = PictureBoxSizeMode.AutoSize;
+            // Set the name of the enemy PictureBox
+            Enemy.Name = enemyName;
 
-            this.Controls.Add(Enemy);
-
-            Enemy.BringToFront();
-
-            // Adicionar um Panel acima do PictureBox para cobrir a imagem
-
+            // Create a new coverPanel with a random color
             Panel coverPanel = new Panel();
-
             coverPanel.BackColor = GetRandomColor(); // Cor aleatória para o painel de cobertura
 
-            coverPanel.Size = Enemy.Size;
+            // Definir o tamanho do painel de cobertura igual ao do PictureBox
+            coverPanel.Size = new Size(Enemy.Width, Enemy.Height);
 
-            Enemy.Controls.Add(coverPanel); // Adiciona o Panel como filho do PictureBox
-
-            coverPanel.Dock = DockStyle.Fill; // Ocupa todo o espaço do PictureBox
-
-            coverPanel.BringToFront(); // Coloca o Panel à frente da imagem do zumbi
+            // DockStyle para ocupar todo o espaço do PictureBox
+            coverPanel.Dock = DockStyle.Top;
+            Enemy.Controls.Add(coverPanel); // Adicionar o Panel como filho do PictureBox
 
             // Adicionar um Label para mostrar o nome do Enemy
-
             Label nameLabel = new Label();
-
-            nameLabel.Text = "Enemy " + (EnemiesList.Count + 1); // Nome do Enemy (exemplo: "Enemy 1", "Enemy 2", etc.)
-
+            nameLabel.Text = enemyName; // Nome do inimigo
             nameLabel.ForeColor = Color.White; // Cor do texto
+            nameLabel.Font = new Font("Arial", 9, FontStyle.Bold); // Fonte e tamanho do texto inicial
+            nameLabel.AutoSize = false; // Desativar o ajuste automático de tamanho
+            nameLabel.TextAlign = ContentAlignment.MiddleCenter; // Alinhar o texto ao centro
 
-            nameLabel.Font = new Font("Arial", 10, FontStyle.Bold); // Fonte e tamanho do texto
+            // Reduzir o tamanho da fonte para que o texto caiba no Label
+            FitLabelFontSize(nameLabel, coverPanel.Size);
 
-            nameLabel.AutoSize = true;
+            // Posicionar o Label centrado horizontalmente e no topo do painel de cobertura
+            nameLabel.Location = new Point((coverPanel.Width - nameLabel.Width) / 2, 0);
 
-            Enemy.Controls.Add(nameLabel); // Adiciona o Label como filho do PictureBox
+            coverPanel.Controls.Add(nameLabel); // Adicionar o Label como filho do Panel de cobertura
 
-            nameLabel.BringToFront(); // Coloca o Label à frente do Panel de cobertura
-
-            // Centraliza o Label na parte superior do PictureBox
-
-            nameLabel.Location = new Point((Enemy.Width - nameLabel.Width) / 2, 0);
+            // Adicionar o PictureBox à janela principal
+            this.Controls.Add(Enemy);
+            Enemy.BringToFront(); // Colocar o PictureBox à frente de outros controles
 
             EnemiesList.Add(Enemy);
 
+            UpdateGameInfo();
+        }
+
+        private void FitLabelFontSize(Label label, Size maxSize)
+        {
+            // Initial font size and font family
+            int fontSize = 9; // Starting font size
+            Font labelFont = label.Font;
+
+            // Measure the text size with the initial font
+            SizeF textSize = TextRenderer.MeasureText(label.Text, labelFont);
+
+            // Reduce font size until the text fits within the maximum size
+            while ((textSize.Width > maxSize.Width || textSize.Height > maxSize.Height) && fontSize > 1)
+            {
+                fontSize--; // Decrease font size
+                labelFont = new Font(labelFont.FontFamily, fontSize, labelFont.Style); // Create new font with reduced size
+                textSize = TextRenderer.MeasureText(label.Text, labelFont); // Measure text size with the new font
+            }
+
+            // Update label's font with the adjusted size
+            label.Font = labelFont;
         }
 
         private Color GetRandomColor()
-
         {
-
             Random rand = new Random();
-
             return Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
+        }
 
+        private void UpdateGameInfo()
+        {
+            // Constrói a string com as informações do jogo
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Final Boss: {finalBossName}");
+            sb.AppendLine($"World: {worldName}");
+
+            // Verifica se há inimigos para mostrar
+            if (EnemiesList != null && EnemiesList.Count > 0)
+            {
+                // Agrupar inimigos pelo nome e cor
+                var groupedEnemies = EnemiesList.GroupBy(e => e.Name).ToList();
+
+                sb.AppendLine($"Enemies:");
+                foreach (var group in groupedEnemies)
+                {
+                    string enemyName = group.Key;
+                    int totalEnemies = enemyAmounts[enemyNames.IndexOf(enemyName)];
+                    int remainingEnemies = totalEnemies - group.Count(); // Calcular inimigos restantes
+
+                    if (remainingEnemies > 0)
+                    {
+                        sb.AppendLine($"{enemyName} {remainingEnemies}/{totalEnemies}");    
+                    }
+                    else
+                    {
+                        // Remove o grupo de inimigos da lista
+                        foreach (var enemy in group)
+                        {
+                            this.Controls.Remove(enemy);
+                            EnemiesList.Remove(enemy);
+                            enemy.Dispose();
+                        }
+                    }
+                }
+            }
+
+            // Atualiza o texto da label com as informações
+            lblGameInfo.Text = sb.ToString();
         }
 
         private void DropAmmo()
-
         {
-
             PictureBox ammo = new PictureBox();
-
             ammo.Image = Properties.Resources.ammo_Image;
-
             ammo.SizeMode = PictureBoxSizeMode.AutoSize;
-
             ammo.Left = randNum.Next(10, this.ClientSize.Width - ammo.Width);
-
             ammo.Top = randNum.Next(60, this.ClientSize.Height - ammo.Height);
-
             ammo.Tag = "ammo";
-
             this.Controls.Add(ammo);
-
             ammo.BringToFront();
-
             player.BringToFront();
-
         }
 
         private void RestartGame()
-
         {
-
             player.Image = Properties.Resources.up;
-
             foreach (PictureBox i in EnemiesList)
-
             {
-
                 this.Controls.Remove(i);
-
             }
-
             EnemiesList.Clear();
 
             for (int i = 0; i < 3; i++)
-
             {
-
                 MakeEnemies();
-
             }
 
             goUp = false;
-
             goDown = false;
-
             goLeft = false;
-
             goRight = false;
-
             gameOver = false;
-
             playerHealth = 100;
-
             score = 0;
-
             ammo = 10;
-
-            AddPlayerNameLabel();
-
             GameTimer.Start();
-
         }
 
     }
-
 }

@@ -89,7 +89,7 @@
             player.Location = new Point(489, 540);
             player.Margin = new Padding(4, 3, 4, 3);
             player.Name = "player";
-            player.Size = new Size(71, 100);
+            player.Size = new Size(71, 99);
             player.SizeMode = PictureBoxSizeMode.AutoSize;
             player.TabIndex = 2;
             player.TabStop = false;
