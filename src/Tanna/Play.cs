@@ -110,7 +110,11 @@ namespace Tanna
                 if (worldDuration <= 0)
                 {
                     timer.Stop();
+                    gameOver = true;
                     playerHealth = 0;
+                    this.Hide();
+                    Lose lose= new();
+                    lose.ShowDialog();
                 }
 
                 // Atualizar o label com o tempo restante
@@ -255,6 +259,9 @@ namespace Tanna
                 gameOver = true;
                 player.Image = Properties.Resources.dead;
                 GameTimer.Stop();
+                this.Hide();
+                Lose lose = new();
+                lose.ShowDialog();
             }
 
             txtAmmo.Text = "Ammo: " + ammo;
@@ -486,7 +493,10 @@ namespace Tanna
                                 {
                                     this.Controls.Remove(finalBossPictureBox);
                                     finalBossPictureBox.Dispose();
-                                    MessageBox.Show("You Win!!");
+
+                                    this.Hide();
+                                    Win win = new();
+                                    win.ShowDialog();
                                 }
                             }
                         }

@@ -87,7 +87,7 @@
             CreateGame.Name = "CreateGame";
             CreateGame.Size = new Size(180, 49);
             CreateGame.TabIndex = 80;
-            CreateGame.Text = "Create Game";
+            CreateGame.Text = "Edit Game";
             CreateGame.UseVisualStyleBackColor = true;
             CreateGame.Click += CreateGame_Click;
             // 

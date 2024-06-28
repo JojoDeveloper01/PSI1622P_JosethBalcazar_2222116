@@ -1,5 +1,6 @@
 ﻿    using System.Data.SQLite;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Tanna
 {
@@ -72,13 +73,13 @@ namespace Tanna
                     FinalBoss f ON g.finalBoss_id = f.id;";
                     break;
                 case "World":
-                    sql = $"SELECT name, size, duration FROM World WHERE player_id = {ID}";
+                    sql = $"SELECT id, name, size, duration FROM World WHERE player_id = {ID}";
                     break;
                 case "FinalBoss":
-                    sql = $"SELECT name, life, velocity, damage FROM FinalBoss WHERE player_id = {ID}";
+                    sql = $"SELECT id, name, life, velocity, damage FROM FinalBoss WHERE player_id = {ID}";
                     break;
                 case "Enemies":
-                    sql = $"SELECT name, amount FROM Enemies WHERE player_id = {ID}";
+                    sql = $"SELECT id, name, amount FROM Enemies WHERE player_id = {ID}";
                     break;
                 case "player":
                     sql = "SELECT * FROM player";
@@ -155,6 +156,65 @@ namespace Tanna
                 return false;
             }
         }
+
+        public static bool Update(string tableName, int itemId, Dictionary<string, string> columns, int playerId)
+        {
+            string sqlCommand = ""; // Variável para armazenar o comando SQL
+
+            try
+            {
+                using (var cmd = Program.conn.CreateCommand())
+                {
+                    cmd.CommandText = $"UPDATE {tableName} SET ";
+
+                    // Add columns to update
+                    foreach (var column in columns)
+                    {
+                        cmd.CommandText += $"{column.Key} = @{column.Key}, ";
+                        cmd.Parameters.AddWithValue($"@{column.Key}", column.Value);
+                    }
+
+                    // Remove the last comma and space
+                    cmd.CommandText = cmd.CommandText.TrimEnd(',', ' ');
+
+                    if(tableName == "player")
+                    {
+                        cmd.CommandText += " WHERE id_player = @itemId";
+                    }
+                    else
+                    {
+                        cmd.CommandText += " WHERE id = @itemId AND player_id = @playerId";
+                    }
+                    cmd.Parameters.AddWithValue("@itemId", itemId);
+                    cmd.Parameters.AddWithValue("@playerId", playerId);
+
+                    // Assign the SQL command to the variable
+                    sqlCommand = cmd.CommandText;
+
+                    // Execute the update
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    // Check if any rows were affected
+                    if (rowsAffected > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        // If no rows were affected, throw an exception
+                        throw new Exception($"No rows updated for item ID {itemId} and player ID {playerId}.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception message and SQL command
+                string errorMessage = $"Error in Update {tableName}: {ex.Message}\nSQL Command: {sqlCommand}";
+                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
 
         public static void UpdateSelectedEnemiesIds()
         {

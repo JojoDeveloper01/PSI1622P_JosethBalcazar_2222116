@@ -42,6 +42,7 @@
             BackFB = new Button();
             label1 = new Label();
             label3 = new Label();
+            Update = new Button();
             ((System.ComponentModel.ISupportInitialize)FBCreated).BeginInit();
             SuspendLayout();
             // 
@@ -185,12 +186,23 @@
             label3.TextAlign = ContentAlignment.MiddleCenter;
             label3.UseMnemonic = false;
             // 
+            // Update
+            // 
+            Update.Location = new Point(714, 51);
+            Update.Name = "Update";
+            Update.Size = new Size(75, 23);
+            Update.TabIndex = 87;
+            Update.Text = "Update";
+            Update.UseVisualStyleBackColor = true;
+            Update.Click += Update_Click;
+            // 
             // CreateFinalBoss
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(818, 448);
+            Controls.Add(Update);
             Controls.Add(label1);
             Controls.Add(label3);
             Controls.Add(BackFB);
@@ -227,5 +239,6 @@
         private Button BackFB;
         private Label label1;
         private Label label3;
+        private Button Update;
     }
 }

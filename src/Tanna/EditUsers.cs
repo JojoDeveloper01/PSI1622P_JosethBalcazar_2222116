@@ -78,7 +78,70 @@ namespace Tanna
         }
         private void UpdateAllUsers_Click(object sender, EventArgs e)
         {
-            GlobalVar.LoadData("player", SeeAllUsers);
+            if (SeeAllUsers.Rows.Count == 0)
+            {
+                MessageBox.Show("No rows to update.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
+
+            using (var transaction = Program.conn.BeginTransaction())
+            {
+                try
+                {
+                    foreach (DataGridViewRow row in SeeAllUsers.Rows)
+                    {
+                        // Verifica se a linha está marcada como editada (só é necessário se você permitir edição)
+                        if (!row.IsNewRow && row.Cells["id_player"].Value != null && row.Cells["id_player"].Value.ToString() != "")
+                        {
+                            int itemId;
+                            if (!int.TryParse(row.Cells["id_player"].Value.ToString(), out itemId))
+                            {
+                                MessageBox.Show("Invalid item ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+
+                            // Verifica se algum dos campos chave mudou
+                            string type = row.Cells["type"].Value?.ToString();
+                            string name = row.Cells["name"].Value?.ToString();
+                            string password = row.Cells["password"].Value?.ToString();
+
+                            if (string.IsNullOrWhiteSpace(type) || string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(password))
+                            {
+                                MessageBox.Show("All fields must be filled for row with ID " + itemId, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+
+                            // Construa o dicionário de colunas para atualizar
+                            var columns = new Dictionary<string, string>
+                    {
+                        { "type", type },
+                        { "name", name },
+                        { "password", password }
+                    };
+
+                            // Atualiza o jogador usando a função global e o ID do item
+                            bool updateResult = GlobalVar.Update("player", itemId, columns, playerId);
+                            if (!updateResult)
+                            {
+                                transaction.Rollback();
+                                MessageBox.Show($"Failed to update player with ID {itemId}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                        }
+                    }
+
+                    // Commit da transação se todas as atualizações forem bem sucedidas
+                    transaction.Commit();
+                    MessageBox.Show("All users updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    MessageBox.Show($"Error updating users: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void Delete_Click(object sender, EventArgs e)

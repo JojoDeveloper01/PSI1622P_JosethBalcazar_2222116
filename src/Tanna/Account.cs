@@ -21,12 +21,10 @@ namespace Tanna
             InitializeComponent();
 
             EditUsers.Visible = false;
-            CreateGame.Visible = false;
 
             if (GlobalVar.Type == 1)
             {
                 EditUsers.Visible = true;
-                CreateGame.Visible = true;
             }
 
             this.previousForm = previousForm;

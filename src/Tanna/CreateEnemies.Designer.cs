@@ -41,6 +41,7 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            Update = new Button();
             ((System.ComponentModel.ISupportInitialize)EnemiesCreated).BeginInit();
             SuspendLayout();
             // 
@@ -172,12 +173,23 @@
             label3.TextAlign = ContentAlignment.MiddleCenter;
             label3.UseMnemonic = false;
             // 
+            // Update
+            // 
+            Update.Location = new Point(487, 56);
+            Update.Name = "Update";
+            Update.Size = new Size(75, 23);
+            Update.TabIndex = 86;
+            Update.Text = "Update";
+            Update.UseVisualStyleBackColor = true;
+            Update.Click += Update_Click;
+            // 
             // CreateEnemies
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(594, 430);
+            Controls.Add(Update);
             Controls.Add(label1);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -213,5 +225,6 @@
         private Label label1;
         private Label label2;
         private Label label3;
+        private Button Update;
     }
 }

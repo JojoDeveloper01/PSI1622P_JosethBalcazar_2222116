@@ -42,6 +42,7 @@
             BackWorld = new Button();
             label1 = new Label();
             label3 = new Label();
+            Update = new Button();
             ((System.ComponentModel.ISupportInitialize)WorldsCreated).BeginInit();
             SuspendLayout();
             // 
@@ -182,12 +183,23 @@
             label3.TextAlign = ContentAlignment.MiddleCenter;
             label3.UseMnemonic = false;
             // 
+            // Update
+            // 
+            Update.Location = new Point(509, 59);
+            Update.Name = "Update";
+            Update.Size = new Size(75, 23);
+            Update.TabIndex = 86;
+            Update.Text = "Update";
+            Update.UseVisualStyleBackColor = true;
+            Update.Click += Update_Click;
+            // 
             // CreateWorld
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(596, 428);
+            Controls.Add(Update);
             Controls.Add(label1);
             Controls.Add(label3);
             Controls.Add(BackWorld);
@@ -224,5 +236,6 @@
         private Button BackWorld;
         private Label label1;
         private Label label3;
+        private Button Update;
     }
 }
