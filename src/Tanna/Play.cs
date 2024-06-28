@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 using System.Text;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Tanna
 
@@ -27,18 +28,18 @@ namespace Tanna
 
         private string finalBossName;
         private int finalBossLife;
-        private int finalBossStamina;
         private int finalBossVelocity;
         private int finalBossEnergy;
         
         private string worldName;
-        private string worldSize;
+        private Size newWorldSize;
         private int? worldDuration;
+        private System.Windows.Forms.Timer timer;
+        private Label lblTimeRemaining;
 
         private List<string> enemyNames = new List<string>();
         private List<int> enemyAmounts = new List<int>();
         private List<int> enemyIds = new List<int>();
-        private List<int> enemyLives = new List<int>();
 
         private Dictionary<string, int> remainingEnemies = new Dictionary<string, int>();
         private Dictionary<string, int> defeatedEnemiesCount = new Dictionary<string, int>();
@@ -49,7 +50,13 @@ namespace Tanna
             InitializeComponent();
             InitializeEnemyCounts();
             AddPlayerNameLabel();
+
+            // Chamar GetGameDetails para obter os detalhes do jogo
             GetGameDetails();
+
+            // Configurar o nome e o tamanho da janela
+            WorldOptions();
+
             RestartGame();
         }
 
@@ -64,6 +71,61 @@ namespace Tanna
             }
         }
 
+        private void WorldOptions()
+        {
+            this.Text = worldName;
+            this.ClientSize = newWorldSize;
+
+            if (worldDuration.HasValue && worldDuration.Value > 0)
+            {
+                timer = new Timer();
+                timer.Interval = 1000; // Intervalo de 1 segundo (1000 ms)
+                timer.Tick += Timer_Tick;
+                timer.Start();
+            }
+
+            // Adicionar um label para mostrar o tempo restante
+            lblTimeRemaining = new Label();
+            lblTimeRemaining.AutoSize = true;
+
+            // Calcular a posição para colocar a label no canto superior direito
+            // Aumentar o tamanho da fonte
+            lblTimeRemaining.Font = new Font(lblTimeRemaining.Font.FontFamily, 16, FontStyle.Bold); // Exemplo de tamanho de fonte 16 e negrito
+
+            // Calcular a posição para colocar a label no canto inferior direito
+            int xPosition = this.ClientSize.Width / 7; // 10 pixels de margem à direita
+            int yPosition = 10; // 10 pixels de margem do fundo
+            lblTimeRemaining.Location = new Point(xPosition, yPosition);
+
+            lblTimeRemaining.ForeColor = Color.White; // Definir a cor do texto para branco
+            this.Controls.Add(lblTimeRemaining);
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (worldDuration.HasValue)
+            {
+                worldDuration -= 1; // Reduzir o tempo restante em 1 segundo
+
+                if (worldDuration <= 0)
+                {
+                    timer.Stop();
+                    playerHealth = 0;
+                }
+
+                // Atualizar o label com o tempo restante
+                UpdateTimeRemainingLabel();
+            }
+        }
+
+        private void UpdateTimeRemainingLabel()
+        {
+            if (worldDuration.HasValue)
+            {
+                lblTimeRemaining.Text = $"{worldDuration}s";
+            }
+        }
+
         private void GetGameDetails()
         {
             gameName = GlobalVar.SelectedGameName;
@@ -73,7 +135,7 @@ namespace Tanna
             {
                 cmd.CommandText = @"
              SELECT g.id, g.name AS game_name,
-                           b.name AS final_boss_name, b.life AS final_boss_life, b.stamina AS final_boss_stamina, 
+                           b.name AS final_boss_name, b.life AS final_boss_life, 
                            b.velocity AS final_boss_velocity, b.energy AS final_boss_energy,
                            w.name AS world_name, w.size AS world_size, w.duration AS world_duration
                     FROM Game g
@@ -90,20 +152,18 @@ namespace Tanna
                         gameName = reader.GetString(1);
                         finalBossName = reader.GetString(2);
                         finalBossLife = reader.GetInt32(3);
-                        finalBossStamina = reader.GetInt32(4);
                         finalBossVelocity = reader.GetInt32(5);
                         finalBossEnergy = reader.GetInt32(6);
                         worldName = reader.GetString(7);
-                        worldSize = reader.GetInt32(8).ToString();
-                        // Verifica se world_duration foi retornado antes de lê-lo
-                        if (!reader.IsDBNull(9))
-                        {
-                            worldDuration = reader.GetInt32(9);
-                        }
-                        else
-                        {
-                            worldDuration = null; // Se world_duration for NULL no banco de dados
-                        }
+                        int worldSizeValue = reader.GetInt32(8);
+
+                        // Ajustar o tamanho do mundo para ser horizontal
+                        int width = worldSizeValue;
+                        int height = (int)(width * 0.6); // Ajuste a proporção conforme necessário
+                        newWorldSize = new Size(width, height);
+
+                        // Obter world_duration e armazenar em worldDuration
+                        worldDuration = reader.IsDBNull(9) ? null : (int?)reader.GetInt32(9);
                     }
                 }
             }
@@ -112,15 +172,14 @@ namespace Tanna
             enemyIds = new List<int>();
             enemyNames = new List<string>();
             enemyAmounts = new List<int>();
-            enemyLives = new List<int>();
 
             using (SQLiteCommand cmd = new SQLiteCommand())
             {
                 cmd.CommandText = @"
-                SELECT e.id, e.name, e.amount, e.life
-                FROM Enemies e
-                JOIN Game_Enemies ge ON e.id = ge.enemy_id
-                WHERE ge.game_id = @gameId";
+            SELECT e.id, e.name, e.amount, e.life
+            FROM Enemies e
+            JOIN Game_Enemies ge ON e.id = ge.enemy_id
+            WHERE ge.game_id = @gameId";
                 cmd.Parameters.AddWithValue("@gameId", gameId);
 
                 using (SQLiteDataReader reader = Program.ExecuteQuery(cmd))
@@ -130,20 +189,20 @@ namespace Tanna
                         enemyIds.Add(reader.GetInt32(0));
                         enemyNames.Add(reader.GetString(1));
                         enemyAmounts.Add(reader.GetInt32(2));
-                        enemyLives.Add(reader.GetInt32(3));
                     }
                 }
             }
 
-            MessageBox.Show($"Game Name: {gameName}\n\nWorld:\nName: {worldName}\nSize: {worldSize}\nDuration: {worldDuration}\n\nFinal Boss:\nName: {finalBossName}\nLife: {finalBossLife}\nStamina: {finalBossStamina}\nVelocity: {finalBossVelocity}\nEnergy: {finalBossEnergy}\n\nEnemies:\n{GetEnemiesInfo()}");
+            // Mostrar informações do jogo em um MessageBox (para depuração)
+            MessageBox.Show($"Game Name: {gameName}\n\nWorld:\nName: {worldName}\nSize: {newWorldSize}\nDuration: {worldDuration} seconds\n\nFinal Boss:\nName: {finalBossName}\nLife: {finalBossLife}\nVelocity: {finalBossVelocity}\nEnergy: {finalBossEnergy}\n\nEnemies:\n{GetEnemiesInfo()}");
 
-            // Aqui está uma função auxiliar para formatar a informação dos inimigos
+            // Função auxiliar para formatar a informação dos inimigos
             string GetEnemiesInfo()
             {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < enemyIds.Count; i++)
                 {
-                    sb.AppendLine($"ID: {enemyIds[i]}, Name: {enemyNames[i]}, Amount: {enemyAmounts[i]}, Life: {enemyLives[i]}");
+                    sb.AppendLine($"ID: {enemyIds[i]}, Name: {enemyNames[i]}, Amount: {enemyAmounts[i]}");
                 }
                 return sb.ToString();
             }
@@ -184,7 +243,7 @@ namespace Tanna
             // Atualiza o texto da label com as informações
             lblGameInfo.Text = sb.ToString();
         }
-
+    
         private void MainTimerEvent(object sender, EventArgs e)
         {
             if (playerHealth > 1)

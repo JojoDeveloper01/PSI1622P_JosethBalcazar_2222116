@@ -25,17 +25,16 @@ namespace Tanna
             string columnCreate = "Enemies";
             string name = NameEnemies.Text;
             string amount = AmountEnemies.Text;
-            string life = LifeEnemies.Text;
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(amount) || string.IsNullOrWhiteSpace(life))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(amount))
             {
                 MessageBox.Show("All fields must be filled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(amount, out _) || !int.TryParse(life, out _))
+            if (!int.TryParse(amount, out _))
             {
-                MessageBox.Show("Amount and Life must be numeric.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Amount must be numeric.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -47,7 +46,7 @@ namespace Tanna
 
             int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
 
-            if (GlobalVar.Create(columnCreate, new Dictionary<string, string> { { "name", name }, { "amount", amount }, { "life", life } }, playerId)) // Passa playerId para o método Create
+            if (GlobalVar.Create(columnCreate, new Dictionary<string, string> { { "name", name }, { "amount", amount }}, playerId)) // Passa playerId para o método Create
             {
                 int enemyId = GlobalVar.GetIdByName("Enemies", name);
                 if (enemyId != -1)

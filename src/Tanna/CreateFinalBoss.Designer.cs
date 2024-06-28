@@ -36,7 +36,6 @@
             CreateFB = new Button();
             EnergyFB = new TextBox();
             VelocityFB = new TextBox();
-            StaminaFB = new TextBox();
             LifeFB = new TextBox();
             NameFB = new TextBox();
             label5 = new Label();
@@ -67,7 +66,7 @@
             // 
             // DelFB
             // 
-            DelFB.Location = new Point(26, 324);
+            DelFB.Location = new Point(26, 292);
             DelFB.Name = "DelFB";
             DelFB.Size = new Size(121, 28);
             DelFB.TabIndex = 71;
@@ -79,7 +78,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(26, 239);
+            label17.Location = new Point(26, 207);
             label17.Name = "label17";
             label17.Size = new Size(154, 25);
             label17.TabIndex = 70;
@@ -88,7 +87,7 @@
             // NameDelFB
             // 
             NameDelFB.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            NameDelFB.Location = new Point(26, 286);
+            NameDelFB.Location = new Point(26, 254);
             NameDelFB.Name = "NameDelFB";
             NameDelFB.Size = new Size(121, 23);
             NameDelFB.TabIndex = 69;
@@ -96,7 +95,7 @@
             // 
             // CreateFB
             // 
-            CreateFB.Location = new Point(26, 176);
+            CreateFB.Location = new Point(26, 154);
             CreateFB.Name = "CreateFB";
             CreateFB.Size = new Size(170, 28);
             CreateFB.TabIndex = 67;
@@ -107,47 +106,42 @@
             // EnergyFB
             // 
             EnergyFB.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            EnergyFB.Location = new Point(114, 138);
+            EnergyFB.Location = new Point(114, 116);
             EnergyFB.Name = "EnergyFB";
             EnergyFB.Size = new Size(82, 23);
             EnergyFB.TabIndex = 66;
             EnergyFB.Text = "Energy";
+            EnergyFB.TextChanged += EnergyFB_TextChanged;
             // 
             // VelocityFB
             // 
             VelocityFB.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            VelocityFB.Location = new Point(114, 109);
+            VelocityFB.Location = new Point(114, 87);
             VelocityFB.Name = "VelocityFB";
             VelocityFB.Size = new Size(82, 23);
             VelocityFB.TabIndex = 65;
             VelocityFB.Text = "Velocity";
-            // 
-            // StaminaFB
-            // 
-            StaminaFB.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            StaminaFB.Location = new Point(26, 138);
-            StaminaFB.Name = "StaminaFB";
-            StaminaFB.Size = new Size(82, 23);
-            StaminaFB.TabIndex = 62;
-            StaminaFB.Text = "Stamina";
+            VelocityFB.TextChanged += VelocityFB_TextChanged;
             // 
             // LifeFB
             // 
             LifeFB.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            LifeFB.Location = new Point(26, 109);
+            LifeFB.Location = new Point(26, 116);
             LifeFB.Name = "LifeFB";
             LifeFB.Size = new Size(82, 23);
             LifeFB.TabIndex = 61;
             LifeFB.Text = "Life";
+            LifeFB.TextChanged += LifeFB_TextChanged;
             // 
             // NameFB
             // 
             NameFB.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            NameFB.Location = new Point(26, 80);
+            NameFB.Location = new Point(26, 87);
             NameFB.Name = "NameFB";
-            NameFB.Size = new Size(170, 23);
+            NameFB.Size = new Size(82, 23);
             NameFB.TabIndex = 60;
             NameFB.Text = "Name";
+            NameFB.TextChanged += NameFB_TextChanged;
             // 
             // label5
             // 
@@ -208,7 +202,6 @@
             Controls.Add(CreateFB);
             Controls.Add(EnergyFB);
             Controls.Add(VelocityFB);
-            Controls.Add(StaminaFB);
             Controls.Add(LifeFB);
             Controls.Add(NameFB);
             Controls.Add(label5);
@@ -228,7 +221,6 @@
         private Button CreateFB;
         private TextBox EnergyFB;
         private TextBox VelocityFB;
-        private TextBox StaminaFB;
         private TextBox LifeFB;
         private TextBox NameFB;
         private Label label5;

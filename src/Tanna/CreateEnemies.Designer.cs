@@ -35,7 +35,6 @@
             EnemiesCreated = new DataGridView();
             CreateGroupEnemies = new Button();
             label11 = new Label();
-            LifeEnemies = new TextBox();
             AmountEnemies = new TextBox();
             NameEnemies = new TextBox();
             BackEnemies = new Button();
@@ -95,7 +94,7 @@
             // 
             // CreateGroupEnemies
             // 
-            CreateGroupEnemies.Location = new Point(31, 176);
+            CreateGroupEnemies.Location = new Point(31, 143);
             CreateGroupEnemies.Name = "CreateGroupEnemies";
             CreateGroupEnemies.Size = new Size(120, 29);
             CreateGroupEnemies.TabIndex = 44;
@@ -112,15 +111,6 @@
             label11.Size = new Size(82, 25);
             label11.TabIndex = 43;
             label11.Text = "Enemies";
-            // 
-            // LifeEnemies
-            // 
-            LifeEnemies.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            LifeEnemies.Location = new Point(31, 143);
-            LifeEnemies.Name = "LifeEnemies";
-            LifeEnemies.Size = new Size(120, 23);
-            LifeEnemies.TabIndex = 42;
-            LifeEnemies.Text = "Life";
             // 
             // AmountEnemies
             // 
@@ -199,7 +189,6 @@
             Controls.Add(EnemiesCreated);
             Controls.Add(CreateGroupEnemies);
             Controls.Add(label11);
-            Controls.Add(LifeEnemies);
             Controls.Add(AmountEnemies);
             Controls.Add(NameEnemies);
             Name = "CreateEnemies";
@@ -218,7 +207,6 @@
         private DataGridView EnemiesCreated;
         private Button CreateGroupEnemies;
         private Label label11;
-        private TextBox LifeEnemies;
         private TextBox AmountEnemies;
         private TextBox NameEnemies;
         private Button BackEnemies;

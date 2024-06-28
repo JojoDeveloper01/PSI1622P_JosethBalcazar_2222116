@@ -25,21 +25,18 @@ namespace Tanna
             string columnCreate = "FinalBoss";
             string name = NameFB.Text;
             string life = LifeFB.Text;
-            string stamina = StaminaFB.Text;
             string velocity = VelocityFB.Text;
             string energy = EnergyFB.Text;
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(life) ||
-                string.IsNullOrWhiteSpace(stamina) || string.IsNullOrWhiteSpace(velocity) || string.IsNullOrWhiteSpace(energy))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(life) || string.IsNullOrWhiteSpace(velocity) || string.IsNullOrWhiteSpace(energy))
             {
                 MessageBox.Show("All fields must be filled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(life, out _) || !int.TryParse(stamina, out _) ||
-                !int.TryParse(velocity, out _) || !int.TryParse(energy, out _))
+            if (!int.TryParse(life, out _) || (!int.TryParse(velocity, out _) || !int.TryParse(energy, out _)))
             {
-                MessageBox.Show("Life, Stamina, Velocity, and Energy must be numeric.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Life, Velocity, and Energy must be numeric.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -55,7 +52,6 @@ namespace Tanna
             {
              { "name", name },
              { "life", life },
-             { "stamina", stamina },
              { "velocity", velocity },
              { "energy", energy } }, playerId)) // Passa playerId para o método Create
             {
@@ -101,6 +97,23 @@ namespace Tanna
             GetSelectedFinalBossName();
             this.previousForm.Show();
             this.Close();
+        }
+
+        private void NameFB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LifeFB_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void EnergyFB_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void VelocityFB_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }
