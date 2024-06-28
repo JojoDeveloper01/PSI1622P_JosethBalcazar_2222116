@@ -32,9 +32,15 @@ namespace Tanna
                 return;
             }
 
-            if (!int.TryParse(amount, out _))
+            if (!int.TryParse(amount, out int amountValue))
             {
                 MessageBox.Show("Amount must be numeric.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (amountValue > 500)
+            {
+                MessageBox.Show("Amount must not exceed 500.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

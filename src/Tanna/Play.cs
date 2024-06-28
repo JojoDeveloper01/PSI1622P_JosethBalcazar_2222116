@@ -29,7 +29,7 @@ namespace Tanna
         private string finalBossName;
         private int finalBossLife;
         private int finalBossVelocity;
-        private int finalBossEnergy;
+        private int finalBossDamage;
         
         private string worldName;
         private Size newWorldSize;
@@ -136,7 +136,7 @@ namespace Tanna
                 cmd.CommandText = @"
              SELECT g.id, g.name AS game_name,
                            b.name AS final_boss_name, b.life AS final_boss_life, 
-                           b.velocity AS final_boss_velocity, b.energy AS final_boss_energy,
+                           b.velocity AS final_boss_velocity, b.damage AS final_boss_damage,
                            w.name AS world_name, w.size AS world_size, w.duration AS world_duration
                     FROM Game g
                     JOIN FinalBoss b ON g.FinalBoss_id = b.id
@@ -152,12 +152,12 @@ namespace Tanna
                         gameName = reader.GetString(1);
                         finalBossName = reader.GetString(2);
                         finalBossLife = reader.GetInt32(3);
-                        finalBossVelocity = reader.GetInt32(5);
-                        finalBossEnergy = reader.GetInt32(6);
-                        worldName = reader.GetString(7);
-                        int worldSizeValue = reader.GetInt32(8);
+                        finalBossVelocity = reader.GetInt32(4);
+                        finalBossDamage = reader.GetInt32(5);
+                        worldName = reader.GetString(6);
+                        int worldSizeValue = reader.GetInt32(7);
 
-                        // Ajustar o tamanho do mundo para ser horizontal
+                        // Ajustar o tamanho do mundo para ser horizontal   
                         int width = worldSizeValue;
                         int height = (int)(width * 0.6); // Ajuste a proporção conforme necessário
                         newWorldSize = new Size(width, height);
@@ -176,7 +176,7 @@ namespace Tanna
             using (SQLiteCommand cmd = new SQLiteCommand())
             {
                 cmd.CommandText = @"
-            SELECT e.id, e.name, e.amount, e.life
+            SELECT e.id, e.name, e.amount
             FROM Enemies e
             JOIN Game_Enemies ge ON e.id = ge.enemy_id
             WHERE ge.game_id = @gameId";
@@ -194,7 +194,7 @@ namespace Tanna
             }
 
             // Mostrar informações do jogo em um MessageBox (para depuração)
-            MessageBox.Show($"Game Name: {gameName}\n\nWorld:\nName: {worldName}\nSize: {newWorldSize}\nDuration: {worldDuration} seconds\n\nFinal Boss:\nName: {finalBossName}\nLife: {finalBossLife}\nVelocity: {finalBossVelocity}\nEnergy: {finalBossEnergy}\n\nEnemies:\n{GetEnemiesInfo()}");
+            MessageBox.Show($"Game Name: {gameName}\n\nWorld:\nName: {worldName}\nSize: {newWorldSize}\nDuration: {worldDuration} seconds\n\nFinal Boss:\nName: {finalBossName}\nLife: {finalBossLife}\nVelocity: {finalBossVelocity}\nDamage: {finalBossDamage}\n\nEnemies:\n{GetEnemiesInfo()}");
 
             // Função auxiliar para formatar a informação dos inimigos
             string GetEnemiesInfo()
@@ -444,7 +444,7 @@ namespace Tanna
                     // Verificar colisão do jogador com o Final Boss
                     if (player.Bounds.IntersectsWith(finalBossPictureBox.Bounds))
                     {
-                        playerHealth -= finalBossEnergy;
+                        playerHealth -= finalBossDamage;
                     }
 
                     // Movimento do Final Boss em direção ao jogador
@@ -633,7 +633,7 @@ namespace Tanna
             sb.AppendLine($"Final Boss: {finalBossName}");
             sb.AppendLine($"Health: {finalBossLife}");
             sb.AppendLine($"Velocity: {finalBossVelocity}");
-            sb.AppendLine($"Damage: {finalBossEnergy}");
+            sb.AppendLine($"Damage: {finalBossDamage}");
 
             // Configuração dos labels no formulário
             Label lblFinalBoss = new Label();

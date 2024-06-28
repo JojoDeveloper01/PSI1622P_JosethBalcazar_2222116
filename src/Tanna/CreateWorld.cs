@@ -23,9 +23,21 @@
                 return;
             }
 
-            if (!int.TryParse(size, out _))
+            if (!int.TryParse(size, out int sizeValue))
             {
                 MessageBox.Show("Size must be numeric.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (sizeValue > 1500)
+            {
+                MessageBox.Show("Size must not exceed 1500.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (GlobalVar.IsNameAlreadyExists("Entities", name))
+            {
+                MessageBox.Show($"An entity with the name '{name}' already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

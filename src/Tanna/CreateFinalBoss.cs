@@ -26,17 +26,29 @@ namespace Tanna
             string name = NameFB.Text;
             string life = LifeFB.Text;
             string velocity = VelocityFB.Text;
-            string energy = EnergyFB.Text;
+            string damage = DamageFB.Text;
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(life) || string.IsNullOrWhiteSpace(velocity) || string.IsNullOrWhiteSpace(energy))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(life) || string.IsNullOrWhiteSpace(velocity) || string.IsNullOrWhiteSpace(damage))
             {
                 MessageBox.Show("All fields must be filled.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!int.TryParse(life, out _) || (!int.TryParse(velocity, out _) || !int.TryParse(energy, out _)))
+            if (!int.TryParse(life, out int lifeValue) || !int.TryParse(velocity, out int velocityValue) || !int.TryParse(damage, out int damageValue))
             {
-                MessageBox.Show("Life, Velocity, and Energy must be numeric.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Life, Velocity, and Damage must be numeric.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (velocityValue > 50)
+            {
+                MessageBox.Show("Velocity must not exceed 50.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (damageValue > 50)
+            {
+                MessageBox.Show("Damage must not exceed 50.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -49,11 +61,11 @@ namespace Tanna
             int playerId = GlobalVar.ID; // Obter o ID do jogador atualmente logado
 
             if (GlobalVar.Create(columnCreate, new Dictionary<string, string>
-            {
-             { "name", name },
-             { "life", life },
-             { "velocity", velocity },
-             { "energy", energy } }, playerId)) // Passa playerId para o método Create
+    {
+     { "name", name },
+     { "life", lifeValue.ToString() },
+     { "velocity", velocityValue.ToString() },
+     { "damage", damageValue.ToString() } }, playerId)) // Passa playerId para o método Create
             {
                 int finalBossId = GlobalVar.GetIdByName("FinalBoss", name);
                 if (finalBossId != -1)
@@ -67,6 +79,7 @@ namespace Tanna
                 }
             }
         }
+
 
         private void GetSelectedFinalBossName()
         {
@@ -108,7 +121,7 @@ namespace Tanna
         {
         }
 
-        private void EnergyFB_TextChanged(object sender, EventArgs e)
+        private void DamageFB_TextChanged(object sender, EventArgs e)
         {
         }
 

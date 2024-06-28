@@ -22,9 +22,8 @@ CREATE TABLE FinalBoss (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255),
     life INTEGER,
-    stamina INTEGER,
     velocity INTEGER,
-    energy INTEGER,
+    damage INTEGER,
     player_id INTEGER,
     FOREIGN KEY (player_id) REFERENCES player(id_player)
 );
@@ -42,7 +41,7 @@ INSERT INTO Game (name, world_id, finalBoss_id, player_id)
 VALUES ('Magic World', 1, 2, 18);
 
 
-DROP table World_Enemies
+DROP table FinalBoss
  
 select * from Game
  

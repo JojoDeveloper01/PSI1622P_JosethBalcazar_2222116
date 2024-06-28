@@ -75,7 +75,7 @@ namespace Tanna
                     sql = $"SELECT name, size, duration FROM World WHERE player_id = {ID}";
                     break;
                 case "FinalBoss":
-                    sql = $"SELECT name, life, velocity, energy FROM FinalBoss WHERE player_id = {ID}";
+                    sql = $"SELECT name, life, velocity, damage FROM FinalBoss WHERE player_id = {ID}";
                     break;
                 case "Enemies":
                     sql = $"SELECT name, amount FROM Enemies WHERE player_id = {ID}";

@@ -34,7 +34,7 @@
             label17 = new Label();
             NameDelFB = new TextBox();
             CreateFB = new Button();
-            EnergyFB = new TextBox();
+            DamageFB = new TextBox();
             VelocityFB = new TextBox();
             LifeFB = new TextBox();
             NameFB = new TextBox();
@@ -103,15 +103,15 @@
             CreateFB.UseVisualStyleBackColor = true;
             CreateFB.Click += CreateFB_Click;
             // 
-            // EnergyFB
+            // DamageFB
             // 
-            EnergyFB.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            EnergyFB.Location = new Point(114, 116);
-            EnergyFB.Name = "EnergyFB";
-            EnergyFB.Size = new Size(82, 23);
-            EnergyFB.TabIndex = 66;
-            EnergyFB.Text = "Energy";
-            EnergyFB.TextChanged += EnergyFB_TextChanged;
+            DamageFB.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            DamageFB.Location = new Point(114, 116);
+            DamageFB.Name = "DamageFB";
+            DamageFB.Size = new Size(82, 23);
+            DamageFB.TabIndex = 66;
+            DamageFB.Text = "Damage";
+            DamageFB.TextChanged += DamageFB_TextChanged;
             // 
             // VelocityFB
             // 
@@ -200,7 +200,7 @@
             Controls.Add(label17);
             Controls.Add(NameDelFB);
             Controls.Add(CreateFB);
-            Controls.Add(EnergyFB);
+            Controls.Add(DamageFB);
             Controls.Add(VelocityFB);
             Controls.Add(LifeFB);
             Controls.Add(NameFB);
@@ -219,7 +219,7 @@
         private Label label17;
         private TextBox NameDelFB;
         private Button CreateFB;
-        private TextBox EnergyFB;
+        private TextBox DamageFB;
         private TextBox VelocityFB;
         private TextBox LifeFB;
         private TextBox NameFB;
