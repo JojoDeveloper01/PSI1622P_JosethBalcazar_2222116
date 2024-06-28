@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Data.SQLite;
 using System.Text;
 
 namespace Tanna
@@ -14,17 +15,22 @@ namespace Tanna
         int ammo = 10;
         int Enemiespeed = 3;
         int score;
+        int bullet = 10;
         Random randNum = new Random();
         List<PictureBox> EnemiesList = new List<PictureBox>();
+
+        private ProgressBar finalBossHealthBar;
 
         private Label lblGameInfo;
         private int gameId;
         private string gameName;
+
         private string finalBossName;
         private int finalBossLife;
         private int finalBossStamina;
         private int finalBossVelocity;
         private int finalBossEnergy;
+        
         private string worldName;
         private string worldSize;
         private int? worldDuration;
@@ -34,24 +40,27 @@ namespace Tanna
         private List<int> enemyIds = new List<int>();
         private List<int> enemyLives = new List<int>();
 
+        private Dictionary<string, int> remainingEnemies = new Dictionary<string, int>();
+        private Dictionary<string, int> defeatedEnemiesCount = new Dictionary<string, int>();
+        private Dictionary<string, Color> enemyColors = new Dictionary<string, Color>();
+
         public Play()
         {
             InitializeComponent();
+            InitializeEnemyCounts();
             AddPlayerNameLabel();
             GetGameDetails();
-            InitializeEnemyCounts();
             RestartGame();
         }
 
-        private Dictionary<string, int> remainingEnemies = new Dictionary<string, int>();
-
         private void InitializeEnemyCounts()
         {
+            remainingEnemies.Clear(); // Limpar o dicionário antes de inicializar
+
             // Inicializar o dicionário de inimigos restantes
-            remainingEnemies.Clear();
             for (int i = 0; i < enemyNames.Count; i++)
             {
-                remainingEnemies[enemyNames[i]] = enemyAmounts[i];
+                remainingEnemies.Add(enemyNames[i], enemyAmounts[i]);
             }
         }
 
@@ -140,36 +149,40 @@ namespace Tanna
             }
         }
 
-        private void AddPlayerNameLabel()
+        private void UpdateGameInfo()
         {
-            string playerName = string.IsNullOrEmpty(GlobalVar.Username) ? "Player" : GlobalVar.Username;
 
-            // Remove o Label anterior, se existir
-            Label existingLabel = player.Controls.OfType<Label>().FirstOrDefault();
-            if (existingLabel != null)
+            // Constrói a string com as informações do jogo
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"World: {worldName}");
+            sb.AppendLine(" ");
+            sb.AppendLine($"Enemies:");
+
+            bool allEnemiesDefeated = true;
+
+            // Iterar sobre todos os tipos de inimigos conhecidos
+            foreach (var enemyName in enemyNames)
             {
-                player.Controls.Remove(existingLabel);
-                existingLabel.Dispose();
+                int totalEnemies = enemyAmounts[enemyNames.IndexOf(enemyName)];
+                int defeatedEnemies = defeatedEnemiesCount.ContainsKey(enemyName) ? defeatedEnemiesCount[enemyName] : 0;
+                int remainingEnemiesCount = totalEnemies - defeatedEnemies;
+
+                sb.AppendLine($"{enemyName}: {remainingEnemiesCount}/{totalEnemies}");
+
+                if (remainingEnemiesCount > 0)
+                {
+                    allEnemiesDefeated = false;
+                }
             }
 
-            Label playerNameLabel = new Label();
-            playerNameLabel.Text = playerName;
-            playerNameLabel.ForeColor = Color.White;
-            playerNameLabel.Font = new Font("Arial", 10, FontStyle.Bold);
-            playerNameLabel.AutoSize = true;
-            player.Controls.Add(playerNameLabel);
-            playerNameLabel.BringToFront();
-            playerNameLabel.Location = new Point((player.Width - playerNameLabel.Width) / 2, 0);
+            // Verifica se todos os inimigos foram derrotados antes de iniciar o Final Boss
+            if (allEnemiesDefeated)
+            {
+                MakeFinalBoss();
+            }
 
-            lblGameInfo = new Label();
-            lblGameInfo.ForeColor = Color.White;
-            lblGameInfo.Font = new Font("Arial", 10, FontStyle.Bold);
-            lblGameInfo.AutoSize = true;
-
-            lblGameInfo.Location = new Point(10, 60);
-
-            this.Controls.Add(lblGameInfo);
-            lblGameInfo.BringToFront();
+            // Atualiza o texto da label com as informações
+            lblGameInfo.Text = sb.ToString();
         }
 
         private void MainTimerEvent(object sender, EventArgs e)
@@ -189,6 +202,15 @@ namespace Tanna
             txtScore.Text = "Kills: " + score;
 
             // Movimento do jogador principal
+            PlayerMoviment();
+
+            // Movimento e interação com os Enemies
+            EnemyMovement();
+
+        }
+
+        private void PlayerMoviment()
+        {
             if (goLeft && player.Left > 0)
             {
                 player.Left -= speed;
@@ -204,78 +226,6 @@ namespace Tanna
             if (goDown && player.Top + player.Height < this.ClientSize.Height)
             {
                 player.Top += speed;
-            }
-
-            // Movimento e interação com os Enemies
-            foreach (Control x in this.Controls)
-            {
-                if (x is PictureBox && (string)x.Tag == "ammo")
-                {
-                    if (player.Bounds.IntersectsWith(x.Bounds))
-                    {
-                        this.Controls.Remove(x);
-                        x.Dispose();
-                        ammo += 5;
-                    }
-                }
-
-                if (x is PictureBox && (string)x.Tag == "Enemy")
-                {
-                    if (player.Bounds.IntersectsWith(x.Bounds))
-                    {
-                        playerHealth -= 1;
-                    }
-
-                    if (x.Left > player.Left)
-                    {
-                        x.Left -= Enemiespeed;
-                        ((PictureBox)x).Image = Properties.Resources.zleft;
-                    }
-                    if (x.Left < player.Left)
-                    {
-                        x.Left += Enemiespeed;
-                        ((PictureBox)x).Image = Properties.Resources.zright;
-                    }
-                    if (x.Top > player.Top)
-                    {
-                        x.Top -= Enemiespeed;
-                        ((PictureBox)x).Image = Properties.Resources.zup;
-                    }
-                    if (x.Top < player.Top)
-                    {
-                        x.Top += Enemiespeed;
-                        ((PictureBox)x).Image = Properties.Resources.zdown;
-                    }
-                }
-
-                foreach (Control j in this.Controls)
-                {
-                    if (j is PictureBox && (string)j.Tag == "bullet" && x is PictureBox && (string)x.Tag == "Enemy")
-                    {
-                        if (x.Bounds.IntersectsWith(j.Bounds))
-                        {
-                            string enemyName = x.Name; // Obtém o nome do inimigo
-                            if (remainingEnemies.ContainsKey(enemyName))
-                            {
-                                remainingEnemies[enemyName]--;
-                            }
-
-                            // Remover a bala e o inimigo
-                            score++;
-                            this.Controls.Remove(j);
-                            ((PictureBox)j).Dispose();
-                            this.Controls.Remove(x);
-                            ((PictureBox)x).Dispose();
-                            EnemiesList.Remove((PictureBox)x);
-
-                            // Criar um novo inimigo se ainda houver quantidade restante
-                            MakeEnemies();
-
-                            // Atualizar as informações do jogo
-                            UpdateGameInfo();
-                        }
-                    }
-                }
             }
         }
 
@@ -344,32 +294,183 @@ namespace Tanna
 
             if (e.KeyCode == Keys.Enter && gameOver)
             {
+                MessageBox.Show("Game Over!");
                 RestartGame();
             }
         }
 
-        private void ShootBullet(string direction)
+        private void EnemyMovement()
         {
-            Bullet shootBullet = new Bullet();
-            shootBullet.direction = direction;
-            shootBullet.bulletLeft = player.Left + (player.Width / 2);
-            shootBullet.bulletTop = player.Top + (player.Height / 2);
-            shootBullet.MakeBullet(this);
-            UpdateGameInfo();
+            foreach (Control x in this.Controls)
+            {
+                if (x is PictureBox && (string)x.Tag == "ammo")
+                {
+                    if (player.Bounds.IntersectsWith(x.Bounds))
+                    {
+                        this.Controls.Remove(x);
+                        x.Dispose();
+                        ammo += 5;
+                    }
+                }
+
+                if (x is PictureBox && (string)x.Tag == "Enemy")
+                {
+                    if (player.Bounds.IntersectsWith(x.Bounds))
+                    {
+                        playerHealth -= 1;
+                    }
+
+                    PictureBox enemyPictureBox = (PictureBox)x; // Cast seguro para PictureBox
+
+                    if (enemyPictureBox.Left > player.Left)
+                    {
+                        enemyPictureBox.Left -= Enemiespeed;
+                        enemyPictureBox.Image = Properties.Resources.zleft;
+                    }
+                    if (enemyPictureBox.Left < player.Left)
+                    {
+                        enemyPictureBox.Left += Enemiespeed;
+                        enemyPictureBox.Image = Properties.Resources.zright;
+                    }
+                    if (enemyPictureBox.Top > player.Top)
+                    {
+                        enemyPictureBox.Top -= Enemiespeed;
+                        enemyPictureBox.Image = Properties.Resources.zup;
+                    }
+                    if (enemyPictureBox.Top < player.Top)
+                    {
+                        enemyPictureBox.Top += Enemiespeed;
+                        enemyPictureBox.Image = Properties.Resources.zdown;
+                    }
+                }
+
+                foreach (Control j in this.Controls)
+                {
+                    if (j is PictureBox && x is PictureBox && (string)x.Tag == "Enemy" && (string)j.Tag == "bullet")
+                    {
+                        if (x.Bounds.IntersectsWith(j.Bounds))
+                        {
+                            score++;
+
+                            // Determinar qual tipo de inimigo foi derrotado e incrementar o contador correspondente no dicionário
+                            string enemyType = ((PictureBox)x).Name; // Nome do inimigo determinado durante a criação
+
+                            int count;
+                            if (defeatedEnemiesCount.TryGetValue(enemyType, out count))
+                            {
+                                defeatedEnemiesCount[enemyType] = count + 1;
+                            }
+                            else
+                            {
+                                defeatedEnemiesCount.Add(enemyType, 1);
+                            }
+
+                            // Remover o inimigo e a bala da interface
+                            this.Controls.Remove(j);
+                            ((PictureBox)j).Dispose();
+                            this.Controls.Remove(x);
+                            ((PictureBox)x).Dispose();
+                            EnemiesList.Remove((PictureBox)x);
+                            MakeEnemies();
+                            UpdateGameInfo();
+                        }
+                    }
+                }
+
+                // Interagir com o Final Boss, se existir
+                if (x is PictureBox && (string)x.Tag == "FinalBoss")
+                {
+                    PictureBox finalBossPictureBox = (PictureBox)x;
+
+                    // Verificar colisão do jogador com o Final Boss
+                    if (player.Bounds.IntersectsWith(finalBossPictureBox.Bounds))
+                    {
+                        playerHealth -= finalBossEnergy;
+                    }
+
+                    // Movimento do Final Boss em direção ao jogador
+                    if (finalBossPictureBox.Left > player.Left)
+                    {
+                        finalBossPictureBox.Left -= finalBossVelocity;
+                    }
+                    if (finalBossPictureBox.Left < player.Left)
+                    {
+                        finalBossPictureBox.Left += finalBossVelocity;
+                    }
+                    if (finalBossPictureBox.Top > player.Top)
+                    {
+                        finalBossPictureBox.Top -= finalBossVelocity;
+                    }
+                    if (finalBossPictureBox.Top < player.Top)
+                    {
+                        finalBossPictureBox.Top += finalBossVelocity;
+                    }
+
+                    foreach (Control j in this.Controls)
+                    {
+                        if (j is PictureBox && (string)j.Tag == "bullet")
+                        {
+                            if (finalBossPictureBox.Bounds.IntersectsWith(j.Bounds))
+                            {
+                                // Reduzir a vida do Final Boss
+                                finalBossLife -= 10; // ou qualquer valor apropriado
+
+                                // Atualizar a barra de vida do Final Boss
+                                finalBossHealthBar.Value = finalBossLife;
+
+                                // Remover a bala
+                                this.Controls.Remove(j);
+                                ((PictureBox)j).Dispose();
+
+                                // Verificar se o Final Boss foi derrotado
+                                if (finalBossLife <= 0)
+                                {
+                                    this.Controls.Remove(finalBossPictureBox);
+                                    finalBossPictureBox.Dispose();
+                                    MessageBox.Show("You Win!!");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void MakeEnemies()
         {
-            // Selecionar um nome de inimigo aleatório que ainda tenha inimigos restantes
             List<string> availableEnemies = remainingEnemies.Where(kvp => kvp.Value > 0).Select(kvp => kvp.Key).ToList();
+
+            bool isReady = true;
+
             if (availableEnemies.Count == 0)
             {
-                return; // Nenhum inimigo restante para criar
+                for (int i = 0; i < enemyNames.Count; i++)
+                {
+                    if (availableEnemies.Contains(enemyNames[i]))
+                    {
+                        isReady = false;
+                        break;
+                    }
+                }
+
+                if (!isReady)
+                {
+                    MakeFinalBoss();
+                }
+
+                return; 
             }
 
             string enemyName = availableEnemies[randNum.Next(availableEnemies.Count)];
 
-            // Criar um novo inimigo
+            // Verificar se a cor para este tipo de inimigo já foi atribuída, senão, gerar uma nova cor
+            if (!enemyColors.ContainsKey(enemyName))
+            {
+                enemyColors[enemyName] = GetRandomColor(); // Gerar e armazenar a cor aleatória
+            }
+
+            Color enemyColor = enemyColors[enemyName]; // Obter a cor para este tipo de inimigo
+
             PictureBox Enemy = new PictureBox
             {
                 Tag = "Enemy",
@@ -378,106 +479,117 @@ namespace Tanna
                 Top = randNum.Next(0, 800),
                 SizeMode = PictureBoxSizeMode.StretchImage, // Ajustar para que a imagem se ajuste ao tamanho
                 Size = new Size(80, 80), // Definir tamanho inicial do PictureBox
-                Name = enemyName // Set the name of the enemy PictureBox
+                Name = enemyName // Definir o nome do PictureBox
             };
 
-            // Create a new coverPanel with a random color
+            // Criar um Panel para cobrir o inimigo com a cor principal
             Panel coverPanel = new Panel
             {
-                BackColor = GetRandomColor(), // Cor aleatória para o painel de cobertura
+                BackColor = enemyColor, // Atribuir a cor aleatória gerada ou recuperada
                 Size = new Size(Enemy.Width, Enemy.Height),
                 Dock = DockStyle.Top
             };
             Enemy.Controls.Add(coverPanel); // Adicionar o Panel como filho do PictureBox
 
-            // Adicionar um Label para mostrar o nome do Enemy
+            // Adicionar um Label para mostrar o nome do Enemy com fundo preto e texto branco
             Label nameLabel = new Label
             {
                 Text = enemyName, // Nome do inimigo
                 ForeColor = Color.White, // Cor do texto
+                BackColor = Color.Gray, // Cor do fundo
                 Font = new Font("Arial", 9, FontStyle.Bold), // Fonte e tamanho do texto inicial
                 AutoSize = false, // Desativar o ajuste automático de tamanho
                 TextAlign = ContentAlignment.MiddleCenter // Alinhar o texto ao centro
             };
-            FitLabelFontSize(nameLabel, coverPanel.Size);
+            FitLabelFontSize(nameLabel, coverPanel.Size); // Ajustar o tamanho do Label para caber no Panel
             nameLabel.Location = new Point((coverPanel.Width - nameLabel.Width) / 2, 0);
             coverPanel.Controls.Add(nameLabel); // Adicionar o Label como filho do Panel de cobertura
 
-            // Adicionar o PictureBox à janela principal
-            this.Controls.Add(Enemy);
+            this.Controls.Add(Enemy); // Adicionar o PictureBox à janela principal
             Enemy.BringToFront(); // Colocar o PictureBox à frente de outros controles
 
-            EnemiesList.Add(Enemy);
+            EnemiesList.Add(Enemy); // Adicionar o PictureBox à lista de inimigos
 
-            // Atualizar a quantidade restante de inimigos deste tipo
-            remainingEnemies[enemyName]--;
-
-            UpdateGameInfo();
+            remainingEnemies[enemyName]--; // Atualizar a quantidade restante de inimigos deste tipo
         }
 
-        private void FitLabelFontSize(Label label, Size maxSize)
+        private void MakeFinalBoss()
         {
-            // Initial font size and font family
-            int fontSize = 9; // Starting font size
-            Font labelFont = label.Font;
+            // Definir parâmetros do Final Boss
+            ammo += 20;
+            speed += finalBossVelocity;
+            Color bossColor = GetRandomColor();
 
-            // Measure the text size with the initial font
-            SizeF textSize = TextRenderer.MeasureText(label.Text, labelFont);
-
-            // Reduce font size until the text fits within the maximum size
-            while ((textSize.Width > maxSize.Width || textSize.Height > maxSize.Height) && fontSize > 1)
+            // Criar o PictureBox do Final Boss
+            PictureBox finalBoss = new PictureBox
             {
-                fontSize--; // Decrease font size
-                labelFont = new Font(labelFont.FontFamily, fontSize, labelFont.Style); // Create new font with reduced size
-                textSize = TextRenderer.MeasureText(label.Text, labelFont); // Measure text size with the new font
-            }
+                Tag = "FinalBoss",
+                Image = Properties.Resources.zdown, // Imagem do chefe final
+                Left = randNum.Next(0, this.ClientSize.Width - 120), // Ajustar para não sair da tela
+                Top = randNum.Next(0, this.ClientSize.Height - 200), // Ajustar para não sair da tela
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Size = new Size(120, 120),
+                Name = finalBossName
+            };
 
-            // Update label's font with the adjusted size
-            label.Font = labelFont;
-        }
+            // Adicionar o Final Boss à tela
+            this.Controls.Add(finalBoss);
 
-        private Color GetRandomColor()
-        {
-            Random rand = new Random();
-            return Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
-        }
+            // Criar um Panel para cobrir o Final Boss com a cor principal
+            Panel coverPanel = new Panel
+            {
+                BackColor = bossColor,
+                Size = new Size(finalBoss.Width, finalBoss.Height),
+                Dock = DockStyle.Top
+            };
+            finalBoss.Controls.Add(coverPanel);
 
-        private void UpdateGameInfo()
-        {
-            // Constrói a string com as informações do jogo
+            // Adicionar um Label para mostrar o nome do Final Boss
+            Label nameLabel = new Label
+            {
+                Text = finalBossName,
+                ForeColor = Color.White,
+                BackColor = Color.Black,
+                Font = new Font("Arial", 12, FontStyle.Bold),
+                AutoSize = true,
+                TextAlign = ContentAlignment.MiddleCenter
+            };
+            nameLabel.Location = new Point((coverPanel.Width - nameLabel.Width) / 2, 0);
+            coverPanel.Controls.Add(nameLabel);
+
+            // Inicializar a barra de vida do Final Boss
+            finalBossHealthBar = new ProgressBar
+            {
+                Maximum = finalBossLife,
+                Value = finalBossLife,
+                Size = new Size(this.ClientSize.Width / 2, 20), // Largura da barra de vida
+                Location = new Point((this.ClientSize.Width - this.ClientSize.Width / 2) / 2, this.ClientSize.Height - 30) // Posicionamento no rodapé da tela
+            };
+
+            // Adicionar a barra de vida à tela
+            this.Controls.Add(finalBossHealthBar);
+            finalBossHealthBar.BringToFront();
+
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Final Boss: {finalBossName}");
-            sb.AppendLine($"World: {worldName}");
-            sb.AppendLine($"Enemies:");
+            sb.AppendLine($"Health: {finalBossLife}");
+            sb.AppendLine($"Velocity: {finalBossVelocity}");
+            sb.AppendLine($"Damage: {finalBossEnergy}");
 
-            // Iterar sobre todos os nomes de inimigos conhecidos
-            foreach (var enemyName in enemyNames)
-            {
-                // Encontra a quantidade total de inimigos deste tipo
-                int totalEnemies = enemyAmounts[enemyNames.IndexOf(enemyName)];
+            // Configuração dos labels no formulário
+            Label lblFinalBoss = new Label();
+            lblFinalBoss.Text = sb.ToString();
+            lblFinalBoss.AutoSize = true; // Ajusta automaticamente o tamanho do label
+            lblFinalBoss.Location = new Point(10, 650);
+            lblFinalBoss.ForeColor = Color.White;
+            lblFinalBoss.Font = new Font("Arial", 10, FontStyle.Bold);
 
-                // Verifica a quantidade restante no dicionário
-                int remainingEnemiesCount = remainingEnemies.ContainsKey(enemyName) ? remainingEnemies[enemyName] : 0;
-
-                sb.AppendLine($"{enemyName} {remainingEnemiesCount}/{totalEnemies}");
-            }
-
-            // Atualiza o texto da label com as informações
-            lblGameInfo.Text = sb.ToString();
+            // Adiciona o label ao formulário
+            this.Controls.Add(lblFinalBoss);
         }
 
-        private void DropAmmo()
-        {
-            PictureBox ammo = new PictureBox();
-            ammo.Image = Properties.Resources.ammo_Image;
-            ammo.SizeMode = PictureBoxSizeMode.AutoSize;
-            ammo.Left = randNum.Next(10, this.ClientSize.Width - ammo.Width);
-            ammo.Top = randNum.Next(60, this.ClientSize.Height - ammo.Height);
-            ammo.Tag = "ammo";
-            this.Controls.Add(ammo);
-            ammo.BringToFront();
-            player.BringToFront();
-        }
+
+        /*----------------------------------------*/
 
         private void RestartGame()
         {
@@ -494,6 +606,7 @@ namespace Tanna
             for (int i = 0; i < 3; i++)
             {
                 MakeEnemies();
+                UpdateGameInfo();
             }
 
             goUp = false;
@@ -507,5 +620,80 @@ namespace Tanna
             GameTimer.Start();
         }
 
+        private void DropAmmo()
+        {
+            PictureBox ammo = new PictureBox();
+            ammo.Image = Properties.Resources.ammo_Image;
+            ammo.SizeMode = PictureBoxSizeMode.AutoSize;
+            ammo.Left = randNum.Next(10, this.ClientSize.Width - ammo.Width);
+            ammo.Top = randNum.Next(60, this.ClientSize.Height - ammo.Height);
+            ammo.Tag = "ammo";
+            this.Controls.Add(ammo);
+            ammo.BringToFront();
+            player.BringToFront();
+        }
+
+        private void ShootBullet(string direction)
+        {
+            Bullet shootBullet = new Bullet();
+            shootBullet.direction = direction;
+            shootBullet.bulletLeft = player.Left + (player.Width / 2);
+            shootBullet.bulletTop = player.Top + (player.Height / 2);
+            shootBullet.MakeBullet(this);
+        }
+
+        private void AddPlayerNameLabel()
+        {
+            string playerName = string.IsNullOrEmpty(GlobalVar.Username) ? "Player" : GlobalVar.Username;
+
+            // Remove o Label anterior, se existir
+            Label existingLabel = player.Controls.OfType<Label>().FirstOrDefault();
+            if (existingLabel != null)
+            {
+                player.Controls.Remove(existingLabel);
+                existingLabel.Dispose();
+            }
+
+            Label playerNameLabel = new Label();
+            playerNameLabel.Text = playerName;
+            playerNameLabel.ForeColor = Color.White;
+            playerNameLabel.Font = new Font("Arial", 10, FontStyle.Bold);
+            playerNameLabel.AutoSize = true;
+            player.Controls.Add(playerNameLabel);
+            playerNameLabel.BringToFront();
+            playerNameLabel.Location = new Point((player.Width - playerNameLabel.Width) / 2, 0);
+
+            lblGameInfo = new Label();
+            lblGameInfo.ForeColor = Color.White;
+            lblGameInfo.Font = new Font("Arial", 10, FontStyle.Bold);
+            lblGameInfo.AutoSize = true;
+
+            lblGameInfo.Location = new Point(10, 60);
+
+            this.Controls.Add(lblGameInfo);
+            lblGameInfo.BringToFront();
+        }
+
+        private void FitLabelFontSize(Label label, Size panelSize)
+        {
+            float fontSize = 8.5f;
+            Font f = new Font(label.Font.Name, fontSize, label.Font.Style);
+            SizeF size = TextRenderer.MeasureText(label.Text, f);
+
+            while (size.Width < panelSize.Width - 2 && size.Height < panelSize.Height - 2)
+            {
+                fontSize += 0.5f;
+                f = new Font(label.Font.Name, fontSize, label.Font.Style);
+                size = TextRenderer.MeasureText(label.Text, f);
+            }
+
+            label.Font = new Font(label.Font.Name, fontSize - 1, label.Font.Style);
+        }
+
+        private Color GetRandomColor()
+        {
+            Random rand = new Random();
+            return Color.FromArgb(randNum.Next(100, 256), randNum.Next(100, 256), randNum.Next(100, 256));
+        }
     }
 }
