@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:play.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|c:\\users\\jojop\\desktop\\psi1622p_josethbalcazar_2222116\\src\\tanna\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A45F874C-8A39-43ED-9083-777D24357522}|Tanna.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -43,18 +43,6 @@
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form1.cs [Projeto]",
-              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Form1.cs [Projeto]",
-              "RelativeToolTip": "Form1.cs [Projeto]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T22:44:27.177Z",
-              "EditorCaption": " [Projeto]"
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
             },
@@ -64,13 +52,24 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Projeto]",
+              "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Form1.cs [Projeto]",
+              "RelativeToolTip": "Form1.cs [Projeto]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T22:44:27.177Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Play.cs",
               "DocumentMoniker": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Play.cs",
               "RelativeDocumentMoniker": "Play.cs",
               "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Play.cs",
               "RelativeToolTip": "Play.cs",
-              "ViewState": "AQIAAEMAAAAAAAAAAAD4v28AAAAhAAAA",
+              "ViewState": "AQIAADYAAAAAAAAAAAArwGoAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-26T23:27:58.206Z",
               "EditorCaption": ""
@@ -84,8 +83,7 @@
               "ToolTip": "C:\\Users\\jojop\\Desktop\\PSI1622P_JosethBalcazar_2222116\\src\\Tanna\\Play.cs [Projeto]",
               "RelativeToolTip": "Play.cs [Projeto]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T23:27:47.987Z",
-              "EditorCaption": " [Projeto]"
+              "WhenOpened": "2024-06-26T23:27:47.987Z"
             }
           ]
         }

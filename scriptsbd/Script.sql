@@ -43,6 +43,8 @@ VALUES ('Magic World', 1, 2, 18);
 
 DROP table FinalBoss
  
+select * from player
+
 select * from Game
  
 select * from Game_Enemies
@@ -60,7 +62,7 @@ SELECT
     g.world_id,
     g.finalBoss_id,
     g.player_id
-FROM 
+FROM 	
     Game g
 WHERE 
     g.player_id = 18;
