@@ -38,4 +38,4 @@ O projeto foi desenvolvido ao longo de aproximadamente um mês, dividido nas seg
 3. **Inciar o jogo**
    ```bash
    
-   git clone https://github.com/seu-usuario/TANNA.git
+   git clone https://github.com/JojoDeveloper01/PSI1622P_JosethBalcazar_2222116
