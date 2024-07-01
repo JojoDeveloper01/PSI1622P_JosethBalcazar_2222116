@@ -49,125 +49,161 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.FromArgb(64, 0, 64);
             label4.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(134, 149);
+            label4.ForeColor = SystemColors.ButtonHighlight;
+            label4.Location = new Point(191, 248);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(57, 15);
+            label4.Size = new Size(89, 25);
             label4.TabIndex = 3;
             label4.Text = " (optional)";
             // 
             // NameWorld
             // 
+            NameWorld.BackColor = Color.FromArgb(64, 0, 64);
             NameWorld.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            NameWorld.Location = new Point(38, 88);
+            NameWorld.ForeColor = SystemColors.ButtonHighlight;
+            NameWorld.Location = new Point(54, 147);
+            NameWorld.Margin = new Padding(4, 5, 4, 5);
             NameWorld.Name = "NameWorld";
-            NameWorld.Size = new Size(100, 23);
+            NameWorld.Size = new Size(141, 31);
             NameWorld.TabIndex = 4;
             NameWorld.Text = "Name";
             // 
             // SizeWorld
             // 
+            SizeWorld.BackColor = Color.FromArgb(64, 0, 64);
             SizeWorld.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            SizeWorld.Location = new Point(38, 117);
+            SizeWorld.ForeColor = SystemColors.ButtonHighlight;
+            SizeWorld.Location = new Point(54, 195);
+            SizeWorld.Margin = new Padding(4, 5, 4, 5);
             SizeWorld.Name = "SizeWorld";
-            SizeWorld.Size = new Size(100, 23);
+            SizeWorld.Size = new Size(141, 31);
             SizeWorld.TabIndex = 5;
             SizeWorld.Text = "Size";
             // 
             // DurationWorld
             // 
+            DurationWorld.BackColor = Color.FromArgb(64, 0, 64);
             DurationWorld.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            DurationWorld.Location = new Point(38, 146);
+            DurationWorld.ForeColor = SystemColors.ButtonHighlight;
+            DurationWorld.Location = new Point(54, 243);
+            DurationWorld.Margin = new Padding(4, 5, 4, 5);
             DurationWorld.Name = "DurationWorld";
-            DurationWorld.Size = new Size(100, 23);
+            DurationWorld.Size = new Size(141, 31);
             DurationWorld.TabIndex = 6;
             DurationWorld.Text = "Duration seg";
             // 
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = Color.FromArgb(64, 0, 64);
             label6.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(38, 40);
+            label6.ForeColor = SystemColors.ButtonHighlight;
+            label6.Location = new Point(54, 67);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(63, 25);
+            label6.Size = new Size(91, 38);
             label6.TabIndex = 8;
             label6.Text = "World";
             // 
             // AddWorlds
             // 
-            AddWorlds.Location = new Point(38, 189);
+            AddWorlds.BackColor = Color.Black;
+            AddWorlds.ForeColor = SystemColors.ButtonHighlight;
+            AddWorlds.Location = new Point(54, 315);
+            AddWorlds.Margin = new Padding(4, 5, 4, 5);
             AddWorlds.Name = "AddWorlds";
-            AddWorlds.Size = new Size(100, 28);
+            AddWorlds.Size = new Size(143, 47);
             AddWorlds.TabIndex = 20;
             AddWorlds.Text = "Create World";
-            AddWorlds.UseVisualStyleBackColor = true;
+            AddWorlds.UseVisualStyleBackColor = false;
             AddWorlds.Click += CreateWorlds_Click;
             // 
             // NameDelWorld
             // 
+            NameDelWorld.BackColor = Color.FromArgb(64, 0, 64);
             NameDelWorld.Font = new Font("Segoe UI Light", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            NameDelWorld.Location = new Point(38, 298);
+            NameDelWorld.ForeColor = SystemColors.ButtonHighlight;
+            NameDelWorld.Location = new Point(54, 497);
+            NameDelWorld.Margin = new Padding(4, 5, 4, 5);
             NameDelWorld.Name = "NameDelWorld";
-            NameDelWorld.Size = new Size(100, 23);
+            NameDelWorld.Size = new Size(141, 31);
             NameDelWorld.TabIndex = 42;
             NameDelWorld.Text = "Name";
             // 
             // label19
             // 
             label19.AutoSize = true;
+            label19.BackColor = Color.FromArgb(64, 0, 64);
             label19.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label19.Location = new Point(38, 259);
+            label19.ForeColor = SystemColors.ButtonHighlight;
+            label19.Location = new Point(54, 432);
+            label19.Margin = new Padding(4, 0, 4, 0);
             label19.Name = "label19";
-            label19.Size = new Size(122, 25);
+            label19.Size = new Size(180, 38);
             label19.TabIndex = 43;
             label19.Text = "Delete World";
             // 
             // DelWorld
             // 
-            DelWorld.Location = new Point(38, 338);
+            DelWorld.BackColor = Color.Black;
+            DelWorld.ForeColor = SystemColors.ButtonHighlight;
+            DelWorld.Location = new Point(54, 563);
+            DelWorld.Margin = new Padding(4, 5, 4, 5);
             DelWorld.Name = "DelWorld";
-            DelWorld.Size = new Size(100, 28);
+            DelWorld.Size = new Size(143, 47);
             DelWorld.TabIndex = 44;
             DelWorld.Text = "Delete World";
-            DelWorld.UseVisualStyleBackColor = true;
+            DelWorld.UseVisualStyleBackColor = false;
             DelWorld.Click += DelWorld_Click;
             // 
             // WorldsCreated
             // 
+            WorldsCreated.BackgroundColor = Color.FromArgb(64, 0, 64);
             WorldsCreated.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            WorldsCreated.Location = new Point(240, 88);
+            WorldsCreated.Location = new Point(343, 147);
+            WorldsCreated.Margin = new Padding(4, 5, 4, 5);
             WorldsCreated.Name = "WorldsCreated";
+            WorldsCreated.RowHeadersWidth = 62;
             WorldsCreated.RowTemplate.Height = 25;
-            WorldsCreated.Size = new Size(344, 278);
+            WorldsCreated.Size = new Size(491, 463);
             WorldsCreated.TabIndex = 47;
             // 
             // label22
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label22.Location = new Point(297, 40);
+            label22.ForeColor = SystemColors.ButtonFace;
+            label22.Location = new Point(424, 67);
+            label22.Margin = new Padding(4, 0, 4, 0);
             label22.Name = "label22";
-            label22.Size = new Size(142, 25);
+            label22.Size = new Size(207, 38);
             label22.TabIndex = 48;
             label22.Text = "Worlds Created";
             // 
             // BackWorld
             // 
-            BackWorld.Location = new Point(448, 381);
+            BackWorld.BackColor = Color.Black;
+            BackWorld.ForeColor = SystemColors.ButtonHighlight;
+            BackWorld.Location = new Point(640, 635);
+            BackWorld.Margin = new Padding(4, 5, 4, 5);
             BackWorld.Name = "BackWorld";
-            BackWorld.Size = new Size(136, 32);
+            BackWorld.Size = new Size(194, 53);
             BackWorld.TabIndex = 52;
             BackWorld.Text = "Back";
-            BackWorld.UseVisualStyleBackColor = true;
+            BackWorld.UseVisualStyleBackColor = false;
             BackWorld.Click += BackWorld_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(240, 404);
+            label1.Location = new Point(343, 673);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(195, 15);
+            label1.Size = new Size(275, 22);
             label1.TabIndex = 76;
             label1.Text = "Choose a World for the Game";
             // 
@@ -175,9 +211,10 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(240, 369);
+            label3.Location = new Point(343, 615);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(28, 32);
+            label3.Size = new Size(41, 48);
             label3.TabIndex = 85;
             label3.Text = "⬆️";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -185,20 +222,23 @@
             // 
             // Update
             // 
-            Update.Location = new Point(509, 59);
+            Update.BackColor = Color.Black;
+            Update.ForeColor = SystemColors.ButtonHighlight;
+            Update.Location = new Point(727, 98);
+            Update.Margin = new Padding(4, 5, 4, 5);
             Update.Name = "Update";
-            Update.Size = new Size(75, 23);
+            Update.Size = new Size(107, 38);
             Update.TabIndex = 86;
             Update.Text = "Update";
-            Update.UseVisualStyleBackColor = true;
+            Update.UseVisualStyleBackColor = false;
             Update.Click += Update_Click;
             // 
             // CreateWorld
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(596, 428);
+            BackColor = Color.FromArgb(64, 0, 64);
+            ClientSize = new Size(851, 713);
             Controls.Add(Update);
             Controls.Add(label1);
             Controls.Add(label3);
@@ -214,6 +254,7 @@
             Controls.Add(SizeWorld);
             Controls.Add(NameWorld);
             Controls.Add(label4);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "CreateWorld";
             Text = "CreatWorld";
             ((System.ComponentModel.ISupportInitialize)WorldsCreated).EndInit();

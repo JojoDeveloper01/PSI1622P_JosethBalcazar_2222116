@@ -43,42 +43,54 @@
             // 
             // Username
             // 
-            Username.Location = new Point(87, 121);
+            Username.BackColor = Color.FromArgb(64, 0, 64);
+            Username.ForeColor = SystemColors.Window;
+            Username.Location = new Point(124, 202);
+            Username.Margin = new Padding(4, 5, 4, 5);
             Username.Name = "Username";
-            Username.Size = new Size(153, 23);
+            Username.Size = new Size(217, 31);
             Username.TabIndex = 1;
             // 
             // Password
             // 
-            Password.Location = new Point(87, 162);
+            Password.BackColor = Color.FromArgb(64, 0, 64);
+            Password.ForeColor = SystemColors.Window;
+            Password.Location = new Point(124, 270);
+            Password.Margin = new Padding(4, 5, 4, 5);
             Password.Name = "Password";
-            Password.Size = new Size(153, 23);
+            Password.Size = new Size(217, 31);
             Password.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(63, 85);
+            label1.ForeColor = SystemColors.ButtonHighlight;
+            label1.Location = new Point(86, 143);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(18, 15);
+            label1.Size = new Size(30, 25);
             label1.TabIndex = 3;
             label1.Text = "ID";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(21, 121);
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(30, 202);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(60, 15);
+            label2.Size = new Size(91, 25);
             label2.TabIndex = 4;
             label2.Text = "Username";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(24, 162);
+            label3.ForeColor = SystemColors.ButtonHighlight;
+            label3.Location = new Point(34, 270);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(57, 15);
+            label3.Size = new Size(87, 25);
             label3.TabIndex = 5;
             label3.Text = "Password";
             // 
@@ -86,66 +98,82 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(87, 27);
+            label5.ForeColor = SystemColors.ButtonHighlight;
+            label5.Location = new Point(124, 45);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(122, 37);
+            label5.Size = new Size(177, 54);
             label5.TabIndex = 16;
             label5.Text = "Account";
             // 
             // Save
             // 
-            Save.Location = new Point(87, 200);
+            Save.BackColor = Color.Black;
+            Save.ForeColor = SystemColors.ButtonFace;
+            Save.Location = new Point(124, 333);
+            Save.Margin = new Padding(4, 5, 4, 5);
             Save.Name = "Save";
-            Save.Size = new Size(75, 23);
+            Save.Size = new Size(107, 38);
             Save.TabIndex = 17;
             Save.Text = "Save";
-            Save.UseVisualStyleBackColor = true;
+            Save.UseVisualStyleBackColor = false;
             Save.Click += Save_Click;
             // 
             // ID
             // 
             ID.AutoSize = true;
-            ID.Location = new Point(87, 86);
+            ID.ForeColor = SystemColors.ControlLightLight;
+            ID.Location = new Point(124, 143);
+            ID.Margin = new Padding(4, 0, 4, 0);
             ID.Name = "ID";
-            ID.Size = new Size(0, 15);
+            ID.Size = new Size(0, 25);
             ID.TabIndex = 18;
             // 
             // CreateGame
             // 
-            CreateGame.Location = new Point(85, 290);
+            CreateGame.BackColor = Color.Black;
+            CreateGame.ForeColor = SystemColors.ButtonFace;
+            CreateGame.Location = new Point(124, 484);
+            CreateGame.Margin = new Padding(4, 5, 4, 5);
             CreateGame.Name = "CreateGame";
-            CreateGame.Size = new Size(119, 28);
+            CreateGame.Size = new Size(170, 47);
             CreateGame.TabIndex = 22;
             CreateGame.Text = "Create a Game";
-            CreateGame.UseVisualStyleBackColor = true;
+            CreateGame.UseVisualStyleBackColor = false;
             CreateGame.Click += CreateGame_Click;
             // 
             // EditUsers
             // 
-            EditUsers.Location = new Point(87, 256);
+            EditUsers.BackColor = Color.Black;
+            EditUsers.ForeColor = SystemColors.ButtonFace;
+            EditUsers.Location = new Point(124, 427);
+            EditUsers.Margin = new Padding(4, 5, 4, 5);
             EditUsers.Name = "EditUsers";
-            EditUsers.Size = new Size(119, 28);
+            EditUsers.Size = new Size(170, 47);
             EditUsers.TabIndex = 23;
             EditUsers.Text = "Edit Users";
-            EditUsers.UseVisualStyleBackColor = true;
+            EditUsers.UseVisualStyleBackColor = false;
             EditUsers.Click += EditUsers_Click;
             // 
             // BackAccount
             // 
-            BackAccount.Location = new Point(171, 364);
+            BackAccount.BackColor = Color.Black;
+            BackAccount.ForeColor = SystemColors.ButtonFace;
+            BackAccount.Location = new Point(244, 607);
+            BackAccount.Margin = new Padding(4, 5, 4, 5);
             BackAccount.Name = "BackAccount";
-            BackAccount.Size = new Size(119, 32);
+            BackAccount.Size = new Size(170, 53);
             BackAccount.TabIndex = 76;
             BackAccount.Text = "Back";
-            BackAccount.UseVisualStyleBackColor = true;
+            BackAccount.UseVisualStyleBackColor = false;
             BackAccount.Click += BackAccount_Click;
             // 
             // Account
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(302, 408);
+            BackColor = Color.FromArgb(64, 0, 64);
+            ClientSize = new Size(431, 680);
             Controls.Add(BackAccount);
             Controls.Add(EditUsers);
             Controls.Add(CreateGame);
@@ -157,6 +185,7 @@
             Controls.Add(label1);
             Controls.Add(Password);
             Controls.Add(Username);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Account";
             Text = "W";
             Load += Account_Load;

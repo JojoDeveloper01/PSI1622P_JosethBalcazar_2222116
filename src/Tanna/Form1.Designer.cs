@@ -41,103 +41,130 @@
             // 
             // SignUpButton
             // 
-            SignUpButton.Location = new Point(649, 287);
+            SignUpButton.BackColor = Color.Black;
+            SignUpButton.ForeColor = SystemColors.ButtonHighlight;
+            SignUpButton.Location = new Point(927, 478);
+            SignUpButton.Margin = new Padding(4, 5, 4, 5);
             SignUpButton.Name = "SignUpButton";
-            SignUpButton.Size = new Size(137, 41);
+            SignUpButton.Size = new Size(196, 68);
             SignUpButton.TabIndex = 12;
             SignUpButton.Text = "Sign Up";
-            SignUpButton.UseVisualStyleBackColor = true;
+            SignUpButton.UseVisualStyleBackColor = false;
             SignUpButton.Click += SignUpButton_Click;
             // 
             // SignInButton
             // 
-            SignInButton.Location = new Point(649, 334);
+            SignInButton.BackColor = Color.Black;
+            SignInButton.ForeColor = SystemColors.ButtonHighlight;
+            SignInButton.Location = new Point(927, 557);
+            SignInButton.Margin = new Padding(4, 5, 4, 5);
             SignInButton.Name = "SignInButton";
-            SignInButton.Size = new Size(137, 36);
+            SignInButton.Size = new Size(196, 60);
             SignInButton.TabIndex = 13;
             SignInButton.Text = "Sign In";
-            SignInButton.UseVisualStyleBackColor = true;
+            SignInButton.UseVisualStyleBackColor = false;
             SignInButton.Click += SignInButton_Click;
             // 
             // Account
             // 
-            Account.Location = new Point(649, 318);
+            Account.BackColor = Color.Black;
+            Account.ForeColor = SystemColors.ButtonHighlight;
+            Account.Location = new Point(927, 528);
+            Account.Margin = new Padding(4, 5, 4, 5);
             Account.Name = "Account";
-            Account.Size = new Size(137, 52);
+            Account.Size = new Size(196, 87);
             Account.TabIndex = 14;
             Account.Text = "Account";
-            Account.UseVisualStyleBackColor = true;
+            Account.UseVisualStyleBackColor = false;
             Account.Click += Account_Click;
             // 
             // Logout
             // 
-            Logout.Location = new Point(711, 296);
+            Logout.BackColor = Color.Black;
+            Logout.ForeColor = SystemColors.ButtonHighlight;
+            Logout.Location = new Point(1016, 493);
+            Logout.Margin = new Padding(4, 5, 4, 5);
             Logout.Name = "Logout";
-            Logout.Size = new Size(75, 23);
+            Logout.Size = new Size(107, 38);
             Logout.TabIndex = 16;
             Logout.Text = "Logout";
-            Logout.UseVisualStyleBackColor = true;
+            Logout.UseVisualStyleBackColor = false;
             Logout.Click += Logout_Click;
             // 
             // Play
             // 
+            Play.BackColor = Color.Black;
             Play.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            Play.Location = new Point(51, 151);
+            Play.ForeColor = SystemColors.ButtonHighlight;
+            Play.Location = new Point(73, 252);
+            Play.Margin = new Padding(4, 5, 4, 5);
             Play.Name = "Play";
-            Play.Size = new Size(222, 49);
+            Play.Size = new Size(317, 82);
             Play.TabIndex = 17;
             Play.Text = "Choose Game";
-            Play.UseVisualStyleBackColor = true;
+            Play.UseVisualStyleBackColor = false;
             Play.Click += Play_Click;
             // 
             // Exit
             // 
+            Exit.BackColor = Color.Black;
             Exit.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            Exit.Location = new Point(51, 313);
+            Exit.ForeColor = SystemColors.Control;
+            Exit.ImageAlign = ContentAlignment.MiddleLeft;
+            Exit.Location = new Point(73, 522);
+            Exit.Margin = new Padding(4, 5, 4, 5);
             Exit.Name = "Exit";
-            Exit.Size = new Size(222, 49);
+            Exit.Size = new Size(317, 82);
             Exit.TabIndex = 18;
             Exit.Text = "Exit";
-            Exit.UseVisualStyleBackColor = true;
+            Exit.UseVisualStyleBackColor = false;
             Exit.Click += Exit_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(51, 63);
+            label1.Font = new Font("Segoe UI", 25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ButtonHighlight;
+            label1.Location = new Point(73, 105);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(251, 37);
+            label1.Size = new Size(455, 67);
             label1.TabIndex = 19;
             label1.Text = "Minigame Creator";
             // 
             // CreateGame
             // 
+            CreateGame.BackColor = Color.Black;
             CreateGame.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point);
-            CreateGame.Location = new Point(51, 235);
+            CreateGame.ForeColor = Color.White;
+            CreateGame.Location = new Point(73, 392);
+            CreateGame.Margin = new Padding(4, 5, 4, 5);
             CreateGame.Name = "CreateGame";
-            CreateGame.Size = new Size(222, 49);
+            CreateGame.Size = new Size(317, 82);
             CreateGame.TabIndex = 20;
             CreateGame.Text = "Create Game";
-            CreateGame.UseVisualStyleBackColor = true;
+            CreateGame.UseVisualStyleBackColor = false;
             CreateGame.Click += CreateGame_Click;
             // 
             // Update
             // 
-            Update.Location = new Point(711, 12);
+            Update.BackColor = Color.Black;
+            Update.ForeColor = SystemColors.ControlLightLight;
+            Update.Location = new Point(1016, 20);
+            Update.Margin = new Padding(4, 5, 4, 5);
             Update.Name = "Update";
-            Update.Size = new Size(75, 23);
+            Update.Size = new Size(107, 38);
             Update.TabIndex = 21;
             Update.Text = "Update";
-            Update.UseVisualStyleBackColor = true;
+            Update.UseVisualStyleBackColor = false;
             Update.Click += Update_Click;
             // 
             // Home
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(798, 382);
+            BackColor = Color.FromArgb(64, 0, 64);
+            ClientSize = new Size(1140, 637);
             Controls.Add(Update);
             Controls.Add(CreateGame);
             Controls.Add(label1);
@@ -148,6 +175,7 @@
             Controls.Add(SignInButton);
             Controls.Add(SignUpButton);
             Cursor = Cursors.Cross;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Home";
             Text = "Home";
             ResumeLayout(false);

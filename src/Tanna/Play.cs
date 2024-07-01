@@ -30,7 +30,7 @@ namespace Tanna
         private int finalBossLife;
         private int finalBossVelocity;
         private int finalBossDamage;
-        
+
         private string worldName;
         private Size newWorldSize;
         private int? worldDuration;
@@ -93,7 +93,7 @@ namespace Tanna
             lblTimeRemaining.Font = new Font(lblTimeRemaining.Font.FontFamily, 16, FontStyle.Bold); // Exemplo de tamanho de fonte 16 e negrito
 
             // Calcular a posição para colocar a label no canto inferior direito
-            int xPosition = this.ClientSize.Width / 7; // 10 pixels de margem à direita
+            int xPosition = this.ClientSize.Width / 4; // 10 pixels de margem à direita
             int yPosition = 10; // 10 pixels de margem do fundo
             lblTimeRemaining.Location = new Point(xPosition, yPosition);
 
@@ -113,7 +113,7 @@ namespace Tanna
                     gameOver = true;
                     playerHealth = 0;
                     this.Hide();
-                    Lose lose= new();
+                    Lose lose = new();
                     lose.ShowDialog();
                 }
 
@@ -138,14 +138,14 @@ namespace Tanna
             using (SQLiteCommand cmd = new SQLiteCommand())
             {
                 cmd.CommandText = @"
-             SELECT g.id, g.name AS game_name,
-                           b.name AS final_boss_name, b.life AS final_boss_life, 
-                           b.velocity AS final_boss_velocity, b.damage AS final_boss_damage,
-                           w.name AS world_name, w.size AS world_size, w.duration AS world_duration
-                    FROM Game g
-                    JOIN FinalBoss b ON g.FinalBoss_id = b.id
-                    JOIN World w ON g.World_id = w.id
-                    WHERE g.name = @gameName;";
+            SELECT g.id, g.name AS game_name,
+                   b.name AS final_boss_name, b.life AS final_boss_life, 
+                   b.velocity AS final_boss_velocity, b.damage AS final_boss_damage,
+                   w.name AS world_name, w.size AS world_size, w.duration AS world_duration
+            FROM Game g
+            JOIN FinalBoss b ON g.FinalBoss_id = b.id
+            JOIN World w ON g.World_id = w.id
+            WHERE g.name = @gameName;";
                 cmd.Parameters.AddWithValue("@gameName", gameName);
 
                 using (SQLiteDataReader reader = Program.ExecuteQuery(cmd))
@@ -167,7 +167,7 @@ namespace Tanna
                         newWorldSize = new Size(width, height);
 
                         // Obter world_duration e armazenar em worldDuration
-                        worldDuration = reader.IsDBNull(9) ? null : (int?)reader.GetInt32(9);
+                        worldDuration = reader.IsDBNull(8) ? null : (int?)reader.GetInt32(8);
                     }
                 }
             }
@@ -214,7 +214,6 @@ namespace Tanna
 
         private void UpdateGameInfo()
         {
-
             // Constrói a string com as informações do jogo
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"World: {worldName}");
@@ -247,7 +246,7 @@ namespace Tanna
             // Atualiza o texto da label com as informações
             lblGameInfo.Text = sb.ToString();
         }
-    
+
         private void MainTimerEvent(object sender, EventArgs e)
         {
             if (playerHealth > 1)
@@ -527,7 +526,7 @@ namespace Tanna
                     MakeFinalBoss();
                 }
 
-                return; 
+                return;
             }
 
             string enemyName = availableEnemies[randNum.Next(availableEnemies.Count)];
