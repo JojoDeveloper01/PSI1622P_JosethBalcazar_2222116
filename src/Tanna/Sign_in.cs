@@ -13,9 +13,11 @@ namespace Tanna
 {
     public partial class Sign_in : Form
     {
-        public Sign_in()
+        private Form previousForm;
+        public Sign_in(Form previousForm)
         {
             InitializeComponent();
+            this.previousForm = previousForm;
         }
 
         private void SignIn_Click(object sender, EventArgs e)
@@ -57,6 +59,20 @@ namespace Tanna
                     return false;
                 }
             }
+        }
+
+        private void Sign_Up_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Sign_up sign_up = new(this);
+            sign_up.ShowDialog();
+            this.Show();
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+            this.previousForm.Show();
+            this.Close();
         }
     }
 }

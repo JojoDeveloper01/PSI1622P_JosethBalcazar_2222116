@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             SignUpButton = new Button();
             SignInButton = new Button();
             Account = new Button();
@@ -37,6 +38,8 @@
             label1 = new Label();
             CreateGame = new Button();
             Update = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // SignUpButton
@@ -159,6 +162,15 @@
             Update.UseVisualStyleBackColor = false;
             Update.Click += Update_Click;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(433, 105);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(622, 408);
+            pictureBox1.TabIndex = 22;
+            pictureBox1.TabStop = false;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -174,10 +186,12 @@
             Controls.Add(Account);
             Controls.Add(SignInButton);
             Controls.Add(SignUpButton);
+            Controls.Add(pictureBox1);
             Cursor = Cursors.Cross;
             Margin = new Padding(4, 5, 4, 5);
             Name = "Home";
             Text = "Home";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -192,5 +206,6 @@
         private Label label1;
         private Button CreateGame;
         private Button Update;
+        private PictureBox pictureBox1;
     }
 }

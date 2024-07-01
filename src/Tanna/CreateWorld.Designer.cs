@@ -200,6 +200,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ButtonHighlight;
             label1.Location = new Point(343, 673);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
@@ -211,6 +212,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ButtonHighlight;
             label3.Location = new Point(343, 615);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";

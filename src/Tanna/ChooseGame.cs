@@ -13,6 +13,13 @@
         private void Play_Click(object sender, EventArgs e)
         {
             GetSelectedGameName();
+
+            if (string.IsNullOrEmpty(GlobalVar.SelectedGameName))
+            {
+                MessageBox.Show("No game selected. Please select a game from the list.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Sai do método se nenhum jogo foi selecionado
+            }
+
             this.Hide();
             Play play = new();
             play.ShowDialog();
@@ -33,7 +40,7 @@
             {
                 MessageBox.Show("You need sign in to create Games");
                 this.Hide();
-                Sign_in sign_in = new();
+                Sign_in sign_in = new(this);
                 sign_in.ShowDialog();
                 this.Show();
             }

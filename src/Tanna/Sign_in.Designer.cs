@@ -32,13 +32,15 @@
             passwordLogin = new TextBox();
             usernameLogin = new TextBox();
             label1 = new Label();
+            Sign_Up = new LinkLabel();
+            Back = new Button();
             SuspendLayout();
             // 
             // SignIn
             // 
             SignIn.BackColor = Color.Black;
             SignIn.ForeColor = SystemColors.Control;
-            SignIn.Location = new Point(103, 312);
+            SignIn.Location = new Point(102, 335);
             SignIn.Margin = new Padding(4, 5, 4, 5);
             SignIn.Name = "SignIn";
             SignIn.Size = new Size(154, 48);
@@ -83,12 +85,39 @@
             label1.TabIndex = 20;
             label1.Text = "Sign In";
             // 
+            // Sign_Up
+            // 
+            Sign_Up.AutoSize = true;
+            Sign_Up.LinkColor = Color.Gainsboro;
+            Sign_Up.Location = new Point(102, 292);
+            Sign_Up.Name = "Sign_Up";
+            Sign_Up.Size = new Size(75, 25);
+            Sign_Up.TabIndex = 22;
+            Sign_Up.TabStop = true;
+            Sign_Up.Text = "Sign Up";
+            Sign_Up.LinkClicked += Sign_Up_LinkClicked;
+            // 
+            // Back
+            // 
+            Back.BackColor = Color.Black;
+            Back.ForeColor = SystemColors.ButtonHighlight;
+            Back.Location = new Point(272, 422);
+            Back.Margin = new Padding(4, 5, 4, 5);
+            Back.Name = "Back";
+            Back.Size = new Size(118, 39);
+            Back.TabIndex = 77;
+            Back.Text = "Back";
+            Back.UseVisualStyleBackColor = false;
+            Back.Click += Back_Click;
+            // 
             // Sign_in
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 0, 64);
-            ClientSize = new Size(403, 432);
+            ClientSize = new Size(403, 475);
+            Controls.Add(Back);
+            Controls.Add(Sign_Up);
             Controls.Add(label1);
             Controls.Add(SignIn);
             Controls.Add(passwordLogin);
@@ -106,5 +135,7 @@
         private TextBox passwordLogin;
         private TextBox usernameLogin;
         private Label label1;
+        private LinkLabel Sign_Up;
+        private Button Back;
     }
 }

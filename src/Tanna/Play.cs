@@ -58,6 +58,17 @@ namespace Tanna
             WorldOptions();
 
             RestartGame();
+
+            this.FormClosing += new FormClosingEventHandler(Play_FormClosing);
+        }
+
+        private void Play_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Coloque aqui o que você quer que aconteça quando a janela for fechada
+            gameOver = true;
+            player.Image = Properties.Resources.dead;
+            GameTimer.Stop();
+            playerHealth = 0;
         }
 
         private void InitializeEnemyCounts()
@@ -198,7 +209,7 @@ namespace Tanna
             }
 
             // Mostrar informações do jogo em um MessageBox (para depuração)
-            MessageBox.Show($"Game Name: {gameName}\n\nWorld:\nName: {worldName}\nSize: {newWorldSize}\nDuration: {worldDuration} seconds\n\nFinal Boss:\nName: {finalBossName}\nLife: {finalBossLife}\nVelocity: {finalBossVelocity}\nDamage: {finalBossDamage}\n\nEnemies:\n{GetEnemiesInfo()}");
+            //MessageBox.Show($"Game Name: {gameName}\n\nWorld:\nName: {worldName}\nSize: {newWorldSize}\nDuration: {worldDuration} seconds\n\nFinal Boss:\nName: {finalBossName}\nLife: {finalBossLife}\nVelocity: {finalBossVelocity}\nDamage: {finalBossDamage}\n\nEnemies:\n{GetEnemiesInfo()}");
 
             // Função auxiliar para formatar a informação dos inimigos
             string GetEnemiesInfo()
@@ -258,6 +269,7 @@ namespace Tanna
                 gameOver = true;
                 player.Image = Properties.Resources.dead;
                 GameTimer.Stop();
+                playerHealth = 0;
                 this.Hide();
                 Lose lose = new();
                 lose.ShowDialog();

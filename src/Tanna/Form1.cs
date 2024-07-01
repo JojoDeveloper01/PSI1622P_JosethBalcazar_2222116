@@ -35,7 +35,7 @@ namespace Tanna
         private void SignUpButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Sign_up sign_up = new();
+            Sign_up sign_up = new(this);
             sign_up.ShowDialog();
             this.Show();
         }
@@ -43,7 +43,7 @@ namespace Tanna
         private void SignInButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Sign_in sign_in = new();
+            Sign_in sign_in = new(this);
             sign_in.ShowDialog();
             this.Show();
             UpdateUI();
@@ -89,7 +89,7 @@ namespace Tanna
             {
                 MessageBox.Show("You need sign in to create Games");
                 this.Hide();
-                Sign_in sign_in = new();
+                Sign_in sign_in = new(this);
                 sign_in.ShowDialog();
                 this.Show();
                 UpdateUI();

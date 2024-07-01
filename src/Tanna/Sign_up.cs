@@ -13,9 +13,11 @@ namespace Tanna
 {
     public partial class Sign_up : Form
     {
-        public Sign_up()
+        private Form previousForm;
+        public Sign_up(Form previousForm)
         {
             InitializeComponent();
+            this.previousForm = previousForm;
         }
 
         private void SignUp_Click(object sender, EventArgs e)
@@ -90,6 +92,20 @@ namespace Tanna
                 MessageBox.Show("Erro inesperado: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+        private void Back_Click(object sender, EventArgs e)
+        {
+            this.previousForm.Show();
+            this.Close();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            Sign_in sign_in = new(this);
+            sign_in.ShowDialog();
+            this.Show();
         }
     }
 }
