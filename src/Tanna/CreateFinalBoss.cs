@@ -42,7 +42,7 @@ namespace Tanna
 
             if (velocityValue > 15)
             {
-                MessageBox.Show("Velocity must not exceed 50.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Velocity must not exceed 15.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
